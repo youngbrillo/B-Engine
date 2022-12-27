@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{41f39c52-9e29-4872-aeca-b81fb14616d0}</ProjectGuid>
+    <RootNamespace>BEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDir)Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\App.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Astroid.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\AstroidManager.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\AstroidObject.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\b2BodyGrabber.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\baseContactListener.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\breakable.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Bullet.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Camera.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\CameraController.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Car.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\CSApp.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\defaults_SpaceBuster.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Game.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\GameObject.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\glad.c" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Inventory.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\InventoryScene.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Item.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\ItemObject.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\ItemPickupScene.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\newGameTemplate.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\ObjectFactory.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\PhysDebug.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\pinball.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Platformer.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\ResourceManager.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Shader.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\ShipController.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\SpaceBuster.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Spaceship.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\SpriteTest.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Surface.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\test_Astroids.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Texture.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Utility_Physics.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Zone.cpp" />
+    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\ZoneTest.cpp" />
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\App.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Astroid.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\AstroidManager.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\AstroidObject.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\b2BodyGrabber.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\baseContactListener.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Bullet.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Camera.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\CameraController.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\CSApp.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\defaults_SpaceBuster.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Game.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\GameObject.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imconfig.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_internal.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Inventory.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Item.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\ItemObject.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\ObjectFactory.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\PhysDebug.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\ResourceManager.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Shader.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\ShipController.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Spaceship.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\stb_image.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Surface.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Texture.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Utility_Physics.h" />
+    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Zone.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="B-Engine.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\glfw.3.3.8\build\native\glfw.targets" Condition="Exists('packages\glfw.3.3.8\build\native\glfw.targets')" />
+    <Import Project="packages\Box2D.2.3.0\build\native\Box2D.targets" Condition="Exists('packages\Box2D.2.3.0\build\native\Box2D.targets')" />
+    <Import Project="packages\glm.0.9.9.800\build\native\glm.targets" Condition="Exists('packages\glm.0.9.9.800\build\native\glm.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\glfw.3.3.8\build\native\glfw.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\glfw.3.3.8\build\native\glfw.targets'))" />
+    <Error Condition="!Exists('packages\Box2D.2.3.0\build\native\Box2D.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Box2D.2.3.0\build\native\Box2D.targets'))" />
+    <Error Condition="!Exists('packages\glm.0.9.9.800\build\native\glm.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\glm.0.9.9.800\build\native\glm.targets'))" />
+  </Target>
+</Project>
