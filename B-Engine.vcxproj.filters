@@ -13,263 +13,263 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="x-addons">
-      <UniqueIdentifier>{7af8bea4-e885-459e-bc34-05d5eb560d3a}</UniqueIdentifier>
+    <Filter Include="addons">
+      <UniqueIdentifier>{2883ad75-a64c-478a-82b0-478fe4bf5985}</UniqueIdentifier>
     </Filter>
     <Filter Include="Imgui">
-      <UniqueIdentifier>{f8022478-c5f3-48a1-8c8a-af0fe9b7ef1d}</UniqueIdentifier>
+      <UniqueIdentifier>{947059eb-26d7-4201-a5a1-b8fa6aeb8171}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\glad.c">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="glad.c">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\App.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="App.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Astroid.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Astroid.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\AstroidManager.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="AstroidManager.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\AstroidObject.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="AstroidObject.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\b2BodyGrabber.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="b2BodyGrabber.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\baseContactListener.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="baseContactListener.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\breakable.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="breakable.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Bullet.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Camera.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Camera.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\CameraController.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Car.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Car.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\CSApp.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="CSApp.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\defaults_SpaceBuster.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="defaults_SpaceBuster.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Game.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Game.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\GameObject.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Inventory.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\InventoryScene.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="InventoryScene.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Item.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Item.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\ItemObject.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="ItemObject.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\ItemPickupScene.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="ItemPickupScene.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\newGameTemplate.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="newGameTemplate.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\ObjectFactory.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="ObjectFactory.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\PhysDebug.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="PhysDebug.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\pinball.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="pinball.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Platformer.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Platformer.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\ResourceManager.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Shader.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Shader.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\ShipController.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="ShipController.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\SpaceBuster.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="SpaceBuster.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Spaceship.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Spaceship.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\SpriteTest.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="SpriteTest.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Surface.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Surface.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\test_Astroids.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="test_Astroids.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Texture.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Texture.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Utility_Physics.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Utility_Physics.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\Zone.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="Zone.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\ZoneTest.cpp">
-      <Filter>x-addons</Filter>
+    <ClCompile Include="ZoneTest.cpp">
+      <Filter>addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui.cpp">
+    <ClCompile Include="imgui\imgui.cpp">
       <Filter>Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_demo.cpp">
+    <ClCompile Include="imgui\imgui_demo.cpp">
       <Filter>Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_draw.cpp">
+    <ClCompile Include="imgui\imgui_draw.cpp">
       <Filter>Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_impl_glfw.cpp">
+    <ClCompile Include="imgui\imgui_impl_glfw.cpp">
       <Filter>Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_impl_opengl3.cpp">
+    <ClCompile Include="imgui\imgui_impl_opengl3.cpp">
       <Filter>Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_tables.cpp">
+    <ClCompile Include="imgui\imgui_tables.cpp">
       <Filter>Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_widgets.cpp">
+    <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>Imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\App.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Astroid.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\AstroidManager.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\AstroidObject.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\b2BodyGrabber.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\baseContactListener.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Bullet.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Camera.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\CameraController.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\CSApp.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\defaults_SpaceBuster.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Game.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\GameObject.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Inventory.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Item.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\ItemObject.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\ObjectFactory.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\PhysDebug.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\ResourceManager.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Shader.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\ShipController.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Spaceship.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\stb_image.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Surface.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Texture.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Utility_Physics.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\Zone.h">
-      <Filter>x-addons</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imconfig.h">
+    <ClInclude Include="App.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Astroid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AstroidManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AstroidObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="b2BodyGrabber.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="baseContactListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CSApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="defaults_SpaceBuster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysDebug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShipController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Spaceship.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Surface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility_Physics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imconfig.h">
       <Filter>Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui.h">
+    <ClInclude Include="imgui\imgui.h">
       <Filter>Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_impl_glfw.h">
+    <ClInclude Include="imgui\imgui_impl_glfw.h">
       <Filter>Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_impl_opengl3.h">
+    <ClInclude Include="imgui\imgui_impl_opengl3.h">
       <Filter>Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_impl_opengl3_loader.h">
+    <ClInclude Include="imgui\imgui_impl_opengl3_loader.h">
       <Filter>Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imgui_internal.h">
+    <ClInclude Include="imgui\imgui_internal.h">
       <Filter>Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imstb_rectpack.h">
+    <ClInclude Include="imgui\imstb_rectpack.h">
       <Filter>Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imstb_textedit.h">
+    <ClInclude Include="imgui\imstb_textedit.h">
       <Filter>Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\CodeSwitcher\CodeSwitcher\imgui\imstb_truetype.h">
+    <ClInclude Include="imgui\imstb_truetype.h">
       <Filter>Imgui</Filter>
     </ClInclude>
   </ItemGroup>
