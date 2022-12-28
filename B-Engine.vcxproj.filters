@@ -13,130 +13,25 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="addons">
-      <UniqueIdentifier>{2883ad75-a64c-478a-82b0-478fe4bf5985}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Imgui">
       <UniqueIdentifier>{947059eb-26d7-4201-a5a1-b8fa6aeb8171}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{a55abf9a-211d-476c-a070-746b4c549dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{cf4c32b1-92bd-4f03-92ed-8ff9d036f678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Spacebuster">
+      <UniqueIdentifier>{1204344c-fb22-4ca9-b862-adc2c0f30a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inventories">
+      <UniqueIdentifier>{2883ad75-a64c-478a-82b0-478fe4bf5985}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="glad.c">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="App.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Astroid.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="AstroidManager.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="AstroidObject.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="b2BodyGrabber.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="baseContactListener.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="breakable.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraController.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Car.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="CSApp.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="defaults_SpaceBuster.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Inventory.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="InventoryScene.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemObject.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemPickupScene.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="newGameTemplate.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectFactory.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysDebug.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="pinball.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Platformer.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="ShipController.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="SpaceBuster.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Spaceship.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteTest.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Surface.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="test_Astroids.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility_Physics.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="Zone.cpp">
-      <Filter>addons</Filter>
-    </ClCompile>
-    <ClCompile Include="ZoneTest.cpp">
-      <Filter>addons</Filter>
     </ClCompile>
     <ClCompile Include="imgui\imgui.cpp">
       <Filter>Imgui</Filter>
@@ -158,6 +53,120 @@
     </ClCompile>
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="breakable.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="pinball.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Platformer.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="newGameTemplate.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceBuster.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteTest.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="test_Astroids.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneTest.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Car.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility_Physics.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysDebug.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="b2BodyGrabber.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="baseContactListener.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Astroid.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="AstroidManager.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="AstroidObject.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="defaults_SpaceBuster.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipController.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="Spaceship.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="CSApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectFactory.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemPickupScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemObject.cpp">
+      <Filter>Inventories</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Inventories</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Inventories</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
