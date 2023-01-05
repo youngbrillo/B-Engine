@@ -23,6 +23,7 @@ void ResourceManager::startup()
 		return; 
 	}
 	//todo: in the future have the system read through everything and yada yada yada but for now i'll do it by hand
+	printf("ResourceManager.cpp::\tCreating assets\n");
 
 	//load items
 	ResourceManager::LoadItem(ItemType::SparePart, "Spare Part", "Restores Condition", true, true);
@@ -58,6 +59,7 @@ void ResourceManager::cleanup()
 		printf("ResourceManager.cpp::\tCleanup should not run, b/c startup has not run!\n");
 		return;
 	}
+	printf("ResourceManager.cpp::\tClearing All assets\n");
 	//lookupItemToTexture.clear();
 	//Textures.clear();
 	//Shaders.clear();
@@ -70,6 +72,7 @@ void ResourceManager::cleanup()
 Shader ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name)
 {
 	Shaders[name] = Shader(vShaderFile, fShaderFile, true);
+	printf("ResourceManager.cpp::\t\tInitializing Shader\t'%s'\n", name.c_str());
 	return Shaders[name];
 }
 
@@ -86,6 +89,7 @@ Shader* ResourceManager::GetShaderPtr(std::string name)
 Texture ResourceManager::LoadTexture(const char* file, bool alpha, std::string name)
 {
 	Textures[name] = Texture(file, alpha);
+	printf("ResourceManager.cpp::\t\tInitializing Texture\t'%s' (%s)\n",name.c_str(), file);
 	return Textures[name];
 }
 

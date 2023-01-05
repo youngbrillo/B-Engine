@@ -28,6 +28,18 @@
     <Filter Include="Inventories">
       <UniqueIdentifier>{2883ad75-a64c-478a-82b0-478fe4bf5985}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\templates">
+      <UniqueIdentifier>{3a7fa8fe-bd24-48d7-b575-2d88c9564b90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{61b815e2-4fa7-4704-9f70-0ad673d6b6d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{7f422b04-173b-49cb-9abd-80579c103d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Spacebuster\levels/missions">
+      <UniqueIdentifier>{038cd061-b03e-4fef-9c6e-34637d4cbc95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -61,9 +73,6 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Platformer.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="newGameTemplate.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="SpaceBuster.cpp">
@@ -167,6 +176,24 @@
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Inventories</Filter>
+    </ClCompile>
+    <ClCompile Include="MissionScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="newGameTemplate.cpp">
+      <Filter>Scenes\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceBusterGame.cpp">
+      <Filter>Scenes\templates</Filter>
+    </ClCompile>
+    <ClCompile Include="Mission.cpp">
+      <Filter>Spacebuster\levels/missions</Filter>
+    </ClCompile>
+    <ClCompile Include="MissionStandard.cpp">
+      <Filter>Spacebuster\levels/missions</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectListener.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +308,18 @@
     <ClInclude Include="imgui\imstb_truetype.h">
       <Filter>Imgui</Filter>
     </ClInclude>
+    <ClInclude Include="SpaceBusterGame.h">
+      <Filter>Scenes\templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Mission.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MissionStandard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="B-Engine.rc">
@@ -289,5 +328,37 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="stdsprite.frs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="test.frs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="NDC_sprite.vts">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="stdsprite.vts">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="test.vts">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\Ammo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\brick.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\EnergyCell.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\SparePart.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="icon.png">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
 </Project>

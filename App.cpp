@@ -1,6 +1,8 @@
 #include "App.h"
 #include "ResourceManager.h"
 
+App* App::g_App = nullptr;
+
 App::App(unsigned int width, unsigned int height)
 	: CSApp(width, height)
 	, m_game(nullptr)
@@ -9,6 +11,7 @@ App::App(unsigned int width, unsigned int height)
 {
 	m_Camera = new Camera(glm::vec4(0, 0, width, height));
 	Game::AppCam = m_Camera;
+	g_App = this;
 }
 
 App::~App()
@@ -17,6 +20,7 @@ App::~App()
 	delete m_Camera;
 
 	ResourceManager::cleanup();
+	g_App = nullptr;
 }
 
 void App::Init()
@@ -254,7 +258,7 @@ void App::mouseScroll_callback(GLFWwindow* window, double xoffset, double yoffse
 void App::ResizeWindowCallback(GLFWwindow* window, int width, int height)
 {
 	screenWidth = width;
-	screenWidth = height;
+	screenHeight = height;
 
 	m_Camera->Width = width;
 	m_Camera->Height = height;

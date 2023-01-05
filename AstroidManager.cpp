@@ -67,7 +67,7 @@ void SpaceBuster::AstroidFactory::Update(float dt)
 
 			if (chance >= baseChance)
 			{
-				baseChance -= 0.05f;
+				baseChance += 0.05f;
 				SpaceBuster::ItemType currentItem = SpaceBuster::ItemType::EnergyCell;
 				const int size = 4;
 				SpaceBuster::ItemType dropTypes[size] = {
@@ -117,7 +117,7 @@ void SpaceBuster::AstroidFactory::Update(float dt)
 			}
 			else
 			{
-				baseChance += 0.02f;
+				baseChance -= 0.02f;
 			}
 		}
 		lastFrameDelete = false;

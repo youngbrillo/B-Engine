@@ -21,9 +21,10 @@ namespace SpaceBuster {
 		void handleFragment(AstroidState& state,AstroidObject* i);
 	private:
 		std::vector<AstroidState> listToCreate;
+	public:
 		int max, count;
 		float timeLeftUntilNextSpawn, SpawnTimeTarget, spawnAngle, maxAstroidSize, baseChance;
-
+	private:
 		b2Vec2 spawnUpperBound, spawnLowerBound,
 			lastDeletedPos, lastDeletedSpeed;
 	public:

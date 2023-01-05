@@ -118,7 +118,7 @@ int main(char* argc, int argv[])
         glfwPollEvents();
 
     }
-
+    delete application;
     // Deletes all ImGUI instances
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();

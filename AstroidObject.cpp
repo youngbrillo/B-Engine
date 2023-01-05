@@ -11,6 +11,7 @@ AstroidObject::AstroidObject(GameObjectDefinition* def, void* Creator)
 	, expireTimeOut(0.5f)
 	, collisionType(collisionType_astroids::collision_astroid)
 	, m_Creator(Creator)
+	, lifeTimeLeft(0.0f), lifeTimeMax(120.0f)
 {
 	assert(this->enabled_physics == true); //the astroid class doesn't work if phys isn't enabled!
 
@@ -42,7 +43,15 @@ AstroidObject::~AstroidObject()
 
 void AstroidObject::Update(float dt)
 {
+	if (deletionFlag) return;
+
 	GameObject::Update(dt);
+	lifeTimeLeft += dt;
+
+	if (lifeTimeLeft >= lifeTimeMax)
+	{
+		deletionFlag = true;
+	}
 	if (broken)
 	{
 		expireTimeLeft += dt;
@@ -53,7 +62,7 @@ void AstroidObject::Update(float dt)
 
 		this->color = glm::vec4(1, 0, 0, 1);
 	}
-
+	
 
 }
 
