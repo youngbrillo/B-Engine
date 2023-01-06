@@ -10,6 +10,8 @@
 #include <algorithm>
 #include <vector>
 //#include "Camera.h"
+
+#include "Settings.h"
 class App :  public CSApp
 {
 public:
@@ -36,11 +38,11 @@ protected:
 	void orderGameEntries();
 
 	Game*	m_game;
-	int		m_gameSelection;
 	Camera* m_Camera;
 
 public:
 	static App* g_App;
+	static Settings g_settings;
 };
 
 

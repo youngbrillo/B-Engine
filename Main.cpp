@@ -30,14 +30,16 @@ void cus_glfw_initialization();
 void cus_glfw_callback_initialization(GLFWwindow* window);
 void cus_imgui_init_config(GLFWwindow* win);
 
-
 CSApp* application;
 int main(char* argc, int argv[])
 {
+    //load settings
+    App::g_settings.Load();
+
     //INITIALIZATION
     cus_glfw_initialization();
 
-    GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Code Switcher", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(App::g_settings.m_windowWidth, App::g_settings.m_windowHeight, "Code Switcher", nullptr, nullptr);
     glfwMakeContextCurrent(window);
 
     // glad: load all OpenGL function pointers
@@ -54,7 +56,7 @@ int main(char* argc, int argv[])
     cus_glfw_callback_initialization(window);
     // OpenGL configuration
     // --------------------
-    glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    glViewport(0, 0, App::g_settings.m_windowWidth, App::g_settings.m_windowHeight);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -73,7 +75,7 @@ int main(char* argc, int argv[])
 
 
     //final setup
-    application = new App(SCREEN_WIDTH, SCREEN_HEIGHT);
+    application = new App(App::g_settings.m_windowWidth, App::g_settings.m_windowHeight);
 
     App::mainWindow = window;
     Game::mainWindow = window;
@@ -118,12 +120,17 @@ int main(char* argc, int argv[])
         glfwPollEvents();
 
     }
+
+    App::g_settings.Save();
+
     delete application;
     // Deletes all ImGUI instances
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
     glfwTerminate();
+
+
 
 	return 0;
 }
@@ -201,6 +208,12 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 
 void ResizeWindowCallback(GLFWwindow* window, int newWidth, int newHeight)
 {
-    if(newWidth > 0 && newHeight > 0)
+    if (newWidth > 0 && newHeight > 0) {
         application->ResizeWindowCallback(window, newWidth, newHeight);
+        App::g_settings.m_windowWidth = newWidth;
+        App::g_settings.m_windowHeight = newHeight;
+        glViewport(0, 0, newWidth, newHeight);
+    }
+
+  
 }

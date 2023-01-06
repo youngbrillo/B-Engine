@@ -173,7 +173,9 @@
     <ClCompile Include="pinball.cpp" />
     <ClCompile Include="Platformer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShipConfigScene.cpp" />
     <ClCompile Include="ShipController.cpp" />
     <ClCompile Include="SpaceBuster.cpp" />
     <ClCompile Include="SpaceBusterGame.cpp" />
@@ -219,6 +221,8 @@
     <ClInclude Include="PhysDebug.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="sajson.h" />
+    <ClInclude Include="Settings.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShipController.h" />
     <ClInclude Include="SpaceBusterGame.h" />

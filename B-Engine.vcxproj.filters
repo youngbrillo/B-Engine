@@ -40,6 +40,12 @@
     <Filter Include="Spacebuster\levels/missions">
       <UniqueIdentifier>{038cd061-b03e-4fef-9c6e-34637d4cbc95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\Spacebuster Scenes">
+      <UniqueIdentifier>{25fed3e2-7218-4031-a534-034ac5fb087a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities\sajson">
+      <UniqueIdentifier>{576c5a46-05cb-48af-ac0c-8bb62685f8c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -75,16 +81,7 @@
     <ClCompile Include="Platformer.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="SpaceBuster.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteTest.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="test_Astroids.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ZoneTest.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Car.cpp">
@@ -156,17 +153,11 @@
     <ClCompile Include="CSApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InventoryScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectFactory.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemPickupScene.cpp">
-      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="ItemObject.cpp">
       <Filter>Inventories</Filter>
@@ -176,9 +167,6 @@
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Inventories</Filter>
-    </ClCompile>
-    <ClCompile Include="MissionScene.cpp">
-      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="newGameTemplate.cpp">
       <Filter>Scenes\templates</Filter>
@@ -194,6 +182,30 @@
     </ClCompile>
     <ClCompile Include="ObjectListener.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipConfigScene.cpp">
+      <Filter>Scenes\Spacebuster Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemPickupScene.cpp">
+      <Filter>Scenes\Spacebuster Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceBuster.cpp">
+      <Filter>Scenes\Spacebuster Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="test_Astroids.cpp">
+      <Filter>Scenes\Spacebuster Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneTest.cpp">
+      <Filter>Scenes\Spacebuster Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="MissionScene.cpp">
+      <Filter>Scenes\Spacebuster Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryScene.cpp">
+      <Filter>Scenes\Spacebuster Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +331,12 @@
     </ClInclude>
     <ClInclude Include="ObjectListener.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="sajson.h">
+      <Filter>Utilities\sajson</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

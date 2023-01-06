@@ -29,6 +29,7 @@ public:
 
 	virtual void KeyboardUp(int key) override;
 	virtual void KeyboardDown(int key) override;
+	virtual void Keyboard(int key) override;
 
 	virtual void DrawDebug() override;
 protected:

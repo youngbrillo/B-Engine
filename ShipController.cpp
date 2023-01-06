@@ -144,6 +144,12 @@ void ShipController::onKeyRelease(int key)
 	if (m_ship == nullptr) return;
 	m_ship->onKeyRelease(key);
 }
+void ShipController::onKeyRepeat(int key)
+{
+	if (m_ship == nullptr) return;
+	m_ship->onKeyRepeat(key);
+
+}
 #include "imgui.h"
 
 void ShipController::Debug()

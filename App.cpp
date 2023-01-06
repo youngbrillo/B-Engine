@@ -2,11 +2,11 @@
 #include "ResourceManager.h"
 
 App* App::g_App = nullptr;
+Settings App::g_settings = Settings();
 
 App::App(unsigned int width, unsigned int height)
 	: CSApp(width, height)
 	, m_game(nullptr)
-	, m_gameSelection(0)
 	, m_Camera(nullptr)
 {
 	m_Camera = new Camera(glm::vec4(0, 0, width, height));
@@ -28,7 +28,7 @@ void App::Init()
 	orderGameEntries();
 	//m_gameSelection = 6;
 	ResourceManager::startup();
-	m_game = g_GameEntries[m_gameSelection].creationFunc();
+	m_game = g_GameEntries[g_settings.m_index].creationFunc();
 }
 
 void App::ProcessInput(GLFWwindow* win, float deltaTime)
@@ -153,7 +153,7 @@ void App::RenderDifferentApp()
 		int i = 0;
 		while (i < g_GameCount)
 		{
-			bool categorySelected = strcmp(category, g_GameEntries[m_gameSelection].category) == 0;
+			bool categorySelected = strcmp(category, g_GameEntries[g_settings.m_index].category) == 0;
 			ImGuiTreeNodeFlags nodeSelectionFlags = categorySelected ? ImGuiTreeNodeFlags_Selected : 0;
 			bool nodeOpen = ImGui::TreeNodeEx(category, nodeFlags | nodeSelectionFlags);
 
@@ -162,14 +162,14 @@ void App::RenderDifferentApp()
 				while (i < g_GameCount && strcmp(category, g_GameEntries[i].category) == 0)
 				{
 					ImGuiTreeNodeFlags selectionFlags = 0;
-					if (m_gameSelection == i)
+					if (g_settings.m_index == i)
 					{
 						selectionFlags = ImGuiTreeNodeFlags_Selected;
 					}
 					ImGui::TreeNodeEx((void*)(intptr_t)i, leafNodeFlags | selectionFlags, "%s", g_GameEntries[i].name);
 					if (ImGui::IsItemClicked())
 					{
-						m_gameSelection = i;
+						g_settings.m_index = i;
 						restartGame();
 					}
 					++i;
@@ -196,10 +196,10 @@ void App::RenderDifferentApp()
 
 void App::restartGame()
 {
-	printf("Restarting Game: %d. %s\n", m_gameSelection, g_GameEntries[m_gameSelection].name);
+	printf("Restarting Game: %d. %s\n", g_settings.m_index, g_GameEntries[g_settings.m_index].name);
 	delete m_game;
 	m_Camera->Reset();
-	m_game = g_GameEntries[m_gameSelection].creationFunc();
+	m_game = g_GameEntries[g_settings.m_index].creationFunc();
 }
 void App::orderGameEntries()
 {
@@ -234,6 +234,10 @@ void App::KeyCallBack(GLFWwindow* win, int key, int scancode, int action, int mo
 	if (action == GLFW_RELEASE)
 	{
 		m_game->KeyboardUp(key);
+	}
+	if (action == GLFW_REPEAT)
+	{
+		m_game->Keyboard(key);
 	}
 }
 

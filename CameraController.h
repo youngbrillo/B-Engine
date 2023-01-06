@@ -10,12 +10,12 @@ class CameraController
 {
 public:
 	enum FollowMode {
-		Instant	= 0, //camera moves instantly to target position
-		Lerp	= 1, //camera lerps to target position, makes an animation
-		Bound	= 2	 //camera awakes and lerps to target position, when target goes out of bounds, then sleeps when reaching the target
+		Instant = 0, //camera moves instantly to target position
+		Lerp = 1, //camera lerps to target position, makes an animation
+		Bound = 2	 //camera awakes and lerps to target position, when target goes out of bounds, then sleeps when reaching the target
 
 	};
-public: 
+public:
 	CameraController() {};
 	CameraController(Camera* targetCam, const b2Body* targetBody, glm::vec2 offset = glm::vec2(0.0f, 0.0f), glm::vec2 limits = glm::vec2(5.0f, 5.0f));
 	~CameraController();
@@ -38,7 +38,7 @@ private:
 	const b2Body* target;
 
 	b2Body* m_body;
-	b2Fixture* m_screenLeft, *m_screenRight, *m_screen_top, *m_screenBottom;
+	b2Fixture* m_screenLeft, * m_screenRight, * m_screen_top, * m_screenBottom;
 
 	glm::vec2 cameraOffset, boundLimits;
 	float followSpeed;
@@ -46,7 +46,9 @@ private:
 
 public:
 	FollowMode mode;
-	
+	bool getEnabled() { return enabled; }
+	void setEnabled(bool e) { enabled = e; }
+
 };
 #endif // !CAMERACONTROLLER_H
 

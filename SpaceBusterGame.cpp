@@ -100,6 +100,12 @@ void SpaceBusterGame::KeyboardDown(int key)
 		m_player->onKeyPress(key);
 }
 
+void SpaceBusterGame::Keyboard(int key)
+{
+	if (m_player)
+		m_player->onKeyRepeat(key);
+}
+
 void SpaceBusterGame::DrawDebug()
 {
 	m_player->Debug();
