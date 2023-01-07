@@ -20,6 +20,7 @@ public:
 	};
 
 	CSApp(unsigned int width, unsigned int height);
+	virtual ~CSApp() { mainWindow = nullptr; };
 	virtual void Init() = 0;
 	App_State state;
 	bool         Keys[1024];

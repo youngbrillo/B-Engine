@@ -45,8 +45,9 @@ GameObject::GameObject(GameObjectDefinition* def)
 		}
 		else {
 			//use default body and shape 
+			//use default body and shape 
 			b2BodyDef bd;
-			bd.type = b2BodyType::b2_dynamicBody;
+			bd.type = def->setBodyType ? def->bodyType : b2BodyType::b2_dynamicBody;
 			bd.position = b2Vec2(position.x, position.y);
 			bd.linearVelocity = def->linearVelocity;
 			bd.fixedRotation = false;
@@ -55,13 +56,13 @@ GameObject::GameObject(GameObjectDefinition* def)
 			m_body = Game::m_World->CreateBody(&bd);
 
 			b2FixtureDef fd;
+			fd.isSensor = def->isSensor;
 			fd.restitution = 0.0f;
 			fd.density = 1.0f;
-				b2PolygonShape shape;
-				shape.SetAsBox(size.x/2 * scale, size.x/2 * scale);
-				fd.shape = &shape;
-
-				shapeType = b2Shape::Type::e_polygon;
+			b2PolygonShape shape;
+			shape.SetAsBox(size.x / 2 * scale, size.y / 2 * scale);
+			fd.shape = &shape;
+			shapeType = b2Shape::Type::e_polygon;
 			m_contactFixture = m_body->CreateFixture(&fd);
 		}
 	}

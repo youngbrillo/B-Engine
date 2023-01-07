@@ -10,7 +10,6 @@
 typedef struct  GameObjectDefinition {
 	std::string		name;
 
-
 	glm::vec3		position = glm::vec3(1.0f),
 					size = glm::vec3(1.0f),
 					orientation_axis = glm::vec3(0, 0, 1.0f),
@@ -23,14 +22,18 @@ typedef struct  GameObjectDefinition {
 					rotation = 0.0f,
 					angularVelocity = 0.0f;
 
-	bool			enabled = true, 
-					enabled_physics = false, 
-					visible = true;
+	bool			enabled = true,
+					enabled_physics = false,
+					visible = true,
+					setBodyType = false,
+					isSensor = false;
 
 	b2BodyDef*		objBodydef = NULL;
 	b2FixtureDef*	objFixDef = NULL;
 	b2Vec2			linearVelocity = b2Vec2_zero;
 	Texture*		texture = NULL;
+
+	b2BodyType		bodyType = b2BodyType::b2_dynamicBody;
 };
 
 class GameObject

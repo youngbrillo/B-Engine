@@ -27,6 +27,7 @@ public:
 
 	void onKeyPress(int key);
 	void onKeyRelease(int key);
+	void onKeyRepeat(int key);
 
 	void Draw() {}
 	void Debug();

@@ -144,6 +144,12 @@ void ShipController::onKeyRelease(int key)
 	if (m_ship == nullptr) return;
 	m_ship->onKeyRelease(key);
 }
+void ShipController::onKeyRepeat(int key)
+{
+	if (m_ship == nullptr) return;
+	m_ship->onKeyRepeat(key);
+
+}
 #include "imgui.h"
 
 void ShipController::Debug()
@@ -172,17 +178,31 @@ bool ShipController::AddToInventory(SpaceBuster::Item* item)
 	m_inventory->AddItem(item);
 
 	bool canAutoUse = false;
+
 	switch (item->GetType())
 	{
 		case SpaceBuster::ItemType::SparePart:
-			canAutoUse == m_ship->condition < m_ship->maxCondition;
+			canAutoUse = m_ship->condition < m_ship->maxCondition;
+			printf("auto use spare parts (%.2f,%.2f)? %s/%s\n", m_ship->condition, m_ship->maxCondition, canAutoUse ? "Yes": "No", m_ship->condition < m_ship->maxCondition ? "Yes" : "No" );
 			break;
 		case SpaceBuster::ItemType::EnergyCell:
-			canAutoUse == m_ship->energy < m_ship->maxEnergy;
+			canAutoUse = m_ship->energy < m_ship->maxEnergy;
+			printf("auto use energy cell (%.2f,%.2f)? %s/%s\n", m_ship->energy, m_ship->maxEnergy, canAutoUse ? "Yes" : "No", m_ship->energy < m_ship->maxEnergy ? "Yes" : "No");
 			break;
 		default:
 			break;
 	}
+	//if (item->GetType() == SpaceBuster::ItemType::SparePart && m_ship->condition < m_ship->maxCondition)
+	//{
+	//	canAutoUse == m_ship->condition < m_ship->maxCondition;
+	//	printf("auto use spare parts (%.2f,%.2f)? %s/%s\n", m_ship->condition, m_ship->maxCondition, canAutoUse ? "Yes": "No", m_ship->condition < m_ship->maxCondition ? "Yes" : "No" );
+
+	//}
+	//if (item->GetType() == SpaceBuster::ItemType::EnergyCell)
+	//{
+	//	canAutoUse == m_ship->energy < m_ship->maxEnergy;
+	//	printf("auto use energy cell (%.2f,%.2f)? %s/%s\n", m_ship->energy, m_ship->maxEnergy, canAutoUse ? "Yes" : "No", m_ship->energy < m_ship->maxEnergy ? "Yes" : "No");
+	//}
 
 	if(item->autoUse && canAutoUse)
 	{

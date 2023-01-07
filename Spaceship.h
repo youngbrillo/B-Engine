@@ -20,7 +20,7 @@ public:
 
 	void onKeyPress(int key);
 	void onKeyRelease(int key);
-
+	void onKeyRepeat(int key);
 	void Draw(){}
 	void Debug();
 
@@ -52,11 +52,19 @@ public:
 
 private:
 	friend class ShipController;
+	//the limit is how long (from one touch to the next) until it can not be reasonably considered to be a double tap
+	float doubleTapIntervalLimit, doubleTapIntervalTimeLeft;
+	bool doubleTappedForward, doubleTappedBackward, doubleTappedRight, doubleTappedLeft;
+	bool listeningForDoubleTap, doubleTapEnabled, shifting ;
+	unsigned int lastKeyDown, lastKeyUp, doubleTapKey;
+	float doubleTappVelocityMod, doubleTappTorqueMod, impulseCostModifier;
 
+	void ApplyImpulseForce();
 };
 
 
 
 b2Body* createSimpleShipBody(b2World* World, const b2Vec2& spawnPos, Spaceship*, b2Body* ground = NULL);
+b2Body* createArrowShipBody(b2World* World, const b2Vec2& spawnPos, Spaceship*, b2Body* ground = NULL);
 
 #endif // !SPACESHIP_H

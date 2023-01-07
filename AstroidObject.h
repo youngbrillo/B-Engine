@@ -34,7 +34,7 @@ public:
 	void Debug() override;
 protected:
 private:
-	float health, expireTimeOut, expireTimeLeft;
+	float health, expireTimeOut, expireTimeLeft, lifeTimeLeft, lifeTimeMax;
 	collisionType_astroids collisionType;
 public:
 	bool broken, fragmentFlag;
