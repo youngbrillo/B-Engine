@@ -8,6 +8,8 @@
 #include "Surface.h"
 #include <Box2D/Box2D.h>
 
+#include "ObjectListener.h"
+
 class ObjectFactory
 {
 public:
@@ -29,9 +31,13 @@ public:
 
 
 	static void cleanup();
+
+	static void SetObjectListener(ObjectListener* newObjectListener);
 private:
 	ObjectFactory();
 	static std::vector<GameObject*> ALLGAMEOBJECTS;
+
+	static ObjectListener* CURRENT_OBJECT_LISTENER;
 };
 
 #endif // !OBJECTFACTORY_H

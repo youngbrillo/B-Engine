@@ -2,10 +2,15 @@
 
 
 std::vector<GameObject*> ObjectFactory::ALLGAMEOBJECTS;
+ObjectListener* ObjectFactory::CURRENT_OBJECT_LISTENER = nullptr;
 
 void ObjectFactory::InsertObject(GameObject* newObject)
 {
 	ALLGAMEOBJECTS.emplace_back(newObject);
+	if (CURRENT_OBJECT_LISTENER != nullptr)
+	{
+		CURRENT_OBJECT_LISTENER->ObjectCreated(newObject);
+	}
 }
 
 std::vector<GameObject*>::iterator ObjectFactory::DestroyObject(GameObject* existingObject)
@@ -13,6 +18,10 @@ std::vector<GameObject*>::iterator ObjectFactory::DestroyObject(GameObject* exis
 	std::vector<GameObject*>::iterator next;
 	next = ALLGAMEOBJECTS.erase(std::remove(ALLGAMEOBJECTS.begin(), ALLGAMEOBJECTS.end(), existingObject), ALLGAMEOBJECTS.end());
 
+	if (CURRENT_OBJECT_LISTENER != nullptr)
+	{
+		CURRENT_OBJECT_LISTENER->ObjectDeleted(existingObject);
+	}
 	delete existingObject;
 	existingObject = nullptr;
 
@@ -111,11 +120,16 @@ void ObjectFactory::cleanup()
 	ALLGAMEOBJECTS.clear();
 }
 
+void ObjectFactory::SetObjectListener(ObjectListener* newObjectListener)
+{
+	CURRENT_OBJECT_LISTENER = newObjectListener;
+}
+
 #include "imgui/imgui.h"
 
 void ObjectFactory::Debug()
 {
-	if (ImGui::TreeNode("-OBJECT FACTORY -"))
+	if (ImGui::TreeNode("- OBJECT FACTORY -"))
 	{
 		for (auto i : ObjectFactory::ALLGAMEOBJECTS)
 		{
