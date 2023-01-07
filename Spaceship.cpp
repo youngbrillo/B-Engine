@@ -13,7 +13,7 @@ Spaceship::Spaceship(b2World* worldreference, const b2Vec2& spawnPos, b2Body* an
 	, collisionType(collisionType_astroids::collision_ship)
 	, maxCondition(100.0f), maxEnergy(100.0f), condition(100.0f), energy(100.0f)
 	, physicalDefense(0.14f)
-	, energyCost(1.0f)
+	, energyCost(0.33f)
 	, torqueRatio(0.2)
 	, operational(true) //can the ship move?
 	, broken(false)  //is the ship functionally operational
@@ -236,7 +236,7 @@ void Spaceship::ApplyImpulseForce()
 		//the_left_and_right_thrusting_needs_some_tweaking...
 		mainBody->ApplyLinearImpulseToCenter(swappedInpulse, true);
 	}
-	printf("Applying impluse force of (%.2f,%.2f)\n", impulse.x, impulse.y);
+	//printf("Applying impluse force of (%.2f,%.2f)\n", impulse.x, impulse.y);
 	modifyEnergy(-1 * energyCost * impulseCostModifier);
 }
 
