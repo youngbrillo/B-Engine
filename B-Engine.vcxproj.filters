@@ -49,6 +49,9 @@
     <Filter Include="Scenes\test scenes">
       <UniqueIdentifier>{561f6abe-4f83-4432-8467-e6631fa4522a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\backgrounds">
+      <UniqueIdentifier>{01f8c47a-b584-4d70-948a-30ac4e47d2bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -210,14 +213,20 @@
     <ClCompile Include="Settings.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteMapTest.cpp">
       <Filter>Scenes\test scenes</Filter>
     </ClCompile>
+    <ClCompile Include="ParallaxTestScene.cpp">
+      <Filter>Scenes\test scenes</Filter>
+    </ClCompile>
     <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteMap.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollingSprite.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -356,6 +365,9 @@
     <ClInclude Include="Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ScrollingSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="B-Engine.rc">
@@ -416,6 +428,30 @@
     </Image>
     <Image Include="assets\Haohmaru_141.png">
       <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\bgs\background_settingSun.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\blankpixel.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\foreground_00.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\foreground_01.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\foreground_02.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\foreground_03.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\foreground_04.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\foreground_05.png">
+      <Filter>Assets\backgrounds</Filter>
     </Image>
   </ItemGroup>
 </Project>

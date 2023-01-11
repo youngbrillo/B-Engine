@@ -58,12 +58,13 @@ void Sprite::Update(float dt)
 
 //assume that the model drawing has already been taken care of, 
 //now just bind the texture and surface
-void Sprite::Draw(Shader* shader)
+void Sprite::Draw(Shader* shader, glm::vec4* inColor)
 {
 
 	if (visible)
 	{
-		shader->SetVector4f("color", this->color);
+		glm::vec4 color2use = inColor ? *inColor : this->color;
+		shader->SetVector4f("color", color2use);
 		map->Draw();
 	}
 

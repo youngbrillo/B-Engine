@@ -169,10 +169,12 @@
     <ClCompile Include="newGameTemplate.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="ObjectListener.cpp" />
+    <ClCompile Include="ParallaxTestScene.cpp" />
     <ClCompile Include="PhysDebug.cpp" />
     <ClCompile Include="pinball.cpp" />
     <ClCompile Include="Platformer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="ScrollingSprite.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShipConfigScene.cpp" />
@@ -225,6 +227,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="sajson.h" />
+    <ClInclude Include="ScrollingSprite.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShipController.h" />
@@ -254,6 +257,14 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Ammo.png" />
+    <Image Include="assets\bgs\background_settingSun.png" />
+    <Image Include="assets\bgs\blankpixel.png" />
+    <Image Include="assets\bgs\foreground_00.png" />
+    <Image Include="assets\bgs\foreground_01.png" />
+    <Image Include="assets\bgs\foreground_02.png" />
+    <Image Include="assets\bgs\foreground_03.png" />
+    <Image Include="assets\bgs\foreground_04.png" />
+    <Image Include="assets\bgs\foreground_05.png" />
     <Image Include="assets\brick.png" />
     <Image Include="assets\EnergyCell.png" />
     <Image Include="assets\Haohmaru_141.png" />

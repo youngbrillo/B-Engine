@@ -16,7 +16,7 @@ public:
 	~Sprite();
 
 	void Update(float dt);
-	void Draw(Shader* shader = nullptr);
+	void Draw(Shader* shader = nullptr, glm::vec4* inColor = nullptr);
 	void Debug();
 
 public:
