@@ -4,40 +4,42 @@
 
 #include "imgui.h"
 #include "Utility_Physics.h"
-#include "TextureAtlas.h"
-
+#include "SpriteMap.h"
+#include "Sprite.h"
 
 class SpriteMapTest : public Game
 {
 public:
-
-	glm::vec4 textColor = glm::vec4(1.0f);
-	glm::vec4 spriteColor = glm::vec4(1);//glm::vec4(1, 0.5, 1, 1);
-
-	glm::vec2 textureMinMax = glm::vec2(0.0f, 1.0f);
-
-	glm::vec3 spriteSize = glm::vec3(1.0f * 2.38432835821f, 1.0f, 1.0f);
-	glm::vec3 spriteOrientationAxis = glm::vec3(0.0f, 0.0f, 1.0f);
-	glm::vec3 spriteRotateAxis = glm::vec3(0.0f, 0.0f, 1.0f);
-	glm::vec3 spritePosition = glm::vec3(0);
-
-	float spriteScale = 1.0f, elapsed = 1.0f;
-	bool isQuad = true, autoRotate = false;
-	float angle = 0.0f, angle2 = 0.0f;
-
-
-	TextureAtlas m_sprite;
+	
+	Sprite* m_sprite, *k_sprite;
+	Texture* t, *k;
+	glm::vec3 position = glm::vec3(0, -0.160f, 0.01f);
+	glm::vec3 position2 = glm::vec3(1, -0.160f, 0.01f);
 	//constructor
 	SpriteMapTest() : Game()
 	{
-		//m_Shader = new Shader("test.vts", "test.frs", true);
 		m_Shader = new Shader("stdsprite.vts", "stdsprite.frs", true);
-		m_sprite = TextureAtlas("./assets/spriteAtlas.png", 42, 11);
+		{
+			t = new Texture("./assets/Haohmaru_141.png", true);
 
-		//m_Shader = new Shader("test.vts", "test.frs", true);
-		//m_surface = new quadSurface(); m_surface->Generate();
-		AppCam->zoom = 0.053;
-		AppCam->position = glm::vec3(0.352f, 0.130f, 0.0f);
+			m_sprite = new Sprite(t, 23, 23);
+			m_sprite->animStartIndex = 87;
+			m_sprite->animEndIndex = 92;
+			m_sprite->map->GetFrame(0);
+			m_sprite->animate = true;
+		}
+
+		{
+			k = new Texture("./assets/his13_000-sheet.png", true);
+			k_sprite = new Sprite(k, 7, 6);
+			k_sprite->animStartIndex = 18;
+			k_sprite->animEndIndex = 27;
+			k_sprite->map->GetFrame(0);
+			k_sprite->animate = true;
+		}
+
+		AppCam->zoom = 0.045f;
+		AppCam->position = glm::vec3(0.609f, -0.123f, 0.0f);
 
 		printf("Enabling depth test\n");
 		glEnable(GL_DEPTH_TEST);
@@ -46,8 +48,12 @@ public:
 	//destructor
 	~SpriteMapTest()
 	{
-		delete m_surface;
-		m_surface = nullptr;
+		delete t;
+		delete k;
+
+		delete m_sprite;
+		delete k_sprite;
+
 		printf("disabling depth test\n");
 		glDisable(GL_DEPTH_TEST);
 	};
@@ -65,8 +71,8 @@ public:
 	//frame updates
 	void FixedUpdate(float dt) override { }
 	void Update(float dt) override {
-		if (autoRotate)
-			elapsed += dt;
+		m_sprite->Update(dt);
+		k_sprite->Update(dt);
 	}
 
 	//collision callbacks 
@@ -78,14 +84,9 @@ public:
 	//screen drawing
 	void DrawBackGround() override {}
 	void DrawForeGround() override {
-		//DrawString(5, 0, "Implement Sprite functionality", textColor.x, textColor.y, textColor.z, textColor.w);
-		//DrawString(15, 15, "1. Creation of texture and surface classes", textColor.x, textColor.y, textColor.z, textColor.w);
-		//DrawString(15, 30, "2. Join them in one interface, 'Sprite'", textColor.x, textColor.y, textColor.z, textColor.w);
-		////DrawString(15, 45, "3. ");
+
 	}
 	void DrawScene() override {
-		//
-		//printf("game, shader value %d\n", m_Shader->GetId());
 
 		glm::mat4 model = glm::mat4(1);
 		glm::mat4 projection = AppCam->getProjectionMatrix();
@@ -94,35 +95,31 @@ public:
 		//glEnable(GL_CULL_FACE);
 
 
-		model = glm::translate(model, spritePosition);
-		model = glm::rotate(model, angle, spriteOrientationAxis);
-		model = glm::rotate(model, (angle2 * elapsed), spriteRotateAxis);
-		model = glm::scale(model, spriteSize * spriteScale);
 
 		m_Shader->Use()
 			.SetMatrix4("projection", projection)
-			.SetMatrix4("view", view);
-
-		DrawBackGround();
-
-		//glUniform1i(glGetUniformLocation(ourShader.ID, "texture1"), 0);
-
-		m_Shader->Use()
+			.SetMatrix4("view", view)
 			.SetMatrix4("model", model)
-			.SetVector4f("color", spriteColor)
+			.SetVector4f("color", glm::vec4(1.0f))
 			.setInt("image", 0);
 
-
+		t->Bind();
+		m_surface->Bind();
 		{
+			model = glm::translate(model, position);
+			m_Shader->SetMatrix4("model", model);
+			m_sprite->Draw(m_Shader);
 
-			m_sprite.Bind();
-			m_surface->Bind();
 		}
-
-
 		{
-			//m_sprite.DrawSprite()
+			model = glm::translate(model, position2);
+			m_Shader->SetMatrix4("model", model);
+			k_sprite->Draw(m_Shader);
+
 		}
+		DrawBackGround();
+
+
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		DrawBackGround();
@@ -131,55 +128,11 @@ public:
 
 	}
 	void DrawDebug() override {
-		ImGui::ColorEdit4("sprite Color", &spriteColor.x);
-		ImGui::ColorEdit4("Text Color", &textColor.x);
 
-		if (ImGui::SliderFloat2("Texture min max", &textureMinMax.x, 0, 5.0f))
-		{
-			delete m_surface;
-			if (isQuad)
-				m_surface = new quadSurface();
-			else
-				m_surface = new cubeSurface();
-			m_surface->Generate(textureMinMax.x, textureMinMax.y);
-		}
-		m_sprite.RenderDebug();
-		/*
-			glm::vec3 spriteSize = glm::vec3(1.0f, 1.0f, 1.0f);
-			glm::vec3 spriteRotateAxis = glm::vec3(0.0f, 0.0f, 1.0f);
-			glm::vec3 spritePosition = glm::vec3(0);
+		ImGui::SliderFloat3("pos 01", &position.x, -10, 10);
+		ImGui::SliderFloat3("pos 02", &position2.x, -10, 10);
+		m_sprite->Debug();
 
-			float spriteScale = 1.0f, elapsed = 1.0f;
-			bool isQuad = true, autoRotate = false;
-			float angle;
-		*/
-		ImGui::SliderFloat3("sprite pos", &spritePosition.x, -5, 5);
-		ImGui::SliderFloat3("sprite size", &spriteSize.x, 0, 10);
-		ImGui::SliderFloat("sprite scale", &spriteScale, 0, 15);
-
-		ImGui::SliderAngle("sprite Angle", &angle);
-		ImGui::SliderFloat3("sprite axis", &spriteOrientationAxis.x, -1, 1);
-
-
-		ImGui::SliderAngle("rotation Angle", &angle2);
-		ImGui::SliderFloat3("rotation axis 2", &spriteRotateAxis.x, -1, 1);
-
-
-		if (ImGui::Checkbox("Quad surface?", &isQuad))
-		{
-
-			delete m_surface;
-			if (isQuad)
-				m_surface = new quadSurface();
-			else
-				m_surface = new cubeSurface();
-
-			m_surface->Generate(textureMinMax.x, textureMinMax.y);
-		}
-		if (ImGui::Checkbox("Auto Rotate?", &autoRotate))
-		{
-			elapsed = autoRotate ? 0.0f : 1.0f;
-		}
 	}
 
 	//creation

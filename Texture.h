@@ -8,7 +8,7 @@
 class Texture
 {
 public:
-	Texture() : id(0), Wrap_S(0), Wrap_T(0), Filter_Min(0), Filter_Max(0) {}
+	Texture() : id(0), Wrap_S(0), Wrap_T(0), Filter_Min(0), Filter_Max(0), width(-1), height(-1){}
 	Texture(const char* path, bool alpha = true);
 	~Texture();
 
@@ -22,6 +22,7 @@ private:
 public:
 	void RenderDebug();
 	static Surface* defaultSurface;
+	int width, height;
 };
 
 static int DEFAULTPARAM_INT = -1;

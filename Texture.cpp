@@ -17,8 +17,9 @@ Texture::Texture(const char* path, bool alpha)
 	, Wrap_T(GL_REPEAT)
 	, Filter_Min(GL_LINEAR)
 	, Filter_Max(GL_LINEAR)
+	, width(-1),  height(-1)
 {
-	GenerateTexture(path, alpha, id);
+	GenerateTexture(path, alpha, id, width, height);
 }
 Texture::~Texture()
 {
@@ -116,9 +117,9 @@ void GenerateTexture(const char* path, bool alphaChannel, unsigned int& textureI
 	stbi_image_free(data);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	if (_width > -1)
+	//if (_width > -1)
 		_width = w;
-	if (_height > -1)
+	//if (_height > -1)
 		_height = h;
 	if (numOfChannels > -1)
 		numOfChannels = nbrofChannels;

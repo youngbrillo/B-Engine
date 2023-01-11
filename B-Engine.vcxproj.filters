@@ -46,6 +46,9 @@
     <Filter Include="Utilities\sajson">
       <UniqueIdentifier>{576c5a46-05cb-48af-ac0c-8bb62685f8c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\test scenes">
+      <UniqueIdentifier>{561f6abe-4f83-4432-8467-e6631fa4522a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -207,6 +210,15 @@
     <ClCompile Include="Settings.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteMapTest.cpp">
+      <Filter>Scenes\test scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -338,6 +350,12 @@
     <ClInclude Include="sajson.h">
       <Filter>Utilities\sajson</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="B-Engine.rc">
@@ -361,6 +379,15 @@
     <None Include="test.vts">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="assets\miniAtlas.json">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="assets\his13_000.json">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="assets\Haohmaru_141.json">
+      <Filter>Assets</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Ammo.png">
@@ -376,6 +403,18 @@
       <Filter>Assets</Filter>
     </Image>
     <Image Include="icon.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\miniAtlas.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\spriteAtlas.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\his13_000-sheet.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\Haohmaru_141.png">
       <Filter>Assets</Filter>
     </Image>
   </ItemGroup>
