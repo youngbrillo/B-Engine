@@ -8,6 +8,8 @@
 //using namespace SpaceBuster; 
 
 #include "Inventory.h"
+#include "UI_Meter.h"
+
 
 class ShipController
 {
@@ -29,7 +31,8 @@ public:
 	void onKeyRelease(int key);
 	void onKeyRepeat(int key);
 
-	void Draw() {}
+	void Draw();
+	void DrawUI(Shader* customShader = nullptr, Surface* customSurface = nullptr);
 	void Debug();
 
 	
@@ -39,7 +42,7 @@ public:
 	b2Body* getBody();
 
 	Spaceship* m_ship;
-	SpaceBuster::Launcher* m_launcher;
+	SpaceBuster::AutoLauncher* m_launcher;
 	b2Vec2 initialSpawnPoint;
 	int shipCount;
 	b2Body* anchorRef;
@@ -50,6 +53,8 @@ private:
 public:
 	SpaceBuster::Inventory* m_inventory;
 
+
+	UIMeter conditionMeter, energyMeter, ammoMeter;
 };
 
 #endif // !SHIPCONTROLLER_H

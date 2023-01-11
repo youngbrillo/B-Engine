@@ -69,12 +69,12 @@ void SpaceBuster::AstroidFactory::Update(float dt)
 			{
 				baseChance += 0.05f;
 				SpaceBuster::ItemType currentItem = SpaceBuster::ItemType::EnergyCell;
-				const int size = 4;
+				const int size = 2;//4;
 				SpaceBuster::ItemType dropTypes[size] = {
-					SpaceBuster::ItemType::SparePart,
-					SpaceBuster::ItemType::EnergyCell,
-					SpaceBuster::ItemType::Ammo_reg,
-					SpaceBuster::ItemType::Ammo_Reflect
+					SpaceBuster::ItemType::SparePart
+					,SpaceBuster::ItemType::EnergyCell
+					//,SpaceBuster::ItemType::Ammo_reg
+					//,SpaceBuster::ItemType::Ammo_Reflect
 				};
 
 				int currIndex = rand() % size;

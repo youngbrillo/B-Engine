@@ -37,6 +37,7 @@ protected:
 	ShipController* m_player;
 	SpaceBuster::AstroidFactory* m_astroidFactory;
 	CameraController* m_cameraController;
+	Shader* m_UIshader; 
 };
 #endif // !SPACEBUSTERGAME_H
 

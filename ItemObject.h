@@ -18,6 +18,7 @@ private:
 	SpaceBuster::Item* itemReference;
 	float itemValue;
 	int amount;
+	b2Fixture* sensorFixture;
 
 	friend class Inventory;
 };

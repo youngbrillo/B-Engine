@@ -46,6 +46,12 @@
     <Filter Include="Utilities\sajson">
       <UniqueIdentifier>{576c5a46-05cb-48af-ac0c-8bb62685f8c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{e66a4c7b-9a71-434f-8dc7-203938347714}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\UI">
+      <UniqueIdentifier>{6e62a325-15bd-4ae1-8d6c-4a6628c15356}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -93,9 +99,6 @@
     <ClCompile Include="CameraController.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Utility_Physics.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
@@ -118,9 +121,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="baseContactListener.cpp">
@@ -206,6 +206,18 @@
     </ClCompile>
     <ClCompile Include="Settings.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility_Physics.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_element.cpp">
+      <Filter>GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Meter.cpp">
+      <Filter>GameObjects\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -338,6 +350,12 @@
     <ClInclude Include="sajson.h">
       <Filter>Utilities\sajson</Filter>
     </ClInclude>
+    <ClInclude Include="UI_element.h">
+      <Filter>GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Meter.h">
+      <Filter>GameObjects\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="B-Engine.rc">
@@ -359,6 +377,9 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="test.vts">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="UIShader00.vts">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

@@ -179,6 +179,7 @@ void SpaceBuster::AutoLauncher::Debug()
 {
 	if (ImGui::TreeNode("- Auto Launcher -"))
 	{
+		ImGui::Checkbox("Auto Reload", &autoReload);
 		ImGui::SliderFloat("Rof time left", &rateCurrent, 0, 0);
 		ImGui::SliderFloat("Rate of fire", &rateofFire, 0, 1.0f);
 		ImGui::SliderInt("rounds in mag", &magCurrent, 0, magCapacity);

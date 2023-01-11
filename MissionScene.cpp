@@ -20,10 +20,7 @@ public:
 	{
 
 
-		b2Body* ground;
-		{
-			ground = generateBounds_rect(m_World, b2Vec2(0.0f, 20.0f), 50, -50, 1.0f, 0.0f, 0.0f);
-		}
+		//b2Body* ground = generateBounds_rect(m_World, b2Vec2(0.0f, 20.0f), 50, -50, 1.0f, 0.0f, 0.0f);
 		m_astroidFactory->max = 10;
 		m_astroidFactory->SpawnTimeTarget = 0.5f;
 		m_astroidFactory->maxAstroidSize = 5.0f;
@@ -35,7 +32,7 @@ public:
 			mission1.endPos = b2Vec2(0.0f, 20.0f);
 			mission1.defaultTimeLimit = 30.0f;
 			mission1.hasTimeLimit = true;
-			mission1.contrainObjectsToScreen = false;
+			mission1.contrainObjectsToScreen = true;
 			mission1.ClearRequirements = 5;
 		}
 		currentMission = new MissionStandard(&mission1);
@@ -103,7 +100,7 @@ public:
 
 		if (button == GLFW_MOUSE_BUTTON_1 && action == GLFW_PRESS)
 		{
-			printf("Why'd you click the mouse bro...\n");
+			///printf("Why'd you click the mouse bro...\n");
 		}
 	}
 	//virtual void mouseCallback_Cursor(GLFWwindow* w, double x, double y) override {}
@@ -181,4 +178,4 @@ public:
 	static Game* Create() { return new MissionScene; }
 };
 
-static int testIndex = RegisterGame("Alpha Examples", "Mission Scene", MissionScene::Create);  //do not actually register this lol
+static int testIndex = RegisterGame("SpaceBuster", "Mission Scene", MissionScene::Create);  //do not actually register this lol

@@ -184,6 +184,8 @@
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="test_Astroids.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="UI_element.cpp" />
+    <ClCompile Include="UI_Meter.cpp" />
     <ClCompile Include="Utility_Physics.cpp" />
     <ClCompile Include="Zone.cpp" />
     <ClCompile Include="ZoneTest.cpp" />
@@ -230,6 +232,8 @@
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="UI_element.h" />
+    <ClInclude Include="UI_Meter.h" />
     <ClInclude Include="Utility_Physics.h" />
     <ClInclude Include="Zone.h" />
   </ItemGroup>
@@ -243,6 +247,7 @@
     <None Include="stdsprite.vts" />
     <None Include="test.frs" />
     <None Include="test.vts" />
+    <None Include="UIShader00.vts" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Ammo.png" />

@@ -192,4 +192,4 @@ public:
 
 };
 
-static int testIndex = RegisterGame("Examples", "Sensors", Sensors::Create);
+static int testIndex = RegisterGame("SpaceBuster", "Sensors", Sensors::Create);
