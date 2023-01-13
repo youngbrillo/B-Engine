@@ -37,10 +37,9 @@ public:
 	cubeSurface() : Surface() {};
 	~cubeSurface() { Surface::~Surface(); };
 	virtual void Generate(float min = 0.0f, float max = 1.0f);
-	virtual void Generate(glm::vec2 toprig, glm::vec2 botrig, glm::vec2 botlef, glm::vec2 toplef) { printf("Not implemented\n"); }
+	virtual void Generate(glm::vec2 toprig, glm::vec2 botrig, glm::vec2 botlef, glm::vec2 toplef) { printf("Cube surface 4 arg generate method Not implemented\n"); }
 	virtual void Bind();
 };
-
 
 
 #endif // Surface

@@ -60,6 +60,7 @@ Surface::~Surface()
     //printf("Surface.cpp::~Surface::\tDeleting Surface: %i\n", VAO);  
     glDeleteVertexArrays(1, &VAO); 
     glDeleteBuffers(1, &VBO);
+    glBindVertexArray(0);
 }
 
 void Surface::unBind()

@@ -6,6 +6,9 @@
 #include "Shader.h"
 #include <vector>
 #include "glm/glm.hpp"
+#include "SpriteMap.h"
+#include "ParallaxLayer.h"
+#include <iostream>
 
 struct ScrollingSpriteDefinition
 {
@@ -20,6 +23,9 @@ struct ScrollingSpriteDefinition
 	glm::vec3 size = glm::vec3(1.0f);
 	float scale = 1.0f;
 	glm::vec4 mainColor = glm::vec4(1.0f);
+
+	float speedMultiplier = 0.01f;
+	std::string name = "ParallaxLayer";
 };
 
 class ScrollingSprite
@@ -29,20 +35,23 @@ public:
 	~ScrollingSprite();
 
 	void Update(float deltaTime);
-	void Draw(Shader* shader, Surface* surface);
+	void Draw(Shader* shader);
 
 	void Debug();
 protected:
-	std::vector<int> drawOrder;
-	std::vector<float> scrollSpeed;
-	std::vector<Texture*> layers;
+	std::vector<ParallaxLayer*> layers;
 public:
 	glm::vec3 position, pivot, size;
 	glm::vec4 mainColor;
-	float scale;
+	float scale, zOffset, speedMultiplier;
 	bool visible;
+
+
+	glm::ivec2 direction;
 private:
 	void init(const ScrollingSpriteDefinition& def);
+
+	std::string name;
 };
 
 #endif // !SCROLLINGSPRITE_H

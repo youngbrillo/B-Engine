@@ -10,9 +10,12 @@ SpriteMap::SpriteMap(Texture* texture, const char* jsonFile, SpriteSettings& set
 	, elementSize(0, 0)
 	, m_surface(nullptr)
 	, rowcolumnDimensions(glm::i32vec2(0,0))
+	, RenderLazy(true)
 {
 	m_surface = new quadSurface();
-	///m_surface->Generate(a, b, c, d);
+	m_surface->Generate(a, b, c, d);
+
+	k_surface->Generate(a, b, c, d);
 
 	configFromJson(jsonFile, settings);
 }
@@ -27,9 +30,13 @@ SpriteMap::SpriteMap(Texture* texture, const int columns, const int rows)
 	, elementSize(1/(1.0f * columns), 1/ (1.0f * rows))
 	, m_surface(nullptr)
 	, rowcolumnDimensions(glm::i32vec2(columns, rows))
+	, RenderLazy(true)
 {
 	m_surface = new quadSurface();
 	m_surface->Generate(a, b, c, d);
+
+	k_surface = new experimentalSurface();
+	k_surface->Generate(a, b, c, d);
 }
 
 SpriteMap::~SpriteMap()
@@ -37,6 +44,8 @@ SpriteMap::~SpriteMap()
 	TextureReference = nullptr;
 	if(m_surface)
 		delete m_surface;
+
+	delete k_surface;
 }
 
 void SpriteMap::GetFrame(const int row, const int column)
@@ -68,12 +77,31 @@ void SpriteMap::GetFrame(const int _index)
 
 void SpriteMap::configureTextureCoords()
 {
-	m_surface->Generate(a, b, c, d);
+	if (RenderLazy) {
+		if (m_surface) {
+			delete m_surface;
+			m_surface = new quadSurface();
+		}
+		m_surface->Generate(a, b, c, d);
+	}
+	else
+	{
+		k_surface->UpdateVerticies(a, b, c, d);
+	}
+}
+void SpriteMap::configureTextureCoords(glm::vec2 aa, glm::vec2 bb, glm::vec2 cc, glm::vec2 dd)
+{
+	a = aa;
+	b = bb;
+	c = cc;
+	d = dd;
+	configureTextureCoords();
 }
 #include <imgui.h>
 
 void SpriteMap::Debug(const char* name)
 {
+	ImGui::Checkbox("Lazy rendering", &RenderLazy);
 	if (ImGui::TreeNode(name))
 	{
 
@@ -104,7 +132,16 @@ void SpriteMap::Debug(const char* name)
 void SpriteMap::Draw() // less of a 'draw' more of a bind
 {
 	TextureReference->Bind();
-	m_surface->Bind();
+	if(RenderLazy)
+		m_surface->Bind();
+	else
+		k_surface->Bind();
+}
+
+void SpriteMap::Draw(glm::vec2 aa, glm::vec2 bb, glm::vec2 cc, glm::vec2 dd)
+{
+	configureTextureCoords(aa, bb, cc, dd);
+	Draw();
 }
 
 void SpriteMap::configFromJson(const char* jsonFile, SpriteSettings& settings)

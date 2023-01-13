@@ -131,7 +131,7 @@ int main(char* argc, int argv[])
     glfwTerminate();
 
 
-
+    printf("\n- Exited Application -\n");
 	return 0;
 }
 void cus_glfw_initialization()

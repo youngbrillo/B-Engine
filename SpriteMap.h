@@ -7,7 +7,7 @@
 #include "Surface.h"
 #include <glm/glm.hpp>
 
-
+#include "experimentalSurface.h"
 
 class SpriteSettings
 {
@@ -41,6 +41,7 @@ public:
 	void Debug(const char* name = nullptr);
 
 	void Draw();
+	void Draw(glm::vec2 a, glm::vec2 b, glm::vec2 c, glm::vec2 d);
 	void configFromJson(const char* jsonFile, SpriteSettings& settings);
 
 	glm::vec2 getElementSize() const { return elementSize; }
@@ -49,6 +50,7 @@ protected:
 	void configureTextureCoords();
 private:
 	Surface* m_surface;
+	experimentalSurface* k_surface;
 	//a = top right corner, b = bottom right, c = bottom left, d = top left
 	glm::vec2 a, b, c, d;
 	//in a tightly packed sprite sheet, the element size is the element of each sprite
@@ -58,6 +60,9 @@ private:
 
 
 	friend class Sprite;
+public:
+	void configureTextureCoords(glm::vec2 a, glm::vec2 b, glm::vec2 c, glm::vec2 d);
+	bool RenderLazy;
 };
 
 #endif // !SPRITEMAP_H

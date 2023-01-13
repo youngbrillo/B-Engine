@@ -18,7 +18,7 @@ App::~App()
 {
 	Game::AppCam = nullptr;
 	delete m_Camera;
-
+	delete m_game;
 	ResourceManager::cleanup();
 	g_App = nullptr;
 }
