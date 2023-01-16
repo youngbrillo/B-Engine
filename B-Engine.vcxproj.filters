@@ -225,31 +225,16 @@
     <ClCompile Include="ParallaxTestScene.cpp">
       <Filter>Scenes\test scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteMap.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="ScrollingSprite.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="ParallaxLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="vertexBufferRender.cpp">
       <Filter>Scenes\test scenes</Filter>
     </ClCompile>
-    <ClCompile Include="experimentalSurface.cpp">
-      <Filter>Testing</Filter>
-    </ClCompile>
-    <ClCompile Include="t_Surface.cpp">
-      <Filter>Testing</Filter>
-    </ClCompile>
-    <ClCompile Include="t_Texture.cpp">
-      <Filter>Testing</Filter>
-    </ClCompile>
     <ClCompile Include="Transform.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
@@ -383,28 +368,16 @@
     <ClInclude Include="sajson.h">
       <Filter>Utilities\sajson</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ScrollingSprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ParallaxLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="experimentalSurface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="t_Surface.h">
-      <Filter>Testing</Filter>
-    </ClInclude>
-    <ClInclude Include="t_Texture.h">
-      <Filter>Testing</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
       <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
@@ -445,6 +418,8 @@
     <None Include="settings.ini">
       <Filter>Configurations</Filter>
     </None>
+    <None Include="textureAtlas.frs" />
+    <None Include="textureAtlas.vts" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Ammo.png">

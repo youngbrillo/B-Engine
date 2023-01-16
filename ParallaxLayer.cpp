@@ -1,7 +1,7 @@
 #include "ParallaxLayer.h"
 
 ParallaxLayer::ParallaxLayer(Texture* texture, int order, float speed, std::string name)
-	: layer(new SpriteMap(texture, 1, 1))
+	: layer(new Sprite(texture, 1, 1))
 	, visible(true)
 	, ordinal(order)
 	, transitionSpeed(speed)
@@ -30,7 +30,7 @@ void ParallaxLayer::updateVectors(bool autoConfigure)
 	if (autoConfigure)
 	{
 		printf("----------------Investigate me!!!!!!!!!!!!!!!!");
-		layer->configureTextureCoords(a, b, c, d);
+		//layer->configureTextureCoords(a, b, c, d);
 		/*
 		* path starts to fall apart here...
 		*  -> spritemap.cpp::configureTextureCoords() 
@@ -64,7 +64,7 @@ void ParallaxLayer::Debug()
 			ImGui::TreePop();
 		}
 
-		layer->Debug("sprite map");
+		layer->Debug();
 		ImGui::TreePop();
 	}
 }

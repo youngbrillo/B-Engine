@@ -7,6 +7,7 @@
 #include "Item.h"
 #include "Texture.h"
 #include <vector>
+#include <glm/glm.hpp>
 namespace SpaceBuster {
 	struct itemObjectLite
 	{

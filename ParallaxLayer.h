@@ -3,7 +3,7 @@
 #define PARALLAXLAYER_H
 
 #include "Texture.h"
-#include "SpriteMap.h"
+#include "Sprite.h"
 #include <glm/glm.hpp>
 #include <iostream>
 class ParallaxLayer
@@ -12,7 +12,7 @@ public:
 	ParallaxLayer(Texture* texture, int order, float speed, std::string name);
 	~ParallaxLayer();
 	
-	SpriteMap* layer;
+	Sprite* layer;
 	//scroller corners;
 	bool visible;
 	int ordinal;
