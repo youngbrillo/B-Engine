@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 #include "Surface.h"
 #include "Texture.h"
+#include "Shader.h"
 
 typedef struct  GameObjectDefinition {
 	std::string		name;

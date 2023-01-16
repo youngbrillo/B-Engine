@@ -49,6 +49,15 @@
     <Filter Include="Scenes\test scenes">
       <UniqueIdentifier>{561f6abe-4f83-4432-8467-e6631fa4522a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\backgrounds">
+      <UniqueIdentifier>{01f8c47a-b584-4d70-948a-30ac4e47d2bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configurations">
+      <UniqueIdentifier>{0e749c6a-5cbf-4018-b914-7535157b33dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Testing">
+      <UniqueIdentifier>{c57ca44a-af4d-4b78-9e2a-4a364927472f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -210,14 +219,23 @@
     <ClCompile Include="Settings.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteMapTest.cpp">
       <Filter>Scenes\test scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
+    <ClCompile Include="ParallaxTestScene.cpp">
+      <Filter>Scenes\test scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ParallaxLayer.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vertexBufferRender.cpp">
+      <Filter>Scenes\test scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -350,11 +368,17 @@
     <ClInclude Include="sajson.h">
       <Filter>Utilities\sajson</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteMap.h">
+    <ClInclude Include="ParallaxLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite.h">
+    <ClInclude Include="experimentalSurface.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -388,6 +412,14 @@
     <None Include="assets\Haohmaru_141.json">
       <Filter>Assets</Filter>
     </None>
+    <None Include="imgui.ini">
+      <Filter>Configurations</Filter>
+    </None>
+    <None Include="settings.ini">
+      <Filter>Configurations</Filter>
+    </None>
+    <None Include="textureAtlas.frs" />
+    <None Include="textureAtlas.vts" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Ammo.png">
@@ -416,6 +448,30 @@
     </Image>
     <Image Include="assets\Haohmaru_141.png">
       <Filter>Assets</Filter>
+    </Image>
+    <Image Include="assets\bgs\background_settingSun.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\blankpixel.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\foreground_00.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\foreground_01.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\foreground_02.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\foreground_03.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\foreground_04.png">
+      <Filter>Assets\backgrounds</Filter>
+    </Image>
+    <Image Include="assets\bgs\foreground_05.png">
+      <Filter>Assets\backgrounds</Filter>
     </Image>
   </ItemGroup>
 </Project>

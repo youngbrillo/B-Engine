@@ -6,7 +6,6 @@
 #include "Utility_Physics.h"
 #include "Texture.h"
 
-
 class SpriteTest : public Game
 {
 public:
@@ -27,12 +26,15 @@ public:
 
 
 	Texture m_sprite;
+	//t_Texture m_sprite;
 	//constructor
 	SpriteTest() : Game()
 	{
+		printf("Starting up sprite test\n");
 		//m_Shader = new Shader("test.vts", "test.frs", true);
 		m_Shader = new Shader("stdsprite.vts", "stdsprite.frs", true);
 		m_sprite = Texture("brick.png");
+		//m_sprite = t_Texture("brick.png", true);
 
 		//m_Shader = new Shader("test.vts", "test.frs", true);
 		//m_surface = new quadSurface(); m_surface->Generate();
@@ -45,8 +47,8 @@ public:
 	//destructor
 	~SpriteTest()
 	{
-		delete m_surface;
-		m_surface = nullptr;
+		//delete m_surface;
+		//m_surface = nullptr;
 		printf("disabling depth test\n");
 		glDisable(GL_DEPTH_TEST);
 	};
@@ -67,12 +69,6 @@ public:
 		if (autoRotate)
 			elapsed += dt;
 	}
-
-	//collision callbacks 
-	void onBeginContact(b2Contact* contact) override {}
-	void onPreSolve(b2Contact* contact, const b2Manifold* oldManifold) override {}
-	void onEndContact(b2Contact* contact) override {}
-	void onPostSolve(b2Contact* contact, const b2ContactImpulse* impulse) override {}
 
 	//screen drawing
 	void DrawBackGround() override {}

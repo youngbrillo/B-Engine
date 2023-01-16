@@ -1,101 +1,90 @@
 #include "Sprite.h"
 
-
-
-Sprite::Sprite(Texture* texture, const char* jsonFile, int defaultIndex)
-	: settings(SpriteSettings())
-	, map(new SpriteMap(texture, jsonFile,settings))
-	, index(defaultIndex)
-	, animStartIndex(0)
-	//, animEndIndex(map->elementSize.x * map->elementSize.y)
-	, animate(false) //maybe get the animation instructions from the settings?
-	, visible(true)
-	, color(glm::vec4(1.0f))
-	, frameProgress(0.0f)
-	, frameLength(100.0f)
+Sprite::Sprite()
+	: transform(Transform())
+	, Color(glm::vec4(1.0f))
+	, index(0)
+	, spriteSize(1.0f)
+	, dimensions(1.0, 1.0f)
+	, texture(nullptr)
+	, animated(false)
 {
-	//animEndIndex = map->elementSize.x * map->elementSize.y;
-	animEndIndex = map->rowcolumnDimensions.x * map->rowcolumnDimensions.y;
 }
 
-Sprite::Sprite(Texture* texture, const int columns, const int rows, int defaultIndex)
-	: map(new SpriteMap(texture, columns, rows))
-	, index(defaultIndex)
-	, animStartIndex(0)
-	//, animEndIndex(map->elementSize.x* map->elementSize.y)
-	, animate(false)
-	, visible(true)
-	, color(glm::vec4(1.0f))
-	, frameProgress(0.0f)
-	, frameLength(100.0f)
+Sprite::Sprite(Texture* t, int columns, int rows)
+	: transform(Transform())
+	, Color(glm::vec4(1.0f))
+	, index(0)
+	, spriteSize(1/(float)columns, 1/(float)rows)
+	, dimensions(columns, rows)
+	, texture(t)
+	, animated(false)
+	, frameStart(0)
+	, frameEnd(columns * rows)
+	, maxFrame(columns * rows)
+	, frame_time_length(100.0f)
+	, frame_time_remaining(0.0f)
 {
-	animEndIndex = map->rowcolumnDimensions.x * map->rowcolumnDimensions.y;
 }
 
 Sprite::~Sprite()
 {
-	delete map;
+	texture = nullptr;
 }
 
 void Sprite::Update(float dt)
 {
-	if (animate)
+	if (animated)
 	{
-		frameProgress += dt;
-		int oldIndex = index;
-		if (frameProgress >= frameLength / 1000.0f)
+		frame_time_remaining += dt;
+		if (frame_time_remaining >= frame_time_length / 1000.0f)
 		{
-			frameProgress = 0.0f;
-			index = (index + 1) % animEndIndex;
-			if (index < animStartIndex) index = animStartIndex;
-
-			//if(oldIndex != index) 
-			map->GetFrame(index);
+			frame_time_remaining = 0.0f;
+			index = (index + 1) % frameEnd;
+			if (index < frameStart) index = frameStart;
 		}
-
 	}
 }
 
-//assume that the model drawing has already been taken care of, 
-//now just bind the texture and surface
-void Sprite::Draw(Shader* shader)
+void Sprite::Draw(Shader* shader, Surface* mesh)
 {
+	shader->SetMatrix4("model", transform.m_model)
+	.SetVector4f("color", Color)
+	.setInt("index", index)
+	.SetVector2f("spriteSize", spriteSize)
+	.SetVector2f("sheetdimensions", dimensions);
 
-	if (visible)
-	{
-		shader->SetVector4f("color", this->color);
-		map->Draw();
-	}
-
+	texture->Bind();
+	mesh->Bind();
 }
 
 #include <imgui.h>
-
-void Sprite::Debug()
+void Sprite::Debug(const char* name)
 {
-	if (ImGui::TreeNode("Sprite"))
+	std::string title = name ? name : "Sprite";
+	if (ImGui::TreeNode(title.c_str()))
 	{
+		ImGui::SliderFloat2("sprite dimensions", &spriteSize.x, 0, 1.0f);
+		ImGui::SliderFloat2("rows and columns", &dimensions.x,0, 1);
+		ImGui::SliderInt("Index", &index, 0, maxFrame);
+
 		ImGui::Checkbox("Visible", &visible);
-		ImGui::Checkbox("Animate", &animate);
-		ImGui::ColorEdit4("Color", &color.x, ImGuiColorEditFlags_Float);
-		ImGui::SliderFloat("Frame Status", &frameProgress, 0, 1.0f);
-		ImGui::SliderFloat("Frame Speed", &frameLength, 0.1f, 300.0f);
+		ImGui::Checkbox("Animate", &animated);
 
-		ImGui::SliderInt("Frame start", &animStartIndex, 0, animEndIndex);
-		ImGui::SliderInt("Frame end", &animEndIndex, 1, map->rowcolumnDimensions.x * map->rowcolumnDimensions.y);
-
-		if (ImGui::SliderInt("Frame Index", &index, 0, animEndIndex))
+		if (ImGui::TreeNode("Animation"))
 		{
-			map->GetFrame(index);
-		}
-		static int m[2] = { 0, 0 };
+			ImGui::ColorEdit4("Color", &Color.x, ImGuiColorEditFlags_Float);
+			ImGui::SliderFloat("Frame Status", &frame_time_remaining, 0, frame_time_length/1000.0f);
+			ImGui::SliderFloat("Frame Speed", &frame_time_length, 0.1f, 300.0f);
 
-		if (ImGui::SliderInt2("Frame coord", &m[0], 0, map->getrowcolumnDimensions().x))
-		{
-			map->GetFrame(m[0], m[1]);
-		}
-		map->Debug("- Sprite Map -");
+			ImGui::SliderInt("Frame start", &frameStart, 0, frameEnd);
+			ImGui::SliderInt("Frame end", &frameEnd, 1, maxFrame);
 
+			ImGui::SliderInt("Frame Index", &index, 0, maxFrame);
+			ImGui::TreePop();
+		}
+		transform.Debug("Transform");
+		texture->RenderDebug();
 
 		ImGui::TreePop();
 	}

@@ -169,6 +169,8 @@
     <ClCompile Include="newGameTemplate.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="ObjectListener.cpp" />
+    <ClCompile Include="ParallaxLayer.cpp" />
+    <ClCompile Include="ParallaxTestScene.cpp" />
     <ClCompile Include="PhysDebug.cpp" />
     <ClCompile Include="pinball.cpp" />
     <ClCompile Include="Platformer.cpp" />
@@ -181,13 +183,14 @@
     <ClCompile Include="SpaceBusterGame.cpp" />
     <ClCompile Include="Spaceship.cpp" />
     <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="SpriteMap.cpp" />
     <ClCompile Include="SpriteMapTest.cpp" />
     <ClCompile Include="SpriteTest.cpp" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="test_Astroids.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Utility_Physics.cpp" />
+    <ClCompile Include="vertexBufferRender.cpp" />
     <ClCompile Include="Zone.cpp" />
     <ClCompile Include="ZoneTest.cpp" />
   </ItemGroup>
@@ -203,6 +206,7 @@
     <ClInclude Include="CameraController.h" />
     <ClInclude Include="CSApp.h" />
     <ClInclude Include="defaults_SpaceBuster.h" />
+    <ClInclude Include="experimentalSurface.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -221,6 +225,7 @@
     <ClInclude Include="MissionStandard.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="ObjectListener.h" />
+    <ClInclude Include="ParallaxLayer.h" />
     <ClInclude Include="PhysDebug.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -231,10 +236,10 @@
     <ClInclude Include="SpaceBusterGame.h" />
     <ClInclude Include="Spaceship.h" />
     <ClInclude Include="Sprite.h" />
-    <ClInclude Include="SpriteMap.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Utility_Physics.h" />
     <ClInclude Include="Zone.h" />
   </ItemGroup>
@@ -245,15 +250,27 @@
     <None Include="assets\Haohmaru_141.json" />
     <None Include="assets\his13_000.json" />
     <None Include="assets\miniAtlas.json" />
+    <None Include="imgui.ini" />
     <None Include="NDC_sprite.vts" />
     <None Include="packages.config" />
+    <None Include="settings.ini" />
     <None Include="stdsprite.frs" />
     <None Include="stdsprite.vts" />
     <None Include="test.frs" />
     <None Include="test.vts" />
+    <None Include="textureAtlas.frs" />
+    <None Include="textureAtlas.vts" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Ammo.png" />
+    <Image Include="assets\bgs\background_settingSun.png" />
+    <Image Include="assets\bgs\blankpixel.png" />
+    <Image Include="assets\bgs\foreground_00.png" />
+    <Image Include="assets\bgs\foreground_01.png" />
+    <Image Include="assets\bgs\foreground_02.png" />
+    <Image Include="assets\bgs\foreground_03.png" />
+    <Image Include="assets\bgs\foreground_04.png" />
+    <Image Include="assets\bgs\foreground_05.png" />
     <Image Include="assets\brick.png" />
     <Image Include="assets\EnergyCell.png" />
     <Image Include="assets\Haohmaru_141.png" />
