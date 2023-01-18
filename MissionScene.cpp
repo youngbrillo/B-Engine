@@ -181,4 +181,4 @@ public:
 	static Game* Create() { return new MissionScene; }
 };
 
-static int testIndex = RegisterGame("Alpha Examples", "Mission Scene", MissionScene::Create);  //do not actually register this lol
+static int testIndex = RegisterGame("SpaceBuster", "Mission Scene", MissionScene::Create);  //do not actually register this lol
