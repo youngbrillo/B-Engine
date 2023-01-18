@@ -9,6 +9,7 @@ Transform::Transform()
 	, m_model(glm::mat4(1.0f))
 	, rotation(0.0f)
 	, scale(1.0f)
+	, direction(1)
 {
 }
 
@@ -31,7 +32,7 @@ void Transform::UpdateMatrix()
 	{
 		m_model = glm::translate(m_model, position);
 		m_model = glm::rotate(m_model, rotation, orientation);
-		m_model = glm::scale(m_model, size * scale);
+		m_model = glm::scale(m_model, glm::vec3(size.x * scale * direction.x, size.y * scale * direction.y, size.z * scale) );
 	}
 	m_model = glm::translate(m_model, -pivot);
 }
@@ -52,6 +53,7 @@ void Transform::Debug(const char* owner)
 		if (ImGui::SliderFloat3("orientation", &orientation.x, -1, 1)) { UpdateMatrix(); }
 		if (ImGui::SliderFloat("scale", &scale, 0.01, 10)) { UpdateMatrix(); }
 		if (ImGui::SliderFloat3("size", &size.x, -10, 10)) { UpdateMatrix(); }
+		if (ImGui::SliderInt2("direction", &direction.x, -1, 1)) { UpdateMatrix(); }
 
 		ImGui::TreePop();
 	}

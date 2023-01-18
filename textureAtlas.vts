@@ -13,6 +13,8 @@ uniform vec2 sheetdimensions;
 uniform vec2 spriteSize; 
 uniform int index; 
 
+uniform vec2 spriteCoord;
+
 void main()
 {
 	gl_Position = projection * view *  model * vec4(aPos, 1.0);
@@ -26,10 +28,20 @@ void main()
 
 	x = index % cols;
 	y = index / cols;
+	
+
+//    TexCoord =  vec2(
+//		(aTexCoord.x/ cols ) + spriteSize.x * x,
+//		(aTexCoord.y/ rows ) + spriteSize.y * (lastRowIndex - y)
+//	);
+
+
+	vec2 sCoord = spriteCoord;
+//	if(spriteCoord.x == 0) sCoord.x = spriteSize.x * x;
+//	if(spriteCoord.y == 0) sCoord.y = spriteSize.y * (lastRowIndex - y);
 
     TexCoord =  vec2(
-		aTexCoord.x/ cols + spriteSize.x * x,
-		aTexCoord.y/ rows + spriteSize.y * (lastRowIndex - y)
+		aTexCoord.x/ cols  +  sCoord.x,
+		aTexCoord.y/ rows  +  sCoord.y
 	);
-
 }

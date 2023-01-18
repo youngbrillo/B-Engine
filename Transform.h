@@ -17,6 +17,7 @@ public:
 
 
 public:
+	glm::ivec2 direction;
 	glm::vec3 position, size, pivot, orientation;
 	glm::mat4 m_model;
 	float rotation, scale;

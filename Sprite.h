@@ -16,13 +16,15 @@ public:
 	void setTexture(Texture* t) { texture = t; }
 	void Update(float dt);
 	void Draw(Shader* shader, Surface* mesh);
+	void Draw(glm::mat4 model, Shader* shader, Surface* mesh);
 	void Debug(const char* name = nullptr);
+	glm::vec2 getCoordinate(const int i);
 
 public:
 	Transform transform;
 	glm::vec4 Color;
 	int index, frameStart, frameEnd, maxFrame;
-	glm::vec2 spriteSize, dimensions;
+	glm::vec2 spriteSize, dimensions, spriteCoord;
 private:
 	Texture* texture;
 

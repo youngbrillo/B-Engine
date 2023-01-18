@@ -418,8 +418,12 @@
     <None Include="settings.ini">
       <Filter>Configurations</Filter>
     </None>
-    <None Include="textureAtlas.frs" />
-    <None Include="textureAtlas.vts" />
+    <None Include="textureAtlas.vts">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="textureAtlas.frs">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Ammo.png">

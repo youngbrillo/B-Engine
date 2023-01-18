@@ -35,7 +35,7 @@ public:
 
 
 		k_sprite = new Sprite(k_texture, 7, 7);
-		k_sprite->transform.position.z = 0.5f;
+		k_sprite->transform.position = glm::vec3(-1, 0.0f, 0.5f);
 
 		k_sprite->transform.UpdateMatrix();
 		AppCam->zoom = 0.045f;
