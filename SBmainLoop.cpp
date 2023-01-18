@@ -2,42 +2,43 @@
 #include "SpaceBusterGame.h"
 
 #include "imgui.h"
-
-//add a survival mission to this scene
-//implement power ups for ship/all ships
-//add UI
-//implement high score
+#include "ScoreManager.h"
+#include "ObjectFactory.h"
+#include "MissionSurvival.h"
+//implement high score 1st
+//add UI 0th
+//add a survival mission to this scene 2nd
+//implement power ups for ship/all ships 3rd
 
 
 class SpaceBuster_GameLoop_Test : public SpaceBusterGame
 {
 public:
+	//SpaceBuster::ScoreManager* m_scoreKeeper;
+	Mission* mission;
 	//constructor
 	SpaceBuster_GameLoop_Test() : SpaceBusterGame()
 	{
 		m_cameraController->mode = CameraController::FollowMode::Lerp;
+		Game::windowColorBackGround = glm::vec4(0.451, 0.252, 0.252, 1.00f);
+
+		MissionDefinition def;
+
+		mission = new MissionSurvival(&def);
+		ObjectFactory::SetObjectListener(mission);
 	};
 	//destructor
 	~SpaceBuster_GameLoop_Test()
 	{
-
+		ObjectFactory::SetObjectListener(nullptr);
+		delete mission;
 	};
 
-	//key callbacks and frame input key callback
-	//void KeyboardUp(int key) override { }
-	//void KeyboardDown(int key)override { }
-	//virtual void processInput(GLFWwindow* window, float deltaTime) override { }
-	//mouse callbacks
-	//virtual void mouseCallback(GLFWwindow* window, int button, int action, int mode) override {}
-	//virtual void mouseCallback_Cursor(GLFWwindow* w, double x, double y) override {}
-	//virtual void mouseScroll_callback(GLFWwindow* window, double xoffset, double yoffset) override {}
-	//virtual void ResizeWindowCallback(GLFWwindow*, int width, int height) override {}
-
 	//frame updates
-	//void FixedUpdate(float dt) override { }
 	void Update(float dt) override 
 	{ 
 		SpaceBusterGame::Update(dt);
+		mission->Update(dt);
 	}
 
 	//collision callbacks 
@@ -54,11 +55,13 @@ public:
 	void DrawForeGround() override 
 	{
 		SpaceBusterGame::DrawForeGround();
-
+		mission->DrawContent();
+		mission->DrawUI();
 	}
 
 
 	void DrawDebug() override {
+		mission->Debug();
 		SpaceBusterGame::DrawDebug();
 	}
 

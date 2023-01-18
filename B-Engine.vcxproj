@@ -166,6 +166,7 @@
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="MissionScene.cpp" />
     <ClCompile Include="MissionStandard.cpp" />
+    <ClCompile Include="MissionSurvival.cpp" />
     <ClCompile Include="newGameTemplate.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="ObjectListener.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Platformer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SBmainLoop.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShipConfigScene.cpp" />
@@ -190,6 +192,8 @@
     <ClCompile Include="test_Astroids.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="UI_element.cpp" />
+    <ClCompile Include="UI_Meter.cpp" />
     <ClCompile Include="Utility_Physics.cpp" />
     <ClCompile Include="vertexBufferRender.cpp" />
     <ClCompile Include="Zone.cpp" />
@@ -224,6 +228,7 @@
     <ClInclude Include="ItemObject.h" />
     <ClInclude Include="Mission.h" />
     <ClInclude Include="MissionStandard.h" />
+    <ClInclude Include="MissionSurvival.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="ObjectListener.h" />
     <ClInclude Include="ParallaxLayer.h" />
@@ -231,6 +236,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="sajson.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShipController.h" />
@@ -241,6 +247,8 @@
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="UI_element.h" />
+    <ClInclude Include="UI_Meter.h" />
     <ClInclude Include="Utility_Physics.h" />
     <ClInclude Include="Zone.h" />
   </ItemGroup>
@@ -261,6 +269,7 @@
     <None Include="test.vts" />
     <None Include="textureAtlas.frs" />
     <None Include="textureAtlas.vts" />
+    <None Include="UIShader00.vts" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Ammo.png" />
