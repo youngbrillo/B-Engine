@@ -145,7 +145,7 @@ void Spaceship::handlePostSolve(b2Contact* contact, const b2ContactImpulse* impu
 
 	collisionType_astroids* ct = (collisionType_astroids*)other->GetUserData();
 
-	if (!!ct == false) return;
+	//if (!!ct == false) return;
 
 
 	// Should the body break?

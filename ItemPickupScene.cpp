@@ -222,4 +222,4 @@ public:
 	static Game* Create() { return new ItemPickupScene; }
 };
 
-static int testIndex = RegisterGame("Scene", "Item Test", ItemPickupScene::Create);
+static int testIndex = RegisterGame("SpaceBuster", "Item Test", ItemPickupScene::Create);

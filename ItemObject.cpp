@@ -10,6 +10,14 @@ ItemObject::ItemObject(Item* i, GameObjectDefinition* def, float value, int amnt
 	, amount(amnt)
 {
 	name = itemReference->GetName();
+
+	b2FixtureDef fd;
+	fd.isSensor = true;
+	b2CircleShape shape;
+	shape.m_radius = def->size.x * def->scale * 2.0f;
+	fd.shape = &shape;
+
+	sensorFixture = m_body->CreateFixture(&fd);
 }
 
 
@@ -25,8 +33,8 @@ void ItemObject::handleBeginContact(b2Contact* contact)
 	b2Fixture* A = contact->GetFixtureA();
 	b2Fixture* B = contact->GetFixtureB();
 	b2Fixture* other;
-	if (A == m_contactFixture)  other = B;
-	else if (B == m_contactFixture) other = A;
+	if (A == sensorFixture)  other = B;
+	else if (B == sensorFixture) other = A;
 	else  return; //not the item wrapper...
 
 	collisionType_astroids* k = (collisionType_astroids*)other->GetUserData();
@@ -37,7 +45,7 @@ void ItemObject::handleBeginContact(b2Contact* contact)
 		{
 			//use the said item
 			//the auto use functionality works like this but i want it to be up to the ship whether or not auto use should take effect
-			printf("Collided w/ shipt\n");
+			//printf("Collided w/ shipt\n");
 			ShipController* controller = (ShipController*)other->GetBody()->GetUserData();
 			if (controller)
 			{

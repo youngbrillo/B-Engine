@@ -18,6 +18,34 @@ ShipController::ShipController(b2World* worldreference, const b2Vec2& initalShip
 	m_launcher = new SpaceBuster::AutoLauncher(50);
 	shipCount = (levelDifficulty);
 	m_inventory = new SpaceBuster::Inventory();
+
+
+	//set up ui element
+	int m_int_min = 0;
+	UIElementDefinition UIdef;
+	{ //energy meter
+		UIdef.position = glm::vec3(-40.0f, -12.0f, 0.0f);
+		UIdef.color = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+		UIdef.elementName = "condition bar";
+		conditionMeter = UIMeter(&UIdef);
+	}
+	glm::vec3 offset = glm::vec3(0, -2.0f, 0.0f);
+
+	{ //health meter
+		UIdef.position = UIdef.position + offset;
+		UIdef.color = glm::vec4(0.353f, 1.0f, 0.0f, 1.0f);
+		UIdef.elementName = "Energy bar";
+		energyMeter = UIMeter(&UIdef);
+	}
+
+	{ //ammo meter
+		UIdef.position = UIdef.position + offset;
+		UIdef.color = glm::vec4(0.0f, .0f, 1.0f, 1.0f);
+		UIdef.elementName = "ammo bar";
+		ammoMeter = UIMeter(&UIdef, &m_launcher->magCurrent, &m_int_min, &m_launcher->magCapacity);
+	}
+
+
 }
 
 ShipController::~ShipController()
@@ -225,3 +253,13 @@ b2Body* ShipController::getBody()
 		return m_ship->mainBody;
 }
 
+
+void ShipController::Draw()
+{
+}
+void ShipController::DrawUI(Shader* customShader, Surface* customSurface)
+{
+	if(m_ship) conditionMeter.DrawValue(customShader, customSurface, m_ship->condition / m_ship->maxCondition);
+	if (m_ship) energyMeter.DrawValue(customShader, customSurface, m_ship->energy / m_ship->maxEnergy );
+	ammoMeter.Draw(customShader, customSurface);
+}

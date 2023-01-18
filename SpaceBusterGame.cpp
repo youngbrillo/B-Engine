@@ -33,6 +33,10 @@ SpaceBusterGame::SpaceBusterGame()
 	GameObject::g_gameObjectShader = this->m_Shader;
 	ShipController::g_shipController = m_player;
 
+	m_UIshader = new Shader("UIShader00.vts", "test.frs", true);
+	glm::mat4  proj = AppCam->getProjectionMatrix(), view = glm::mat4(1.0f);
+	m_UIshader->Use().SetMatrix4("projection", proj).SetMatrix4("view", view);
+
 }
 
 SpaceBusterGame::~SpaceBusterGame()
@@ -124,6 +128,7 @@ void SpaceBusterGame::DrawScene()
 void SpaceBusterGame::DrawForeGround()
 {
 	ObjectFactory::DrawObjects();
+	m_player->DrawUI(m_UIshader, m_surface);
 }
 
 void SpaceBusterGame::DrawBackGround()
