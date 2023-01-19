@@ -8,24 +8,11 @@
 #include "ResourceManager.h"
 
 #include "ParallaxLayer.h"
-struct SimpleSpriteAnimator
-{
-	SimpleSpriteAnimator() : animationBounds(0, 1), doOnce(false) {};
-	SimpleSpriteAnimator(glm::ivec2 b, bool singleUse = false) : animationBounds(b), doOnce(singleUse) {};
-	SimpleSpriteAnimator(int a, int b, bool singleUse = false) : animationBounds(a, b), doOnce(singleUse) {};
+#include "SpriteAnimator.h"
 
-	void setAnimation(Sprite* spritetoanimate, SimpleSpriteAnimator* nosey)
-	{
-		spritetoanimate->frameStart = animationBounds.x;
-		spritetoanimate->frameEnd = animationBounds.y;
-		spritetoanimate->index = animationBounds.x;
-		spritetoanimate->animated = true;
-	}
 
-	SimpleSpriteAnimator* lastAnimation = nullptr;
-	glm::ivec2 animationBounds;
-	bool doOnce = false; 
-};
+
+
 class ParallaxTest : public Game
 {
 public:
@@ -38,8 +25,9 @@ public:
 
 
 	glm::ivec2 sceneDirection;
-	SimpleSpriteAnimator runningAnim, idleAnim, walkAnim, walkBackAnim, kickAnim, *currentAnim;
+	SpriteAnimator* animationController;
 	bool shiftkeyhelddown = false, bindDirection = true;
+
 	ParallaxTest() : Game()
 	{
 		//load textures
@@ -73,12 +61,7 @@ public:
 
 		//set scene direction to 
 		sceneDirection = glm::ivec2(0, 0);
-		//set animations (for flavor)
-		runningAnim		= SimpleSpriteAnimator(87, 92);
-		idleAnim		= SimpleSpriteAnimator(0, 9);
-		walkAnim		= SimpleSpriteAnimator(26, 33);
-		walkBackAnim	= SimpleSpriteAnimator(34, 41);
-		kickAnim		= SimpleSpriteAnimator(291, 300, true);
+
 		{
 			//intialize foreground elements
 			spriteObj = new Sprite(foregroundTexture, 23, 23);
@@ -87,14 +70,23 @@ public:
 			spriteObj->transform.pivot = glm::vec3(0.0, -0.407f, 0.0f);
 			spriteObj->transform.UpdateMatrix();
 			//set up initial animation frame
-			spriteObj->frameStart = 87;
-			spriteObj->frameEnd = 92;
+			spriteObj->frameStart = 0;
+			spriteObj->frameEnd = 9;
 			spriteObj->index = 0;
 			spriteObj->animated = true;
 
-			idleAnim.setAnimation(spriteObj, currentAnim);
 
 		}
+
+		animationController = new SpriteAnimator(spriteObj, "./assets/Haohmaru_141.json");
+		//animationController->addAnimation(new Animation("m_idle", 0, 9), true);
+		//animationController->addAnimation(new Animation("m_walk", 26, 33));
+		//animationController->addAnimation(new Animation("m_walkBack", 34, 41));
+		//animationController->addAnimation(new Animation("m-dash", 80, 86, true));
+		//animationController->addAnimation(new Animation("m_run", 87, 92));
+		//animationController->addAnimation(new Animation("m_dash-back", 93, 97, true));
+		//animationController->addAnimation(new Animation("m_grab-mid", 96, 101, true));
+		//animationController->addAnimation(new Animation("m_kick", 291, 300, true));
 
 		{
 			testSprite = new Sprite(bg01, 1, 1);
@@ -108,7 +100,7 @@ public:
 			testSprite->visible = false;
 		}
 		//assign animations
-
+		//animationController->setAnimation(0);
 
 		//change shader
 		//m_Shader = new Shader("stdsprite.vts", "stdsprite.frs", true);
@@ -159,6 +151,7 @@ public:
 			background->baseSpeed = this->shiftkeyhelddown ? 2.0f : 0.25f;
 		}
 		background->Update(dt);
+		animationController->Update(dt);
 	}
 
 	void KeyboardDown(int key) override
@@ -184,12 +177,13 @@ public:
 			shiftkeyhelddown = true;
 			if (sceneDirection.x != 0)
 			{
-				runningAnim.setAnimation(spriteObj, currentAnim);
+				animationController->setAnimation("run-forward");
 			}
 		}		
 
 		if (key == GLFW_KEY_Z) {
-			kickAnim.setAnimation(spriteObj, currentAnim);
+			//kickAnim.setAnimation(spriteObj, currentAnim);
+			animationController->setAnimation("kick");
 		}
 
 		if (!valid) return;
@@ -197,14 +191,14 @@ public:
 
 		if (sceneDirection.x == 0)
 		{
-			idleAnim.setAnimation(spriteObj, currentAnim);
+			animationController->setAnimation("idle");
 		}
 		else
 		{
-			walkAnim.setAnimation(spriteObj, currentAnim);
-			if(shiftkeyhelddown)
-				runningAnim.setAnimation(spriteObj, currentAnim);
-
+			animationController->setAnimation("walk-forward");
+			if (shiftkeyhelddown) {
+				animationController->setAnimation("run-forward");
+			}
 			spriteObj->transform.direction.x = (sceneDirection.x > 0 || lastDirection.x > 0) ? -1 : 1;
 			spriteObj->transform.UpdateMatrix();
 		}
@@ -228,8 +222,10 @@ public:
 		if (key == GLFW_KEY_LEFT_SHIFT)
 		{
 			shiftkeyhelddown = false;
-			if (sceneDirection.x != 0)
-				walkAnim.setAnimation(spriteObj, currentAnim);
+			if (sceneDirection.x != 0) 
+			{
+				animationController->setAnimation("walk-forward");
+			}
 		}
 
 
@@ -243,7 +239,7 @@ public:
 
 		if (sceneDirection.x == 0)
 		{
-			idleAnim.setAnimation(spriteObj, currentAnim);
+			animationController->setAnimation("idle");
 		}
 	};
 	//screen drawing
@@ -276,6 +272,7 @@ public:
 	void DrawDebug() override 
 	{
 		ImGui::Checkbox("Bind Direction", &bindDirection);
+		animationController->Debug();
 		background->Debug();
 		spriteObj->Debug("Haomaru-sprite wrapper");
 		brickobject->Debug();

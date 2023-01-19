@@ -237,6 +237,12 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteAnimator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jsonParser.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -378,6 +384,12 @@
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Sprite.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteAnimator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jsonParser.h">
       <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
