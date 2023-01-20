@@ -177,6 +177,7 @@
     <ClCompile Include="Platformer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SBmainLoop.cpp" />
+    <ClCompile Include="SBpowerupShop.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -236,6 +237,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="sajson.h" />
+    <ClInclude Include="SBpowerupShop.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Shader.h" />

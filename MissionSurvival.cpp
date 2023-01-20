@@ -60,5 +60,5 @@ void MissionSurvival::ObjectDeleted(GameObject* G)
 	AstroidObject* someAstroid = dynamic_cast<AstroidObject*> (G);
 	if (!someAstroid) return;
 
-	scoreManager->onAstroidDestroy();
+	scoreManager->IncrementScore();
 }

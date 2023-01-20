@@ -31,7 +31,7 @@ void SpaceBuster::ScoreManager::onScore(int baseIncrement)
 	score += (int) incrementation;
 }
 
-void SpaceBuster::ScoreManager::onAstroidDestroy()
+void SpaceBuster::ScoreManager::IncrementScore()
 {
 	onScore(1);
 	comboProgress = 0.0f;
@@ -101,20 +101,20 @@ void SpaceBuster::ScoreManager::Draw(int x, int y)
 }
 
 
-#include "AstroidObject.h"
-void SpaceBuster::ScoreManager::ObjectCreated(GameObject* G)
-{
-}
-
-void SpaceBuster::ScoreManager::ObjectDeleted(GameObject* G)
-{
-	AstroidObject* someAstroid = dynamic_cast<AstroidObject*> (G);
-	if (someAstroid)
-	{
-		onAstroidDestroy();
-	}
-
-}
+//#include "AstroidObject.h"
+//void SpaceBuster::ScoreManager::ObjectCreated(GameObject* G)
+//{
+//}
+//
+//void SpaceBuster::ScoreManager::ObjectDeleted(GameObject* G)
+//{
+//	AstroidObject* someAstroid = dynamic_cast<AstroidObject*> (G);
+//	if (someAstroid)
+//	{
+//		onAstroidDestroy();
+//	}
+//
+//}
 
 void SpaceBuster::ScoreManager::advanceLevels(comboTier& tier)
 {
