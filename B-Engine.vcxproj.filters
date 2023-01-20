@@ -258,9 +258,6 @@
     <ClCompile Include="MissionSurvival.cpp">
       <Filter>Spacebuster\levels/missions</Filter>
     </ClCompile>
-    <ClCompile Include="SBpowerupShop.cpp">
-      <Filter>Spacebuster</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -414,9 +411,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MissionSurvival.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SBpowerupShop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
