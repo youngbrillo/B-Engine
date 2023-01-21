@@ -131,19 +131,41 @@ void SpriteAnimator::Debug(const char* title)
 			{
 				LoadAnimationsFromFile_json(animationRefFile.c_str());
 			}
-		}
-		for (auto i : Animations)
-		{
-			if (ImGui::TreeNode(i->name.c_str())) 
+			ImGui::SameLine();
+			if (ImGui::Button("Clear Animations"))
 			{
-
-				i->Debug("Animation config");
-				if (ImGui::Button("Set Animation"))
-				{
-					this->setAnimation(i->name);
-				}
-				ImGui::TreePop();
+				clearAnimations();
 			}
+		}
+
+		if (ImGui::TreeNode("Anim Scrubbing"))
+		{
+			ImGui::Checkbox("Animate enabled", &ref->animated);
+			ImGui::SliderInt("start frame", &ref->frameStart, 0, 500);
+			if (ImGui::SliderInt("frame Index", &ref->index, ref->frameStart, ref->frameEnd))
+			{
+				ref->spriteCoord = ref->getCoordinate(ref->index);
+			}
+			ImGui::SliderInt("end frame", &ref->frameEnd, 0, 500);
+
+			ImGui::TreePop();
+		}
+		if (ImGui::TreeNode("Animation list"))
+		{
+			for (auto i : Animations)
+			{
+				if (ImGui::TreeNode(i->name.c_str()))
+				{
+
+					i->Debug("Animation config");
+					if (ImGui::Button("Set Animation"))
+					{
+						this->setAnimation(i->name);
+					}
+					ImGui::TreePop();
+				}
+			}
+			ImGui::TreePop();
 		}
 		ImGui::TreePop();
 	}
