@@ -11,6 +11,7 @@ SpriteAnimator::SpriteAnimator(Sprite* sprite)
 	, animationChange(false)
 	, animationRefFileExists(false)
 	, animationRefFile("NA")
+	, animScrub(false)
 {
 }
 
@@ -125,6 +126,7 @@ void SpriteAnimator::Debug(const char* title)
 {
 	if (ImGui::TreeNode(title))
 	{
+		ImGui::Checkbox("Scrub Anim", &animScrub);
 		if (animationRefFileExists)
 		{
 			if (ImGui::Button("Load Animations"))
@@ -137,21 +139,27 @@ void SpriteAnimator::Debug(const char* title)
 				clearAnimations();
 			}
 		}
-
-		if (ImGui::TreeNode("Anim Scrubbing"))
+		ImGui::SetNextWindowSize(ImVec2(400, 400), ImGuiCond_FirstUseEver);
+		if (animScrub)
 		{
-			ImGui::Checkbox("Animate enabled", &ref->animated);
-			ImGui::SliderInt("start frame", &ref->frameStart, 0, 500);
-			if (ImGui::SliderInt("frame Index", &ref->index, ref->frameStart, ref->frameEnd))
+			ImGui::Begin("Anim Scrub Window", &animScrub);
+			//if (ImGui::TreeNode("Anim Scrubbing"))
 			{
-				ref->spriteCoord = ref->getCoordinate(ref->index);
-			}
-			ImGui::SliderInt("end frame", &ref->frameEnd, 0, 500);
+				ImGui::Checkbox("Animate enabled", &ref->animated);
+				ImGui::SliderInt("start frame", &ref->frameStart, 0, 500);
+				if (ImGui::SliderInt("frame Index", &ref->index, ref->frameStart, ref->frameEnd))
+				{
+					ref->spriteCoord = ref->getCoordinate(ref->index);
+				}
+				ImGui::SliderInt("end frame", &ref->frameEnd, 0, 500);
 
-			ImGui::TreePop();
+			//	ImGui::TreePop();
+			}
+			ImGui::End();
 		}
 		if (ImGui::TreeNode("Animation list"))
 		{
+		//	ImGui::BeginChild("Animations");
 			for (auto i : Animations)
 			{
 				if (ImGui::TreeNode(i->name.c_str()))
@@ -165,6 +173,7 @@ void SpriteAnimator::Debug(const char* title)
 					ImGui::TreePop();
 				}
 			}
+			//ImGui::EndChild();
 			ImGui::TreePop();
 		}
 		ImGui::TreePop();

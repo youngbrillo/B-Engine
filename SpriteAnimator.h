@@ -58,7 +58,7 @@ private:
 
 	Animation* currentAnimation, *entryAnimation;
 	Sprite* ref;
-	bool animationChange, animationRefFileExists;
+	bool animationChange, animationRefFileExists, animScrub;
 	std::string animationRefFile;
 private:
 	void LoadAnimationsFromFile_json(const char* filepath);
