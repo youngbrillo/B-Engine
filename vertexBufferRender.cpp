@@ -17,7 +17,7 @@
 #include "Transform.h"
 
 #include "Sprite.h"
-
+#include "SpriteAnimator.h"
 
 class RenderTestScene: public Game
 {
@@ -27,6 +27,8 @@ public:
 
 	Sprite* spriteObj;
 	Texture* texture;
+	SpriteAnimator* animationController;
+
 	RenderTestScene() : Game()
 	{
 		//initialize the render pipeline....
@@ -35,16 +37,19 @@ public:
 
 		m_Shader->Use().setInt("image", 0);
 		AppCam->zoom = 0.039f;
-
+		AppCam->position = glm::vec3(0.313f, -0.216f, 0.0f);
 
 		spriteObj = new Sprite(texture, 23, 23);
+		animationController = new SpriteAnimator(spriteObj, "./assets/Haohmaru_141.json");
+
+		animationController->setAnimation(0);
 	};
 	//destructor
 	~RenderTestScene()
 	{
-		delete texture;
+		delete animationController;
 		delete spriteObj;
-	
+		delete texture;
 	};
 
 	//key callbacks and frame input key callback
@@ -76,7 +81,9 @@ public:
 
 	void Update(float dt) override 
 	{ 
+
 		spriteObj->Update(dt);
+		animationController->Update(dt);
 	}
 
 	//screen drawing
@@ -107,6 +114,8 @@ public:
 	} 
 	void DrawDebug() override 
 	{
+
+		animationController->Debug();
 		spriteObj->Debug("HaoMaru sprite");
 
 		ImGui::Checkbox("Face culling", &cullFaces);

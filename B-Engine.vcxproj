@@ -162,6 +162,7 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemObject.cpp" />
     <ClCompile Include="ItemPickupScene.cpp" />
+    <ClCompile Include="jsonParser.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="MissionScene.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="SpaceBusterGame.cpp" />
     <ClCompile Include="Spaceship.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteAnimator.cpp" />
     <ClCompile Include="SpriteMapTest.cpp" />
     <ClCompile Include="SpriteTest.cpp" />
     <ClCompile Include="Surface.cpp" />
@@ -226,6 +228,7 @@
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemObject.h" />
+    <ClInclude Include="jsonParser.h" />
     <ClInclude Include="Mission.h" />
     <ClInclude Include="MissionStandard.h" />
     <ClInclude Include="MissionSurvival.h" />
@@ -243,6 +246,7 @@
     <ClInclude Include="SpaceBusterGame.h" />
     <ClInclude Include="Spaceship.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpriteAnimator.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Texture.h" />

@@ -234,30 +234,6 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="SBmainLoop.cpp">
-      <Filter>Scenes\Spacebuster Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectListener.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="ParallaxLayer.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="UI_element.cpp">
-      <Filter>Objects\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UI_Meter.cpp">
-      <Filter>Objects\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreManager.cpp">
-      <Filter>Spacebuster</Filter>
-    </ClCompile>
-    <ClCompile Include="MissionSurvival.cpp">
-      <Filter>Spacebuster\levels/missions</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -399,6 +375,12 @@
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Sprite.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteAnimator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jsonParser.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="UI_element.h">
