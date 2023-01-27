@@ -50,6 +50,14 @@ Texture::Texture(const char* path, bool alpha)
 
 	name = "Texture: ";
 	name += path;
+
+	for (int i = 0; i < sizeof(_textureFilters) / sizeof(_textureFilters[0]); i++)
+	{
+		if (_textureFilters[i] == Filter_Min)
+			index_min = i;
+		if (_textureFilters[i] == Filter_Max)
+			index_max = i;
+	}
 	this->generateTexture(path, alpha);
 	//GenerateTexture(path, alpha, id, width, height, numberofChannels, expectedChannels);
 

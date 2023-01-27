@@ -18,7 +18,7 @@ namespace SpaceBuster {
 		~ScoreManager();
 
 		void onScore(int baseIncrement = 1);
-		void IncrementScore();
+		void IncrementScore(int baseIncrement = 1);
 		void onWaveClear();
 		void Update(float dt);
 		void Debug(const char* name = "Score Manager");

@@ -11,9 +11,9 @@ MissionStandard::MissionStandard(MissionDefinition* def)
 	, targetsEliminated(0)
 	, targetsGoal(def->ClearRequirements)
 	, statusString("Active: ")
-	, spawnOffset(b2Vec2_zero)
+	//, spawnOffset(b2Vec2_zero)
 	, exitBody(nullptr)
-	, contrainObjectsToScreen(def->contrainObjectsToScreen)
+	//, contrainObjectsToScreen(def->contrainObjectsToScreen)
 {
 	//printf("PLEASE ...., setup a listener in the objectFactory that this class can tune into to get info about what objects have been deleted.... thank you \n");
 	if (App::g_App->state != CSApp::App_State::state_running)
@@ -37,7 +37,7 @@ MissionStandard::MissionStandard(MissionDefinition* def)
 
 MissionStandard::~MissionStandard()
 {
-	localGameObjects.clear();
+	//localGameObjects.clear();
 	Game::m_World->DestroyBody(exitBody);
 
 	exitBody = nullptr;
@@ -45,7 +45,7 @@ MissionStandard::~MissionStandard()
 
 void MissionStandard::Update(float deltaTime)
 {
-	repositionOffscreenObjects();
+	//repositionOffscreenObjects();
 	if (hasEnded) return;
 	Mission::Update(deltaTime);
 
@@ -167,51 +167,51 @@ void MissionStandard::ObjectDeleted(GameObject* G)
 
 	}
 }
-
-void MissionStandard::repositionOffscreenObjects()
-{
-	if (!contrainObjectsToScreen) return;
-	glm::vec2 top(0.0f), bottom(Game::AppCam->Width, 1.0 * Game::AppCam->Height), lefttop, rightbottom;
-	lefttop = Game::AppCam->convertScreenToWorld(top);
-	rightbottom = Game::AppCam->convertScreenToWorld(bottom);
-
-	for (auto i : localGameObjects)
-	{
-		b2Vec2 oldPosition = i->GetBody()->GetPosition();
-		b2Vec2 newPosition = oldPosition;
-		bool changeNeeded = false;
-
-		if (oldPosition.y > lefttop.y + spawnOffset.y) //too far up
-		{
-			newPosition.y = rightbottom.y;
-			changeNeeded = true;
-		}
-		if (oldPosition.y < rightbottom.y - spawnOffset.y) //too far down
-		{
-			newPosition.y = lefttop.y;
-			changeNeeded = true;
-		}
-
-		if (oldPosition.x < lefttop.x - spawnOffset.x) //too far left
-		{
-			newPosition.x = rightbottom.x;
-			changeNeeded = true;
-		}
-
-		if (oldPosition.x > rightbottom.x + spawnOffset.x) //too far right
-		{
-			newPosition.x = lefttop.x;
-			changeNeeded = true;
-		}
-
-
-		if (changeNeeded)
-		{
-			newPosition = newPosition;
-			i->m_body->SetTransform(newPosition, i->m_body->GetAngle());
-		}
-	}
-}
+//
+//void MissionStandard::repositionOffscreenObjects()
+//{
+//	if (!contrainObjectsToScreen) return;
+//	glm::vec2 top(0.0f), bottom(Game::AppCam->Width, 1.0 * Game::AppCam->Height), lefttop, rightbottom;
+//	lefttop = Game::AppCam->convertScreenToWorld(top);
+//	rightbottom = Game::AppCam->convertScreenToWorld(bottom);
+//
+//	for (auto i : localGameObjects)
+//	{
+//		b2Vec2 oldPosition = i->GetBody()->GetPosition();
+//		b2Vec2 newPosition = oldPosition;
+//		bool changeNeeded = false;
+//
+//		if (oldPosition.y > lefttop.y + spawnOffset.y) //too far up
+//		{
+//			newPosition.y = rightbottom.y;
+//			changeNeeded = true;
+//		}
+//		if (oldPosition.y < rightbottom.y - spawnOffset.y) //too far down
+//		{
+//			newPosition.y = lefttop.y;
+//			changeNeeded = true;
+//		}
+//
+//		if (oldPosition.x < lefttop.x - spawnOffset.x) //too far left
+//		{
+//			newPosition.x = rightbottom.x;
+//			changeNeeded = true;
+//		}
+//
+//		if (oldPosition.x > rightbottom.x + spawnOffset.x) //too far right
+//		{
+//			newPosition.x = lefttop.x;
+//			changeNeeded = true;
+//		}
+//
+//
+//		if (changeNeeded)
+//		{
+//			newPosition = newPosition;
+//			i->m_body->SetTransform(newPosition, i->m_body->GetAngle());
+//		}
+//	}
+//}
 
 std::string MissionStandard::getTimeLefts()
 {

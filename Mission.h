@@ -5,6 +5,7 @@
 #include <Box2D/Box2D.h>
 #include <iostream>
 #include "ObjectListener.h"
+#include <vector>
 
 enum MissionState {
 	ms_Active = 0,
@@ -83,5 +84,13 @@ protected:
 public:
 	virtual void ObjectCreated(GameObject* G) = 0;
 	virtual void ObjectDeleted(GameObject* G) = 0;
+
+protected:
+	bool contrainObjectsToScreen;
+	b2Vec2 spawnOffset;
+	std::vector<GameObject*> localGameObjects;
+
+	void  repositionOffscreenObjects();
+
 };
 #endif // !MISSION_H

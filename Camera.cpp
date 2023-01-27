@@ -69,6 +69,16 @@ glm::mat4 Camera::getProjectionMatrix()
 	return CalculateProjection();
 }
 
+glm::vec2 Camera::GetScreenExtents()
+{
+	glm::vec2 A(0.0f), C(this->Width, this->Height);
+	glm::vec2 AA = convertScreenToWorld(A);
+	glm::vec2 CC = convertScreenToWorld(C);
+	//glm::vec2 result = glm::vec2(abs(wA.x) + abs(wC.x), abs(wA.y) + abs(wC.y));
+	glm::vec2 result = glm::vec2(abs(CC.x - AA.x), abs(CC.y - AA.y));
+	return result;
+}
+
 void Camera::mouseCallback(GLFWwindow* window, int button, int action, int mode)
 {
 	if (ImGui::GetIO().WantCaptureMouse) return;

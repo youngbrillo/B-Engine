@@ -27,17 +27,13 @@ public:
 	virtual void ObjectDeleted(GameObject* G);
 
 private:
-	int targetsEliminated, targetsGoal;
-	std::string statusString;
-	std::vector<GameObject*> localGameObjects;
 	b2Vec2 spawnOffset;
-	b2Body* exitBody;
-	bool contrainObjectsToScreen;
 
 private:
-	void repositionOffscreenObjects();
-	std::string getTimeLefts();
-	float getTimeLeftf();
+	//void repositionOffscreenObjects();
+	float elapsedTime;
+	std::string getTimeLeft_string();
+	float getTimeLeft_float();
 
 private:
 	SpaceBuster::ScoreManager* scoreManager;

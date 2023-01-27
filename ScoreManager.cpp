@@ -31,9 +31,9 @@ void SpaceBuster::ScoreManager::onScore(int baseIncrement)
 	score += (int) incrementation;
 }
 
-void SpaceBuster::ScoreManager::IncrementScore()
+void SpaceBuster::ScoreManager::IncrementScore(int baseIncrement)
 {
-	onScore(1);
+	onScore(baseIncrement);
 	comboProgress = 0.0f;
 	comboValid = true;
 	nextLevelProgress++;

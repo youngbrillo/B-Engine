@@ -33,13 +33,13 @@ public:
 private:
 	int targetsEliminated, targetsGoal;
 	std::string statusString;
-	std::vector<GameObject*> localGameObjects;
-	b2Vec2 spawnOffset;
+	//std::vector<GameObject*> localGameObjects;
+	//b2Vec2 spawnOffset;
 	b2Body* exitBody;
-	bool contrainObjectsToScreen;
+//	bool contrainObjectsToScreen;
 
 private:
-	void repositionOffscreenObjects();
+	//void repositionOffscreenObjects();
 	std::string getTimeLefts();
 	float getTimeLeftf();
 };

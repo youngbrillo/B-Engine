@@ -30,17 +30,25 @@ void ResourceManager::startup()
 	ResourceManager::LoadItem(ItemType::EnergyCell, "Energy Cells", "Recover Energy", true, true);
 	ResourceManager::LoadItem(ItemType::Ammo_reg, "3.108 mm", "Regular Ammunition", true, true);
 	ResourceManager::LoadItem(ItemType::Ammo_Reflect, "Bouncing Bertha", "Reflective 1x Ammuntion", true, true);
-
+	ResourceManager::LoadItem(ItemType::Upgrade_fireRate, "FireRate++", "Increase Fire rate", true, true);
+	ResourceManager::LoadItem(ItemType::Upgrade_speed, "ShotGunSpread", "Shotgun spread", true, true);
 	//load item textures
-	ResourceManager::LoadTexture("./assets/SparePart.png", true, "SparePart");
-	ResourceManager::LoadTexture("./assets/EnergyCell.png", true, "EnergyCell");
-	ResourceManager::LoadTexture("./assets/Ammo.png", true, "Ammo");
+	//ResourceManager::LoadTexture("./assets/SparePart.png", true, "SparePart");
+	//ResourceManager::LoadTexture("./assets/EnergyCell.png", true, "EnergyCell");
+	//ResourceManager::LoadTexture("./assets/Ammo.png", true, "Ammo");
 	ResourceManager::LoadTexture("./assets/brick.png", true, "icon");
+	ResourceManager::LoadTexture("./assets/effects/health02.png", true, "healthred");
+	ResourceManager::LoadTexture("./assets/effects/health01.png", true, "healthgreen");
+	ResourceManager::LoadTexture("./assets/effects/accel.png", true, "accelIcon");
+	ResourceManager::LoadTexture("./assets/effects/spread.png", true, "spreadIcon");
+	ResourceManager::LoadTexture("./assets/bgs/blankpixel.png", true, "default");
 
-	ResourceManager::lookupItemToTexture[ItemType::SparePart] = "SparePart";
-	ResourceManager::lookupItemToTexture[ItemType::EnergyCell] = "EnergyCell";
+	ResourceManager::lookupItemToTexture[ItemType::SparePart] = "healthred";
+	ResourceManager::lookupItemToTexture[ItemType::EnergyCell] = "healthgreen";
 	ResourceManager::lookupItemToTexture[ItemType::Ammo_reg] = "Ammo";
 	ResourceManager::lookupItemToTexture[ItemType::Ammo_Reflect] = "Ammo";
+	ResourceManager::lookupItemToTexture[ItemType::Upgrade_fireRate] = "accelIcon";
+	ResourceManager::lookupItemToTexture[ItemType::Upgrade_speed] = "spreadIcon";
 
 	
 

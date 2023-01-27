@@ -64,6 +64,12 @@
     <Filter Include="Objects\UI">
       <UniqueIdentifier>{fee869fc-ee86-4626-87a5-6dfa5c1b2387}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities\UI">
+      <UniqueIdentifier>{6507d93a-668c-41dc-a252-c13f98fc3d05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\3d">
+      <UniqueIdentifier>{7deb37d1-46ea-4e75-b212-f6a8ede6370f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -207,9 +213,6 @@
     <ClCompile Include="test_Astroids.cpp">
       <Filter>Scenes\Spacebuster Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ZoneTest.cpp">
-      <Filter>Scenes\Spacebuster Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="MissionScene.cpp">
       <Filter>Scenes\Spacebuster Scenes</Filter>
     </ClCompile>
@@ -233,6 +236,54 @@
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParallaxLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteAnimator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jsonParser.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectListener.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="MissionSurvival.cpp">
+      <Filter>Spacebuster\levels/missions</Filter>
+    </ClCompile>
+    <ClCompile Include="SBmainLoop.cpp">
+      <Filter>Scenes\Spacebuster Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_element.cpp">
+      <Filter>Utilities\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Meter.cpp">
+      <Filter>Utilities\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="Ship.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipConfigScene2.cpp">
+      <Filter>Scenes\Spacebuster Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneTest.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="OmniLauncher.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="NeoShipController.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,6 +446,18 @@
     <ClInclude Include="MissionSurvival.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Ship.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShipAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OmniLauncher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NeoShipController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="B-Engine.rc">
@@ -441,6 +504,9 @@
     </None>
     <None Include="UIShader00.vts">
       <Filter>Shaders</Filter>
+    </None>
+    <None Include="toon.frag">
+      <Filter>Shaders\3d</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

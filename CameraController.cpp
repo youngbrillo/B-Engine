@@ -1,29 +1,34 @@
 #include "CameraController.h"
 
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
+#include <imgui.h>
+#include "ResourceManager.h"
+
 
 CameraController::CameraController(Camera* targetCam, const b2Body* targetBody, glm::vec2 offset, glm::vec2 limits)
 	: cam(targetCam)
 	, target(targetBody)
-	, m_body(NULL)
-	, m_screenLeft(NULL), m_screenRight(NULL), m_screen_top(NULL), m_screenBottom(NULL)
 	, cameraOffset(offset)
 	, boundLimits(limits)
 	, enabled(true)
 	, sleep(false)
-	, mode(FollowMode::Lerp)
-	, followSpeed(15.0f)
+	, mode(FollowMode::Instant)
+	, followSpeed(130.0f)
+	, DrawDebug(false)
+	, TargetLastPosition(0.0f)
 {
 	if (targetBody == NULL) enabled = false;
+	transform.pivot = glm::vec3(0.0f);
+	if (enabled)
+	{
+		TargetLastPosition = glm::vec2(target->GetPosition().x, target->GetPosition().x);
+	}
 }
 
 CameraController::~CameraController()
 {
-	
+	target = NULL;
+	cam = NULL;
 }
-
 void CameraController::Update(float dt)
 {
 	if (!enabled) return;
@@ -102,10 +107,80 @@ void CameraController::FollowLerp(float dt)
 
 void CameraController::FollowBound(float dt)
 {
-	if (onTarget()) return;
+	//if (onTarget()) return;
+	//get screen limits
+	glm::vec2 A(0.0f), B(cam->Width, cam->Height), AA, BB, T, Direction(0.0f);
+	//A	= A + boundLimits;
+	//B	= B - boundLimits;
+	AA	= cam->convertScreenToWorld(A);
+	AA += glm::vec2(boundLimits.x, -boundLimits.y);
+	BB	= cam->convertScreenToWorld(B);
+	BB += glm::vec2(-boundLimits.x, boundLimits.y);
+	T	= glm::vec2(target->GetPosition().x, target->GetPosition().y);
+	//if above boundary
+	if (T.y > AA.y)
+	{
+		Direction.y = 1.0f;
+	}
+	//if below boundary
+	if (T.y < BB.y)
+	{
+		Direction.y = -1.0f;
+	}
+	//if to the right of boundary
+	if (T.x > BB.x)
+	{
+		Direction.x = 1.0f;
+	}
+	//if to the left of boundary
+	if (T.x < AA.x)
+	{
+		Direction.x = -1.0f;
+	}
+	if (Direction != glm::vec2(0.0f))
+	{
+		color = colorOutofbounds;
+	}
+	else
+	{
+		color = colorbase;
+	}
 
+	transform.size = glm::vec3(abs(BB.x - AA.x), abs(BB.y- AA.y), 1.0f);
+	transform.position = cam->position;
+	transform.UpdateMatrix();
+	moveToTargetAtSpeed(dt, Direction);
 }
 
+void CameraController::moveToTargetAtSpeed(float deltaTime, const glm::vec2& direction)
+{
+	float speedModifier = followSpeed;
+	bool v = target->GetLinearVelocity().Length() > followSpeed;
+	//if (v)
+	//{
+	//	//speedModifier = target->GetLinearVelocity().Length();
+	//	color = colorlinear;
+	//}
+	//else
+	//{
+	//	color = colorfollow;
+	//}
+	//speedModifier = v ? target->GetLinearVelocity().Length() : followSpeed;
+	rec_followSpeed = speedModifier * deltaTime;
+	cam->position = cam->position + glm::vec3(direction * rec_followSpeed, 0.0f);
+
+	if (direction == glm::vec2(0.0f)) return;
+
+	//get distance of target
+	glm::vec2 targetPos = glm::vec2(target->GetPosition().x, target->GetPosition().y);
+	glm::vec2 campos = glm::vec2(cam->position);
+	TargetLastPosition = targetPos - campos;
+	TargetLastPosition = campos - targetPos;
+
+	glm::vec3 camTeleportPos = cam->position + glm::vec3(direction.x * transform.size.x, direction.y * transform.size.y, 0);
+
+
+}
 void CameraController::handleBeginContact(b2Contact* contact)
 {
 	if (!enabled) return;
@@ -121,11 +196,26 @@ void CameraController::handlePreSolve(b2Contact* contact, const b2Manifold* oldM
 	if (!enabled) return;
 }
 
+
+void CameraController::Draw(Shader* shader, Surface* surface)
+{
+	if (!DrawDebug) return;
+
+	shader->SetMatrix4("model", transform.m_model)
+		.SetVector4f("color", color);
+
+	ResourceManager::GetTexturePtr("default")->Bind();
+	surface->Bind();
+}
+
 void CameraController::Debug()
 {
 	if (ImGui::TreeNode("-Camera Controller-"))
 	{
 		ImGui::Checkbox("Enable", &enabled);
+		ImGui::Checkbox("Debug View", &DrawDebug);
+		ImGui::ColorEdit4("Debug color", &color.x);
+		transform.Debug("Camera Transform");
 
 		static int elem = FollowMode::Bound; //b/c its first
 		const char* elem_names[FollowMode::Bound + 1] = { "Instant", "Follow (Lerp)", "Boundary Follow" };
@@ -136,12 +226,13 @@ void CameraController::Debug()
 			this->mode = (FollowMode)elem;
 		}
 
-		ImGui::SliderFloat("follow speed", &followSpeed, 0, 5);
+		ImGui::SliderFloat("follow speed", &followSpeed, 0, 100);
 
 
 		ImGui::SliderFloat2("Offset", &cameraOffset.x, -50, 50);
-		ImGui::SliderFloat2("bounds", &boundLimits.x, 0, 50);
+		ImGui::SliderFloat2("bounds", &boundLimits.x, 0, cam->GetScreenExtents().x/2.0f);
 
 		ImGui::TreePop();
 	}
 }
+

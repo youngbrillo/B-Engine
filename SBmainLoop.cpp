@@ -19,7 +19,7 @@ public:
 	//constructor
 	SpaceBuster_GameLoop_Test() : SpaceBusterGame()
 	{
-		m_cameraController->mode = CameraController::FollowMode::Lerp;
+		m_cameraController->mode = CameraController::FollowMode::Bound;
 		Game::windowColorBackGround = glm::vec4(0.451, 0.252, 0.252, 1.00f);
 
 		MissionDefinition def;

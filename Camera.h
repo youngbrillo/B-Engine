@@ -19,7 +19,7 @@ public:
 
 	glm::mat4 GetViewMatrix();
 	glm::mat4 getProjectionMatrix();
-
+	glm::vec2 GetScreenExtents();
 	void mouseCallback(GLFWwindow* window, int button, int action, int mode);
 	void mouseCallback_Cursor(GLFWwindow* w, double x, double y);
 	void mouseScroll_callback(GLFWwindow* window, double xoffset, double yoffset);

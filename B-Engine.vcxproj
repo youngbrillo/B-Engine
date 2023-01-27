@@ -168,9 +168,11 @@
     <ClCompile Include="MissionScene.cpp" />
     <ClCompile Include="MissionStandard.cpp" />
     <ClCompile Include="MissionSurvival.cpp" />
+    <ClCompile Include="NeoShipController.cpp" />
     <ClCompile Include="newGameTemplate.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="ObjectListener.cpp" />
+    <ClCompile Include="OmniLauncher.cpp" />
     <ClCompile Include="ParallaxLayer.cpp" />
     <ClCompile Include="ParallaxTestScene.cpp" />
     <ClCompile Include="PhysDebug.cpp" />
@@ -181,7 +183,10 @@
     <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="ShipAttributes.cpp" />
     <ClCompile Include="ShipConfigScene.cpp" />
+    <ClCompile Include="ShipConfigScene2.cpp" />
     <ClCompile Include="ShipController.cpp" />
     <ClCompile Include="SpaceBuster.cpp" />
     <ClCompile Include="SpaceBusterGame.cpp" />
@@ -232,8 +237,10 @@
     <ClInclude Include="Mission.h" />
     <ClInclude Include="MissionStandard.h" />
     <ClInclude Include="MissionSurvival.h" />
+    <ClInclude Include="NeoShipController.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="ObjectListener.h" />
+    <ClInclude Include="OmniLauncher.h" />
     <ClInclude Include="ParallaxLayer.h" />
     <ClInclude Include="PhysDebug.h" />
     <ClInclude Include="resource.h" />
@@ -242,6 +249,8 @@
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Ship.h" />
+    <ClInclude Include="ShipAttributes.h" />
     <ClInclude Include="ShipController.h" />
     <ClInclude Include="SpaceBusterGame.h" />
     <ClInclude Include="Spaceship.h" />
@@ -273,6 +282,7 @@
     <None Include="test.vts" />
     <None Include="textureAtlas.frs" />
     <None Include="textureAtlas.vts" />
+    <None Include="toon.frag" />
     <None Include="UIShader00.vts" />
   </ItemGroup>
   <ItemGroup>

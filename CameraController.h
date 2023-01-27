@@ -4,7 +4,9 @@
 
 #include "Camera.h"
 #include <Box2D/Box2D.h>
-
+#include "Shader.h" 
+#include "Surface.h"
+#include "Transform.h"
 //I COULD make a generic controller for cameras... but i'll just make this one custom ^_^
 class CameraController
 {
@@ -32,13 +34,13 @@ public:
 	void handlePreSolve(b2Contact* contact, const b2Manifold* oldManifold);
 
 public:
+	void Draw(Shader* shader, Surface* surface);
+	bool DrawDebug;
+	Transform transform;
 	void Debug();
 private:
 	Camera* cam;
 	const b2Body* target;
-
-	b2Body* m_body;
-	b2Fixture* m_screenLeft, * m_screenRight, * m_screen_top, * m_screenBottom;
 
 	glm::vec2 cameraOffset, boundLimits;
 	float followSpeed;
@@ -48,7 +50,17 @@ public:
 	FollowMode mode;
 	bool getEnabled() { return enabled; }
 	void setEnabled(bool e) { enabled = e; }
+	float rec_followSpeed = 0.0f;
+	glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 0.3f);
+	glm::vec4 colorbase = glm::vec4(1.0f, 1.0f, 1.0f, 0.3f);
+	glm::vec4 colorlinear = glm::vec4(0.0f, 0, 1.0, 0.3f);
+	glm::vec4 colorfollow = glm::vec4(0, 1.0f, 0, 0.3f);
+	glm::vec4 colorOutofbounds = glm::vec4(1.0f, 0.0f, 0.0f, 0.3f);
+	glm::vec2 TargetLastPosition;
 
+private:
+	void moveToTargetAtSpeed(float deltaTime, const glm::vec2& direction);
+	
 };
 #endif // !CAMERACONTROLLER_H
 
