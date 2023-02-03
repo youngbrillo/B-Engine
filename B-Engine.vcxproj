@@ -199,6 +199,8 @@
     <ClCompile Include="SpriteTest.cpp" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="test_Astroids.cpp" />
+    <ClCompile Include="TextRenderer.cpp" />
+    <ClCompile Include="TextRenderingScene.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="UI_Button.cpp" />
@@ -263,6 +265,7 @@
     <ClInclude Include="SpriteAnimator.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Surface.h" />
+    <ClInclude Include="TextRenderer.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="UI_Button.h" />
@@ -286,6 +289,8 @@
     <None Include="stdsprite.vts" />
     <None Include="test.frs" />
     <None Include="test.vts" />
+    <None Include="textShader.frag" />
+    <None Include="textShader.vertex" />
     <None Include="textureAtlas.frs" />
     <None Include="textureAtlas.vts" />
     <None Include="toon.frag" />
@@ -316,6 +321,7 @@
     <Import Project="packages\glfw.3.3.8\build\native\glfw.targets" Condition="Exists('packages\glfw.3.3.8\build\native\glfw.targets')" />
     <Import Project="packages\Box2D.2.3.0\build\native\Box2D.targets" Condition="Exists('packages\Box2D.2.3.0\build\native\Box2D.targets')" />
     <Import Project="packages\glm.0.9.9.800\build\native\glm.targets" Condition="Exists('packages\glm.0.9.9.800\build\native\glm.targets')" />
+    <Import Project="packages\freetype2.2.6.0.1\build\native\freetype2.targets" Condition="Exists('packages\freetype2.2.6.0.1\build\native\freetype2.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -324,5 +330,6 @@
     <Error Condition="!Exists('packages\glfw.3.3.8\build\native\glfw.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\glfw.3.3.8\build\native\glfw.targets'))" />
     <Error Condition="!Exists('packages\Box2D.2.3.0\build\native\Box2D.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Box2D.2.3.0\build\native\Box2D.targets'))" />
     <Error Condition="!Exists('packages\glm.0.9.9.800\build\native\glm.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\glm.0.9.9.800\build\native\glm.targets'))" />
+    <Error Condition="!Exists('packages\freetype2.2.6.0.1\build\native\freetype2.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\freetype2.2.6.0.1\build\native\freetype2.targets'))" />
   </Target>
 </Project>

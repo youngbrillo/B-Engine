@@ -70,6 +70,21 @@
     <Filter Include="Shaders\3d">
       <UniqueIdentifier>{7deb37d1-46ea-4e75-b212-f6a8ede6370f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\examples">
+      <UniqueIdentifier>{77271587-df32-4bc7-8825-ed86c39e2e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\examples\box2d">
+      <UniqueIdentifier>{d4247901-0cf1-4fb7-aa0e-c3c9cde4eb12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\text">
+      <UniqueIdentifier>{86e3bb90-6a2e-4c9d-9148-8b94988c68bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\object">
+      <UniqueIdentifier>{b3d290a7-ca26-452d-80df-4d794fd957ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fonts">
+      <UniqueIdentifier>{4f59a932-b3c2-44a4-9ae8-9c402c379cb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -95,21 +110,6 @@
     </ClCompile>
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="breakable.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="pinball.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Platformer.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteTest.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Car.cpp">
-      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Utilities</Filter>
@@ -273,9 +273,6 @@
     <ClCompile Include="ShipConfigScene2.cpp">
       <Filter>Scenes\Spacebuster Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ZoneTest.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="OmniLauncher.cpp">
       <Filter>Spacebuster</Filter>
     </ClCompile>
@@ -293,6 +290,30 @@
     </ClCompile>
     <ClCompile Include="NeoInventory.cpp">
       <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneTest.cpp">
+      <Filter>Scenes\examples</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteTest.cpp">
+      <Filter>Scenes\examples</Filter>
+    </ClCompile>
+    <ClCompile Include="breakable.cpp">
+      <Filter>Scenes\examples\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="Car.cpp">
+      <Filter>Scenes\examples\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="pinball.cpp">
+      <Filter>Scenes\examples\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="Platformer.cpp">
+      <Filter>Scenes\examples\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRenderingScene.cpp">
+      <Filter>Scenes\test scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRenderer.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -476,6 +497,9 @@
     <ClInclude Include="NeoInventory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TextRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="B-Engine.rc">
@@ -484,21 +508,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="stdsprite.frs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="test.frs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="NDC_sprite.vts">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="stdsprite.vts">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="test.vts">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="assets\miniAtlas.json">
       <Filter>Assets</Filter>
     </None>
@@ -514,20 +523,41 @@
     <None Include="settings.ini">
       <Filter>Configurations</Filter>
     </None>
-    <None Include="textureAtlas.vts">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="textureAtlas.frs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="UIShader00.vts">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="toon.frag">
       <Filter>Shaders\3d</Filter>
     </None>
+    <None Include="NDC_sprite.vts">
+      <Filter>Shaders\object</Filter>
+    </None>
+    <None Include="stdsprite.frs">
+      <Filter>Shaders\object</Filter>
+    </None>
+    <None Include="stdsprite.vts">
+      <Filter>Shaders\object</Filter>
+    </None>
+    <None Include="test.frs">
+      <Filter>Shaders\object</Filter>
+    </None>
+    <None Include="test.vts">
+      <Filter>Shaders\object</Filter>
+    </None>
+    <None Include="textureAtlas.frs">
+      <Filter>Shaders\object</Filter>
+    </None>
+    <None Include="textureAtlas.vts">
+      <Filter>Shaders\object</Filter>
+    </None>
     <None Include="UIShader00.frs">
-      <Filter>Shaders</Filter>
+      <Filter>Shaders\object</Filter>
+    </None>
+    <None Include="UIShader00.vts">
+      <Filter>Shaders\object</Filter>
+    </None>
+    <None Include="textShader.vertex">
+      <Filter>Shaders\text</Filter>
+    </None>
+    <None Include="textShader.frag">
+      <Filter>Shaders\text</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
