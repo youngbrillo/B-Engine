@@ -23,14 +23,19 @@ Inventory::Inventory()
 
 Inventory::~Inventory()
 {
+	printf("Deleting Items................\n");
 	auto itr = items.begin();
 	while (itr != items.end())
 	{
-		RemoveItem((*itr));
+		auto i = (*itr);
+		itr = items.erase(std::remove(items.begin(), items.end(), i), items.end());
+		delete i;
+		//RemoveItem((*itr));
 	}
 	items.clear();
 
 	delete backgoundTexture;
+	printf("................Deleted Items\n");
 }
 
 void Inventory::useItem(itemObjectLite* i)

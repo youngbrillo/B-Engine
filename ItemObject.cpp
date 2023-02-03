@@ -25,9 +25,10 @@ ItemObject::~ItemObject()
 {
 	itemReference = nullptr;
 }
-
+#include "NeoShipController.h"
 void ItemObject::handleBeginContact(b2Contact* contact)
 {
+	if (deletionFlag) return;
 	if (!m_contactFixture || !enabled_physics) return;
 	//if the other is of type player, then add the item to their inventory
 	b2Fixture* A = contact->GetFixtureA();
@@ -47,18 +48,28 @@ void ItemObject::handleBeginContact(b2Contact* contact)
 			//the auto use functionality works like this but i want it to be up to the ship whether or not auto use should take effect
 			//printf("Collided w/ shipt\n");
 			ShipController* controller = (ShipController*)other->GetBody()->GetUserData();
-			if (controller)
+			NeoShipController* NeoController = (NeoShipController*)other->GetBody()->GetUserData();
+			if (controller && false) 
 			{
 				if (controller->AddToInventory(this->itemReference))
 					deletionFlag = true;
 				else
 					printf("ItemObject.cpp::\tFAILURE to Add %s to Ship controller inventory\n", itemReference->GetName().c_str());
 			}
+			//printf this will error out in older scenes that utilize the ship controller...
+			if (NeoController)
+			{
+				NeoController->m_inventory.AddItem(this->itemReference);
+				deletionFlag = true;
+
+			}
 			else
 			{
 				printf("ItemObject.cpp::\tFAILURE to Add %s to inventory : could not find controller!\n", itemReference->GetName().c_str());
 			}
 
+
+		
 
 			//if (itemReference->autoUse) {
 			//	itemReference->Use(itemValue);

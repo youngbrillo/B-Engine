@@ -48,6 +48,7 @@ namespace SpaceBuster {
 		//void DrawInventoryItem(itemObjectLite* i, Shader* ndcShader, int offset);
 
 		void Debug();
+		std::vector<SpaceBuster::itemObjectLite*>* getItems() { return &items; }
 	private:
 		std::vector<SpaceBuster::itemObjectLite*> items;
 		//Spaceship* user; //for right now the user is the ship controller

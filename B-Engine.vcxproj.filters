@@ -270,9 +270,6 @@
     <ClCompile Include="Ship.cpp">
       <Filter>Spacebuster</Filter>
     </ClCompile>
-    <ClCompile Include="ShipAttributes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ShipConfigScene2.cpp">
       <Filter>Scenes\Spacebuster Scenes</Filter>
     </ClCompile>
@@ -283,7 +280,19 @@
       <Filter>Spacebuster</Filter>
     </ClCompile>
     <ClCompile Include="NeoShipController.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipAttributes.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipControllerUI.cpp">
+      <Filter>Spacebuster</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Button.cpp">
+      <Filter>Utilities\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="NeoInventory.cpp">
+      <Filter>Spacebuster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -458,6 +467,15 @@
     <ClInclude Include="NeoShipController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ShipControllerUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NeoInventory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="B-Engine.rc">
@@ -507,6 +525,9 @@
     </None>
     <None Include="toon.frag">
       <Filter>Shaders\3d</Filter>
+    </None>
+    <None Include="UIShader00.frs">
+      <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

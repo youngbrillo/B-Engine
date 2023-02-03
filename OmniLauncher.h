@@ -83,4 +83,5 @@ private: //debug
 	float SpreadAngle;
 
 	friend class NeoShipController;
+	friend class NeoInventory;
 };

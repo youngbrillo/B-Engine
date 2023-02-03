@@ -7,6 +7,8 @@
 #include "NeoShipController.h"
 #include "AstroidManager.h"
 #include "ObjectFactory.h"
+#include "UI_Button.h"
+#include "ResourceManager.h"
 
 class ShipConfigScene2 : public Game
 {
@@ -19,6 +21,8 @@ public:
 	ShipConfigScene2() : Game()
 		, mousePos(0, 0)
 	{
+		AppCam->zoom = 2.358;
+
 		m_World->SetGravity(b2Vec2(0, 0));
 		//create ground
 		b2BodyDef bd;
@@ -55,9 +59,11 @@ public:
 		NeoShipControllerDefinition def;
 		ship = new NeoShipController(&def, m_groundBody);
 
-		AppCam->zoom = 2.358;
 
 		afactory = new SpaceBuster::AstroidFactory(5U);
+		m_Shader = new Shader("stdsprite.vts", "stdsprite.frs", true);
+
+		//UIElement::defaultTexture = ResourceManager::GetTexturePtr("default");
 	};
 	//destructor
 	~ShipConfigScene2()
@@ -127,13 +133,13 @@ public:
 	void Update(float dt) override 
 	{
 		ship->Update(dt);
-		double x, y;
-		glfwGetCursorPos(Game::mainWindow, &x, &y);
+		//double x, y;
+		//glfwGetCursorPos(Game::mainWindow, &x, &y);
 
-		glm::vec2 mpw = glm::vec2((float)x, (float)y);
-		mousePos = Game::AppCam->convertScreenToWorld(mpw);
-		ship->target.x = mousePos.x; ship->target.y = mousePos.y;
-
+		//glm::vec2 mpw = glm::vec2((float)x, (float)y);
+		//mousePos = Game::AppCam->convertScreenToWorld(mpw);
+		//ship->target.x = mousePos.x; ship->target.y = mousePos.y;
+		mousePos = Game::AppCam->convertScreenToWorld(ship->mouse_position);
 		afactory->Update(dt);
 		ObjectFactory::UpdateObjects(dt);
 	}

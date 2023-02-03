@@ -12,7 +12,7 @@ bool  ResourceManager::ranStartup = false;
 
 
 #include <filesystem>
-
+#include "UI_element.h"
 //namespace fs = std::filesystem;
 
 void ResourceManager::startup()
@@ -43,6 +43,9 @@ void ResourceManager::startup()
 	ResourceManager::LoadTexture("./assets/effects/spread.png", true, "spreadIcon");
 	ResourceManager::LoadTexture("./assets/bgs/blankpixel.png", true, "default");
 
+	UIElement::defaultTexture = ResourceManager::GetTexturePtr("default");
+
+
 	ResourceManager::lookupItemToTexture[ItemType::SparePart] = "healthred";
 	ResourceManager::lookupItemToTexture[ItemType::EnergyCell] = "healthgreen";
 	ResourceManager::lookupItemToTexture[ItemType::Ammo_reg] = "Ammo";
@@ -50,7 +53,6 @@ void ResourceManager::startup()
 	ResourceManager::lookupItemToTexture[ItemType::Upgrade_fireRate] = "accelIcon";
 	ResourceManager::lookupItemToTexture[ItemType::Upgrade_speed] = "spreadIcon";
 
-	
 
 
 	//todo: //load shaders, but i'm not dealing w/ universal shaders right now so :/
@@ -73,7 +75,7 @@ void ResourceManager::cleanup()
 	//Shaders.clear();
 	//Items.clear();
 	ResourceManager::Clear();
-
+	UIElement::defaultTexture = nullptr;
 	ranStartup = false;
 }
 

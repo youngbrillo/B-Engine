@@ -26,6 +26,8 @@ public:
 	ShipAttributes(const char* attributeFile);
 	~ShipAttributes();
 
+	void UpdateCondition(float difference);
+	void UpdateEnergy(float difference);
 
 	void LoadAttributeFile(const char* fileName);
 	void Debug(const char* name = "ShipAttributes");
@@ -33,8 +35,8 @@ private:
 	b2Vec2 ThrustForce, ThrustPosition;
 
 	float TorqueMag
-		, startingCondition, maxCondition
-		, startingEnergy, maxEnergy
+		, startingCondition, maxCondition, currentCondition
+		, startingEnergy, maxEnergy, currentEnergy
 		, physicalDefense
 		, energyCost, torqueRatio, impulseCostModifier;
 
@@ -42,6 +44,7 @@ private:
 	bool broken; // is the ship completely broken
 
 	friend class Ship;
-
+	friend class ShipControllerUI;
+	friend class NeoInventory;
 };
 

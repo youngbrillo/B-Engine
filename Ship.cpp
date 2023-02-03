@@ -121,6 +121,8 @@ Ship::~Ship()
 float DEGTORAD = b2_pi / 180.0f;
 void Ship::FixedUpdate(float deltaTime)
 {
+
+	if (attributes.broken || !attributes.operational) return;
 	current_speed = mBody->GetLinearVelocity().Length();
 	b2Vec2 force, position;
 
@@ -218,6 +220,7 @@ void Ship::ApplyImpulseForce()
 	}
 	//printf("Applying impluse force of (%.2f,%.2f)\n", impulse.x, impulse.y);
 	//modifyEnergy(-1 * energyCost * impulseCostModifier);
+	attributes.UpdateEnergy(-3.0f);
 }
 void Ship::Update(float deltaTime)
 {
@@ -231,16 +234,79 @@ void Ship::Update(float deltaTime)
 			doubleTapIntervalTimeLeft = 0.0f;
 		}
 	}
+
+	if (thrust_forward || thrust_backward || thrust_left || thrust_right) {
+		attributes.UpdateEnergy(-0.33 * deltaTime);
+	}
+
 }
 void Ship::handleBeginContact(b2Contact* contact){}
 void Ship::handlePreSolve(b2Contact* contact, const b2Manifold* oldManifold){}
-void Ship::handlePostSolve(b2Contact* contact, const b2ContactImpulse* impulse){}
+void Ship::handlePostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
+{
+
+	if (!attributes.operational ||attributes.broken) return;
+
+	b2Fixture* A = contact->GetFixtureA(); b2Body* AA = contact->GetFixtureA()->GetBody();
+	b2Fixture* B = contact->GetFixtureB(); b2Body* BB = contact->GetFixtureB()->GetBody();
+	b2Fixture* other = NULL, * myCollider = NULL;
+
+	if (AA != mBody && BB != mBody)
+		return;
+
+	b2Fixture* itr = mBody->GetFixtureList();
+	while (itr != nullptr)
+	{
+		if (A == itr)
+		{
+
+			myCollider = itr;
+			other = B;
+		}
+		if (B == itr)
+		{
+			myCollider = itr;
+			other = A;
+		}
+		itr = itr->GetNext();
+	}
+
+	if (myCollider == NULL || other == NULL)
+		return;
+
+
+	collisionType_astroids* ct = (collisionType_astroids*)other->GetUserData();
+
+	//if (!!ct == false) return;
+
+
+	// Should the body break?
+	int32 count = contact->GetManifold()->pointCount;
+
+	float maxImpulse = 0.0f;
+	for (int32 i = 0; i < count; ++i)
+	{
+		maxImpulse = b2Max(maxImpulse, impulse->normalImpulses[i]);
+	}
+
+	float DM = myCollider->GetDensity() * mBody->GetMass();
+	// subtract from astroids health dir proportional to above comparison
+	//if (*ct == collisionType_astroids::collision_astroid && maxImpulse > DM * 40.0f * physicalDefense) 
+	float  physicalDefense = 0.14f;
+	if (maxImpulse > DM * 40.0f * physicalDefense) //any hard collision should deal damage
+	{
+		float dmg = maxImpulse / (DM * 40.0f) * 100;
+		attributes.UpdateCondition(-dmg * physicalDefense);
+	}
+
+}
 void Ship::handleEndContact(b2Contact* contact){}
 void Ship::mouseCallback(int button, int action, int mode){}
 
 
 void Ship::mouseCallback_Cursor(double x, double y)
 {
+
 	if (!turn1 && !turn2) return;
 	float bodyAngle = mBody->GetAngle();
 	glm::vec2 mp = glm::vec2((float)x, (float)y), mpconverted;
@@ -341,9 +407,9 @@ void Ship::Draw()
 {
 	if (drawStats)
 	{
-		DrawString(5, 0, "Body Pos: (%.3f, %.3f)", mBody->GetPosition().x, mBody->GetPosition().y);
-		DrawString(5, 12, "Body Spd: (%.3f, %.3f)", mBody->GetLinearVelocity().x, mBody->GetLinearVelocity().y);
-		DrawString(200, 12, "Body Spd: (%.3f)", mBody->GetLinearVelocity().Length());
+		//DrawString(5, 0, "Body Pos: (%.3f, %.3f)", mBody->GetPosition().x, mBody->GetPosition().y);
+		//DrawString(5, 12, "Body Spd: (%.3f, %.3f)", mBody->GetLinearVelocity().x, mBody->GetLinearVelocity().y);
+		//DrawString(200, 12, "Body Spd: (%.3f)", mBody->GetLinearVelocity().Length());
 		//DrawString(5, 25, "Target: (%3f,%3f)", target.x, target.y);
 		//DrawString(5, 40, "Target Angle: %3f", targetAngle);
 	}

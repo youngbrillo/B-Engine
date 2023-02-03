@@ -63,6 +63,7 @@ void UIMeter::Draw(Shader* customShader, Surface* customSurface) const
 		.SetMatrix4("model", model)
 		.SetVector4f("color", this->backgroundColor);
 
+	defaultTexture->Bind();
 
 	customSurface->Bind();
 	
@@ -87,6 +88,7 @@ void UIMeter::Draw(Shader* customShader, Surface* customSurface) const
 		.SetMatrix4("model", model)
 		.SetVector4f("color", this->color);
 
+	defaultTexture->Bind();
 
 	customSurface->Bind();
 }

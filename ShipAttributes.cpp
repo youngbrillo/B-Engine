@@ -6,7 +6,9 @@ ShipAttributes::ShipAttributes(ShipAttributeDef* def)
 	, TorqueMag(def->TorqueMag)
 	, startingCondition(def->startingCondition)
 	, maxCondition(def->maxCondition)
+	, currentCondition(def->startingCondition)
 	, startingEnergy(def->startingEnergy)
+	, currentEnergy(def->startingEnergy)
 	, maxEnergy(def->maxEnergy)
 	, physicalDefense(def->physicalDefense)
 	, energyCost(def->energyCost)
@@ -24,6 +26,24 @@ ShipAttributes::ShipAttributes(const char* attributeFile)
 
 ShipAttributes::~ShipAttributes()
 {
+}
+
+float sClamp(const float& min, const float& max, const float& input)
+{
+	return std::max(min, std::min(input, max));
+}
+
+#include <algorithm>
+void ShipAttributes::UpdateCondition(float difference)
+{
+	this->currentCondition = sClamp(0.0f, maxCondition, currentCondition + difference);
+	broken = currentCondition <= 0.0f;
+}
+
+void ShipAttributes::UpdateEnergy(float difference)
+{
+	this->currentEnergy = sClamp(0.0f, maxEnergy, currentEnergy + difference);
+	operational = currentEnergy > 0.0f;
 }
 
 void ShipAttributes::LoadAttributeFile(const char* fileName)
@@ -46,8 +66,10 @@ void ShipAttributes::LoadAttributeFile(const char* fileName)
 	ThrustPosition = def.ThrustPosition;
 	TorqueMag = def.TorqueMag;
 	startingCondition = def.startingCondition;
+	currentCondition = def.startingCondition;
 	maxCondition = def.maxCondition;
 	startingEnergy = def.startingEnergy;
+	currentEnergy = def.startingEnergy;
 	maxEnergy = def.maxEnergy;
 	physicalDefense = def.physicalDefense;
 	energyCost = def.energyCost;
@@ -79,9 +101,9 @@ void ShipAttributes::Debug(const char* name)
 		ImGui::SliderFloat2("Forward Force", &ThrustForce.x, -300, 0);
 		ImGui::SliderFloat2("Thrust pos ", &ThrustPosition.x, -5, 5);
 		ImGui::SliderFloat("Torque Scalar", &TorqueMag, 0, 10);
-		ImGui::SliderFloat("condition", &startingCondition, 0, 100.0f);
+		ImGui::SliderFloat("condition", &currentCondition, 0, maxCondition);
 		ImGui::SliderFloat("defense (phys)", &physicalDefense, 0, 100.0f);
-		ImGui::SliderFloat("energy", &startingEnergy, 0, 100.0f);
+		ImGui::SliderFloat("energy", &currentEnergy, 0, maxEnergy);
 		ImGui::SliderFloat("energy Cost", &energyCost, 0, 100.0f);
 		ImGui::SliderFloat("torque ratio", &torqueRatio, 0, 100.0f);
 

@@ -30,7 +30,7 @@ public:
 	virtual void Draw(Shader* shader, Surface* surface);
 	virtual void Debug();
 	b2Body* getBody() { return mBody; }
-
+	ShipAttributes* GetAttributes() { return &attributes; }
 protected:
 	void ApplyImpulseForce();
 private:
@@ -53,6 +53,7 @@ private:
 	bool thrust_forward, thrust_backward, thrust_left, thrust_right, constrain_velocity;
 	bool turn1 = false, turn2 = false, drawStats = true;
 	friend class NeoShipController;
+	friend class ShipControllerUI;
 
 };
 

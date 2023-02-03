@@ -13,6 +13,7 @@
 #include "Surface.h"
 #include <glm/glm.hpp>
 #include <string>
+#include "Texture.h"
 //ui element abstract class
 struct UIElementDefinition
 {
@@ -65,6 +66,9 @@ protected:
 	//shader that all UI elements will use unless
 	static Shader* sharedShader;
 	static Surface* sharedSurface;
+
+public: 
+	static Texture* defaultTexture;
 
 };
 

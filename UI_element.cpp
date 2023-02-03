@@ -3,6 +3,7 @@
 
 Shader* UIElement::sharedShader = nullptr;
 Surface* UIElement::sharedSurface = nullptr;
+Texture* UIElement::defaultTexture = nullptr;
 
 
 UIElement::UIElement()

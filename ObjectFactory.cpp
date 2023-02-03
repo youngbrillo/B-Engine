@@ -110,11 +110,14 @@ void ObjectFactory::cleanup()
 	auto obj = ALLGAMEOBJECTS.begin();
 	while (obj != ALLGAMEOBJECTS.end())
 	{
-		obj = DestroyObject((*obj));
+	//	obj = ALLGAMEOBJECTS.erase(std::remove(ALLGAMEOBJECTS.begin(), ALLGAMEOBJECTS.end(), (*obj)), ALLGAMEOBJECTS.end());
+		auto gObj = (*obj);
+		obj = DestroyObject(gObj);
+		
 	}
 	if (ALLGAMEOBJECTS.size() != 0)
 	{
-		printf("OBJECTFACTORY:: Did not properly Destroy All Game Objects\n");
+		printf("OBJECTFACTORY:: Did not properly Destroy All Game Objects: %d objects left\n", (int)ALLGAMEOBJECTS.size());
 	}
 
 	ALLGAMEOBJECTS.clear();

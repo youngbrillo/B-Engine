@@ -1,7 +1,7 @@
 #include "NeoShipController.h"
 #include "Game.h"
 #include "App.h"
-
+#include "ResourceManager.h"
 
 NeoShipController::NeoShipController(NeoShipControllerDefinition* controllerDefinition, b2Body* groundref)
 	: mouseAiming(true)
@@ -9,19 +9,33 @@ NeoShipController::NeoShipController(NeoShipControllerDefinition* controllerDefi
 	, projectileLaunchVel(controllerDefinition->projectileLaunchVel)
 	, target(0.0f, 0.f)
 	, launchVelocity(50.0f)
+	, mouse_position(0.0f)
 {
+	//config ship
 	m_ship = new Ship(&controllerDefinition->shipDef, Game::m_World, b2Vec2_zero, groundref);
+	m_ship->mBody->SetUserData(this);
+	//config launcher
 	m_launcher = new OmniLauncher(&controllerDefinition->launcherDef);
+	//config cam controller
 	m_camera_controller = new CameraController(Game::AppCam, m_ship->mBody);
 	m_camera_controller->mode = CameraController::FollowMode::Bound;
+	//config ui
+	m_UI = new ShipControllerUI(this);
+
+	m_inventory.shipControllerRef = this;
+	//test inventory
+	//m_inventory.AddItem(ResourceManager::GetItemPtr(SpaceBuster::ItemType::Upgrade_speed));
+	//m_inventory.AddItem(ResourceManager::GetItemPtr(SpaceBuster::ItemType::Upgrade_fireRate));
+	//m_inventory.AddItem(ResourceManager::GetItemPtr(SpaceBuster::ItemType::SparePart));
+	//m_inventory.AddItem(ResourceManager::GetItemPtr(SpaceBuster::ItemType::EnergyCell));
 }
 
 NeoShipController::~NeoShipController()
 {
+	delete m_UI;
 	delete m_launcher;
 	delete m_ship;
 	delete m_camera_controller;
-
 }
 
 void NeoShipController::FixedUpdate(float deltaTime)
@@ -34,11 +48,22 @@ void NeoShipController::FixedUpdate(float deltaTime)
 
 void NeoShipController::Update(float dt)
 {
+	UpdateMouse();
 	m_ship->Update(dt);
 	m_launcher->Update(dt);
 	m_camera_controller->Update(dt);
 }
 
+void NeoShipController::UpdateMouse()
+{
+	double x, y;
+	glfwGetCursorPos(Game::mainWindow, &x, &y);
+
+	mouse_position = glm::vec2((float)x, (float)y);
+	glm::vec2 _target = Game::AppCam->convertScreenToWorld(mouse_position);
+	target.x = _target.x; target.y = _target.y;
+
+}
 void NeoShipController::handleBeginContact(b2Contact* contact)
 {
 	m_ship->handleBeginContact(contact);
@@ -68,6 +93,7 @@ void NeoShipController::mouseCallback(int button, int action, int mode)
 	}
 	m_ship->mouseCallback(button, action, mode);
 
+	m_UI->HandleMouseClick(mouse_position, button, action, mode);
 	if (!this->mouseAiming) return;
 
 	if (button == GLFW_MOUSE_BUTTON_1 && action == GLFW_PRESS)
@@ -92,7 +118,7 @@ void NeoShipController::onKeyPress(int key)
 	//if (ImGui::GetIO().WantCaptureKeyboard) return;
 
 	m_ship->onKeyPress(key);
-
+	m_UI->HandleButtonPress(key, false);
 	if (key == GLFW_KEY_TAB)
 	{
 		m_launcher->ToggleFireMode();
@@ -118,6 +144,7 @@ void NeoShipController::onKeyRelease(int key)
 		shooting = false;
 	}
 	m_ship->onKeyRelease(key);
+	m_UI->HandleButtonPress(key, true);
 }
 
 void NeoShipController::onKeyRepeat(int key)
@@ -155,31 +182,40 @@ void NeoShipController::ShootProjectile()
 	}
 }
 
+
 void NeoShipController::Draw(Shader* shader, Surface* surface)
 {
+	DrawString(5, 10, "Mouse pos (screen spac):	 (%.3f,%.3f)", mouse_position.x, mouse_position.y);
+	DrawString(5, 25, "Mouse Pos (UI Space):	 (%.3f,%.3f)", m_UI->getUISpacePoint(mouse_position).x, m_UI->getUISpacePoint(mouse_position).y);
 	//DrawString(5, 25, "Target:	 (%.3f,%.3f)", target.x, target.y);
-	DrawString(5, 25, "screenSize: (%d,%d)", Game::AppCam->Width, Game::AppCam->Height);
+	//DrawString(5, 25, "screenSize: (%d,%d)", Game::AppCam->Width, Game::AppCam->Height);
 
 	glm::vec2 screenExtents = Game::AppCam->GetScreenExtents();
-	DrawString(5, 50, "screen extents (source): (%.3f,%.3f)", screenExtents.x, screenExtents.y);
-	DrawString(5, 125,	"camcontroller boundary size: (%.3f,%.3f)", m_camera_controller->transform.size.x, m_camera_controller->transform.size.y);
+	//DrawString(5, 50, "screen extents (source): (%.3f,%.3f)", screenExtents.x, screenExtents.y);
+	//DrawString(5, 125,	"camcontroller boundary size: (%.3f,%.3f)", m_camera_controller->transform.size.x, m_camera_controller->transform.size.y);
 	//DrawString(5, 25, "Target: (%.3f,%.3f)", 1.0f, 1.0f, 1.0f, 1.0f,  target.x, target.y);
-	DrawString(200, 75, "cam Spd: (%.3f)", m_camera_controller->rec_followSpeed);
-	DrawString(250, 0, "target last pos: (%.3f, %.3f)", m_camera_controller->TargetLastPosition.x, m_camera_controller->TargetLastPosition.y);
+	//DrawString(200, 75, "cam Spd: (%.3f)", m_camera_controller->rec_followSpeed);
+	//DrawString(250, 0, "target last pos: (%.3f, %.3f)", m_camera_controller->TargetLastPosition.x, m_camera_controller->TargetLastPosition.y);
 
 
 	m_ship->Draw();
 	m_ship->Draw(shader, surface);
 
 	m_camera_controller->Draw(shader, surface);
+
+	m_UI->Draw(shader, surface);
 }
 
 void NeoShipController::Debug()
 {
-	m_camera_controller->Debug();
-	if (ImGui::TreeNode("- Neo Ship Controller -")) {
+	m_UI->Debug();
+
+	if (ImGui::TreeNode("Neo Ship Controller")) {
 		ImGui::Checkbox("Using Mouse controls", &this->mouseAiming);
-		if (ImGui::TreeNode("- launch config -"))
+		ImGui::SliderFloat2("mouse pos", &mouse_position.x, -3, 3);
+		m_inventory.Debug();
+		m_camera_controller->Debug();
+		if (ImGui::TreeNode("launch config"))
 		{
 			ImGui::SliderFloat2("Launch pos", &projectileLocalLaunchPos.x, -3, 3);
 			ImGui::SliderFloat2("Launch vel", &projectileLaunchVel.x, -100, 100);

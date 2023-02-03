@@ -2,7 +2,8 @@
 #include "Ship.h"
 #include "OmniLauncher.h"
 #include "CameraController.h"
-
+#include "NeoInventory.h"
+#include "ShipControllerUI.h"
 struct NeoShipControllerDefinition
 {
 	//Ship params
@@ -40,17 +41,25 @@ public: //input handlers
 	void onKeyRepeat(int key);
 
 	void ShootProjectile();
-
+	Ship* GetShip() { return m_ship; }
 private: //private variables
 	Ship* m_ship;
 	OmniLauncher* m_launcher;
 	CameraController* m_camera_controller;
 	bool mouseAiming, shooting;
 	b2Vec2 projectileLocalLaunchPos, projectileLaunchVel;
+	ShipControllerUI* m_UI;
+
+	friend class ShipControllerUI;
+	friend class NeoInventory;
 
 public:
 	b2Vec2 target;
+	glm::vec2 mouse_position;
 	float launchVelocity;
+	NeoInventory m_inventory;
+
+	void UpdateMouse();
 
 };
 
