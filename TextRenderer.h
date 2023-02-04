@@ -13,18 +13,8 @@ struct Character
 	glm::ivec2		Size;		// size of glyph
 	glm::ivec2		Bearing;	// offset from baseline to top-left of glyph
 	unsigned int	Advance;	// offset to advance to next glyph
-};
+	float verticies[6][4] = {};
 
-class TextMesh
-{
-public:
-	TextMesh();
-	~TextMesh();
-
-	void configure();
-	void bind();
-public:
-	unsigned int VAO, VBO;
 };
 
 class TextRenderer
@@ -46,5 +36,7 @@ public:
 
 	static Shader* fontShader;
 	unsigned int VAO, VBO;
+
+	bool lazyDraw;
 };
 
