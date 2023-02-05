@@ -85,6 +85,12 @@
     <Filter Include="Fonts">
       <UniqueIdentifier>{4f59a932-b3c2-44a4-9ae8-9c402c379cb9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities\Texts/Fonts">
+      <UniqueIdentifier>{fc2e9f19-f167-46c6-bac0-bcc211c5d7da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="z_GLWrappers">
+      <UniqueIdentifier>{afaf92cd-2ec5-4ed6-9edf-2b8cd81829f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -313,7 +319,13 @@
       <Filter>Scenes\test scenes</Filter>
     </ClCompile>
     <ClCompile Include="TextRenderer.cpp">
-      <Filter>Utilities</Filter>
+      <Filter>Utilities\Texts/Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="vertexObjects.cpp">
+      <Filter>z_GLWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="TextManager.cpp">
+      <Filter>Utilities\Texts/Fonts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -498,6 +510,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TextRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vertexObjects.h">
+      <Filter>z_GLWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="TextManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

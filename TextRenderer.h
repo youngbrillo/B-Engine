@@ -37,6 +37,6 @@ public:
 	static Shader* fontShader;
 	unsigned int VAO, VBO;
 
-	bool lazyDraw;
+	bool lazyDraw, cachedDraw;
 };
 

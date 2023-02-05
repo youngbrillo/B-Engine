@@ -10,7 +10,7 @@ Shader* TextRenderer::fontShader = nullptr;
 TextRenderer::TextRenderer(const char* filepath)
 	: transform()
 	, fontColor(1.0f)
-	, lazyDraw(true)
+	, lazyDraw(true), cachedDraw(false)
 {
 	LoadFont(filepath);
 	if (!fontShader)
@@ -53,7 +53,7 @@ void TextRenderer::LoadFont(const char* filepath)
 
 	if (errors > 0) { printf("error count %d", errors); return; }
 
-	FT_Set_Pixel_Sizes(face, 0, 72);
+	FT_Set_Pixel_Sizes(face, 0, 36);
 
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // disable byte-alignment restriction
 
@@ -173,27 +173,34 @@ void TextRenderer::DrawText(std::string string, const float& xposition, const fl
 			ResourceManager::GetTexturePtr("default")->Bind();
 
 		//calculate the verticies each draw call :)
-		float verticies[6][4] = {
-			{ xpos,     ypos + h,   0.0f, 0.0f },
-			{ xpos,     ypos,       0.0f, 1.0f },
-			{ xpos + w, ypos,       1.0f, 1.0f },
+		if(!cachedDraw)
+		{
+			float verticies[6][4] = {
+				{ xpos,     ypos + h,   0.0f, 0.0f },
+				{ xpos,     ypos,       0.0f, 1.0f },
+				{ xpos + w, ypos,       1.0f, 1.0f },
 
-			{ xpos,     ypos + h,   0.0f, 0.0f },
-			{ xpos + w, ypos,       1.0f, 1.0f },
-			{ xpos + w, ypos + h,   1.0f, 0.0f }
-		};
-		
-			// render glyph texture over quad
-			// update content of VBO memory
-	
-		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(x, y, 0.f));
-		//fontShader->SetMatrix4("model", model);
-
+				{ xpos,     ypos + h,   0.0f, 0.0f },
+				{ xpos + w, ypos,       1.0f, 1.0f },
+				{ xpos + w, ypos + h,   1.0f, 0.0f }
+			};
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(verticies), verticies); // be sure to use glBufferSubData and not glBufferData
+		}
+		else
+		{
+			// render glyph texture over quad
+			// update content of VBO memory
 
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
+			glm::mat4 model = glm::mat4(1.0f);
+			model = glm::translate(model, glm::vec3(x, y, 0.f));
+			model = glm::scale(model, transform.size * scale);
+			fontShader->SetMatrix4("model", model);
+
+			glBindBuffer(GL_ARRAY_BUFFER, VBO);
+			glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(ch.verticies), ch.verticies); // be sure to use glBufferSubData and not glBufferData
+		}
+			//glBindBuffer(GL_ARRAY_BUFFER, 0);
 			// render quad
 			glDrawArrays(GL_TRIANGLES, 0, 6);
 		// now advance cursors for next glyph (note that advance is number of 1/64 pixels)
@@ -208,7 +215,12 @@ void TextRenderer::DrawText(std::string string, const float& xposition, const fl
 #include <imgui.h>
 void TextRenderer::Debug(const char* name)
 {
-	ImGui::Checkbox("lazy draw", &lazyDraw);
+	ImGui::Checkbox("view quad", &lazyDraw); ImGui::SameLine();
+	if (ImGui::Checkbox("cached draw", &cachedDraw))
+	{
+		if(cachedDraw == false)
+			fontShader->SetMatrix4("model", glm::mat4(1.0f));
+	}
 	if (ImGui::TreeNode(name))
 	{
 		if (ImGui::Button("Hot reload: Text Renderer font shader"))
