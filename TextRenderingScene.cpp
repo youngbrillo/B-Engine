@@ -77,7 +77,8 @@ public:
 
 		TextManager::IO().AddLine("Hello World, This is some sample text...", m_color);
 		TextManager::IO().AddLine("The quick brown fox jumped over the lazy dog", m_color);
-		TextManager::IO().AddLine("Using Font:", m_color);
+		TextManager::IO().AddLine("1 2 3 4 5 6 7 8 9 0 - <>.,:;[]{} + = !@#$%^&*", m_color);
+		TextManager::IO().AddLine("Using Font : ", m_color);
 		TextManager::IO().AddLine(std::get<0>(TextManager::GetFonts()[TextManager::GetFontIndex()]).c_str(), alt_color);
 
 		TextManager::IO().EndLine();
