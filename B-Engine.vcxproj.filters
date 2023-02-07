@@ -91,6 +91,9 @@
     <Filter Include="z_GLWrappers">
       <UniqueIdentifier>{afaf92cd-2ec5-4ed6-9edf-2b8cd81829f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities\imguiWrappers">
+      <UniqueIdentifier>{fe1b0db1-47a3-4041-8241-8e6dca5a6502}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -327,6 +330,9 @@
     <ClCompile Include="TextManager.cpp">
       <Filter>Utilities\Texts/Fonts</Filter>
     </ClCompile>
+    <ClCompile Include="imguiTextWrap.cpp">
+      <Filter>Utilities\imguiWrappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -517,6 +523,9 @@
     </ClInclude>
     <ClInclude Include="TextManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imguiTextWrap.h">
+      <Filter>Utilities\imguiWrappers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

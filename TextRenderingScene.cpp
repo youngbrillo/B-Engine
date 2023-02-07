@@ -5,15 +5,83 @@
 #include "UI_Button.h"
 #include "Sprite.h"
 #include "TextManager.h"
-
+#include "imguiTextWrap.h"
 
 const char* font_file_path = "./assets/fonts/DkHandRegular-orna.ttf";
+
+struct AnimatingText
+{
+
+	glm::vec2	animTextPos = glm::vec2(351.50f, 25.0f),
+				animationTimer = glm::vec2(0, 0.20f);
+	bool animate = true, animationComplete = false;
+
+	std::string textToDisplay = "I animate!", DisplayedText = "";
+	int currentCharacter = 0;
+	glm::vec4 _color = glm::vec4(0.936f, 0.892f, 0.181f, 1.0f);
+
+	float scale = 0.7f;
+	char buff[500];
+
+
+	void onUpdate(float dt)
+	{
+		if (animationComplete)
+		{
+			//reset animate to true
+			//reset characters in display text ? 
+			currentCharacter = 0;
+			animate = false;
+			animationComplete = false;
+			return;
+		}
+		if (animate)
+		{
+			animationTimer.x += dt;
+			if (animationTimer.x >= animationTimer.y)
+			{
+				animationTimer.x = 0.0f;
+				DisplayedText += textToDisplay[currentCharacter];
+				currentCharacter++;
+				if (currentCharacter >= textToDisplay.length())
+				{
+					animationComplete = true;
+				}
+			}
+		}
+	}
+	void onDraw(TextRenderer& textRenderer)
+	{
+		textRenderer.DrawText(DisplayedText.c_str(), animTextPos.x, animTextPos.y, scale, _color);
+	}
+	void onDebug()
+	{
+		if (ImGui::InputText("String to write", &textToDisplay))
+		{
+		
+		};
+
+
+
+		ImGui::SliderFloat2("anim position", &animTextPos.x, -700, 700);
+		ImGui::SliderFloat2("anim timer", &animationTimer.x, 0, 1.0f);
+		if (ImGui::Checkbox("can animate", &animate))
+		{
+			if (animate)
+			{
+				DisplayedText = "";
+			}
+		}
+		ImGui::Checkbox("animate complete", &animationComplete);
+		ImGui::Separator();
+	}
+};
 class TextRenderingScene : public Game
 {
 public:
 	//constructor
 	TextRenderer textRenderer;
-
+	AnimatingText animTex;
 	TextRenderingScene() : Game()
 	{
 		textRenderer = TextRenderer("./assets/fonts/OxygenMono-Regular.otf");
@@ -57,7 +125,10 @@ public:
 	}
 
 	//frame updates
-	void Update(float dt) override { }
+	void Update(float dt) override 
+	{
+		animTex.onUpdate(dt);
+	}
 
 	//collision callbacks 
 
@@ -83,6 +154,8 @@ public:
 
 		TextManager::IO().EndLine();
 
+
+		animTex.onDraw(textRenderer);
 	} 
 
 
@@ -90,8 +163,11 @@ public:
 	float scale = 0.750f;
 	glm::vec4 m_color = glm::vec4(1.0f), alt_color = glm::vec4(0.936f, 0.892f, 0.181f, 1.0f);
 	int fontIndex = 0;
+
 	void DrawDebug() override 
 	{
+		animTex.onDebug();
+
 		ImGui::SliderFloat2("line position", &position.x, -AppCam->Height, AppCam->Height);
 		ImGui::SliderFloat("line scaling", &scale, 0.01, 10.f);
 		ImGui::ColorEdit4("main color", &m_color.x, ImGuiColorEditFlags_::ImGuiColorEditFlags_Float);

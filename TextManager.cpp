@@ -133,20 +133,22 @@ void TextManager::DrawLines()
 		position += offset;
 		std::string line = std::get<0>(Lines[i]);
 
-		position = DrawText(line.c_str(), position, lineScaling, std::get<1>(Lines[i]));
-		//position.x += 2.0f;
-		//m_textRenderer->DrawText(allLines, position, lineOffset, lineScaling, colorarray, colorPositions);
-
+		bool setPosition = false;
 		if (line[line.size() - 1] == '\n')
 		{
 			offset = lastOffset;
 			offset += lineOffset * lineScaling;
 			lastOffset = offset;
-			position = startingPosition;
+			//position = startingPosition;
+			setPosition = true;
+			line.pop_back(); //don't render the '\n\ character, bc the renderer WILL draw it (in certain fonts)
 		}
 		else {
 			offset = glm::vec2(0.0f);
 		}
+		
+		position = DrawText(line.c_str(), position, lineScaling, std::get<1>(Lines[i]));
+		if (setPosition) position = startingPosition;
 	}
 }
 
@@ -187,12 +189,9 @@ std::vector<std::string> get_all_files_names_within_directory(const char* direct
 			// read all (real) files in current folder
 			// , delete '!' read other 2 default folder . and ..
 			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
-				//names.push_back((const char*)fd.cFileName);
-
-
-				//names.push_back(std::string(fd.cFileName));
 				std::string fileName;
 				int l = 260;
+				//character by character, add it to the string
 				for (int i = 0;i < l; i++)
 				{
 					fileName += fd.cFileName[i];
@@ -203,11 +202,6 @@ std::vector<std::string> get_all_files_names_within_directory(const char* direct
 		} while (::FindNextFile(hFind, &fd));
 		::FindClose(hFind);
 	}
-	//printf("files found:%i\n", names.size());
 
-	//for (auto i : names)
-	//{
-	//	printf("Font named: %s, ", i.c_str());
-	//}
 	return names;
 }
