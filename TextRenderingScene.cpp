@@ -75,10 +75,10 @@ public:
 		//textRenderer.DrawText("Hello World");
 		//textRenderer.DrawText(std::get<0>(fonts[fontIndex]).c_str(), AppCam->Width / 2.0f, AppCam->Height / 2.0f + 36.0f, scale);
 
-		TextManager::IO().AddLine("Hello World, This is some sample text...", m_color);
-		TextManager::IO().AddLine("The quick brown fox jumped over the lazy dog", m_color);
-		TextManager::IO().AddLine("1 2 3 4 5 6 7 8 9 0 - <>.,:;[]{} + = !@#$%^&*", m_color);
-		TextManager::IO().AddLine("Using Font : ", m_color);
+		TextManager::IO().AddLine("Hello World, This is some sample text!!", m_color, true);
+		TextManager::IO().AddLine("The quick brown fox jumped over the lazy dog", m_color, true);
+		TextManager::IO().AddLine("1 2 3 4 5 6 7 8 9 0 - <>.,:;[]{} + = !@#$%^&*", m_color, true);
+		TextManager::IO().AddLine("Using Font: ", m_color, false);
 		TextManager::IO().AddLine(std::get<0>(TextManager::GetFonts()[TextManager::GetFontIndex()]).c_str(), alt_color);
 
 		TextManager::IO().EndLine();
@@ -87,12 +87,12 @@ public:
 
 
 	glm::vec2 position = glm::vec2(25.0f, AppCam->Height - 36.0f);
-	float scale = 1.0f;
+	float scale = 0.750f;
 	glm::vec4 m_color = glm::vec4(1.0f), alt_color = glm::vec4(0.936f, 0.892f, 0.181f, 1.0f);
 	int fontIndex = 0;
 	void DrawDebug() override 
 	{
-		ImGui::SliderFloat2("line position", &position.x, 0, AppCam->Height);
+		ImGui::SliderFloat2("line position", &position.x, -AppCam->Height, AppCam->Height);
 		ImGui::SliderFloat("line scaling", &scale, 0.01, 10.f);
 		ImGui::ColorEdit4("main color", &m_color.x, ImGuiColorEditFlags_::ImGuiColorEditFlags_Float);
 		ImGui::ColorEdit4("alt color", &alt_color.x, ImGuiColorEditFlags_::ImGuiColorEditFlags_Float);

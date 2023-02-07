@@ -137,12 +137,12 @@ void TextRenderer::LoadFont(const char* filepath)
 
 }
 #include "App.h"
-void TextRenderer::DrawText(const char* string)
+glm::vec2 TextRenderer::DrawText(const char* string)
 {
-	DrawText(string, transform.position.x, transform.position.y, transform.scale, fontColor);
+	return DrawText(string, transform.position.x, transform.position.y, transform.scale, fontColor);
 }
 
-void TextRenderer::DrawText(std::string string, const float& xposition, const float& yposition, const float& scale, glm::vec4 fcolor)
+glm::vec2 TextRenderer::DrawText(std::string string, const float& xposition, const float& yposition, const float& scale, glm::vec4 fcolor)
 {
 
 	//glEnable(GL_BLEND);
@@ -157,7 +157,7 @@ void TextRenderer::DrawText(std::string string, const float& xposition, const fl
 		.SetVector4f("fontColor", fcolor);
 
 	float x = xposition, y = yposition;
-
+	glm::vec2 returnPosition = glm::vec2(x, y);
 	for (auto c = string.begin(); c!= string.end(); c++)
 	{
 		Character ch = Characters[*c];
@@ -167,6 +167,9 @@ void TextRenderer::DrawText(std::string string, const float& xposition, const fl
 		float w = ch.Size.x * scale;
 		float h = ch.Size.y * scale;
 		// update VBO for each character
+
+		returnPosition.x = xpos + w;
+
 		if (lazyDraw)
 			glBindTexture(GL_TEXTURE_2D, ch.TextureID);
 		else
@@ -210,6 +213,8 @@ void TextRenderer::DrawText(std::string string, const float& xposition, const fl
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	//glDisable(GL_BLEND);
+
+	return returnPosition;
 }
 
 #include <imgui.h>

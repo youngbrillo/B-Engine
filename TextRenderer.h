@@ -4,7 +4,7 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H  
 #include <map>
-
+#include <vector>
 #include "Shader.h"
 
 struct Character
@@ -24,8 +24,8 @@ public:
 
 	~TextRenderer();
 	void LoadFont(const char* filepath);
-	void DrawText(const char* string);
-	void DrawText(std::string string, const float& xposition, const float& yposition, const float& scale, glm::vec4 color = glm::vec4(1.0f));
+	glm::vec2 DrawText(const char* string);
+	glm::vec2 DrawText(std::string string, const float& xposition, const float& yposition, const float& scale, glm::vec4 color = glm::vec4(1.0f));
 
 	void Debug(const char* name = "Text renderer debug");
 public:

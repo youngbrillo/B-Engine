@@ -57,9 +57,9 @@ void TextManager::ShiftFont(const int& dist)
 	m_textRenderer->transform.scale = 0.5f;
 }
 
-void TextManager::DrawText(const char* string, const glm::vec2& position, const float& size, const glm::vec4& color)
+glm::vec2  TextManager::DrawText(const char* string, const glm::vec2& position, const float& size, const glm::vec4& color)
 {
-	m_textRenderer->DrawText(string, position.x, position.y, size, color);
+	return m_textRenderer->DrawText(string, position.x, position.y, size, color);
 }
 
 //void TextManager::DrawText(std::string string, const glm::vec2& position, const float& size, const glm::vec4& color)
@@ -75,9 +75,15 @@ void TextManager::StartLine(const glm::vec2& screen_pos, const float& fontSize)
 	lineScaling = fontSize;
 }
 
-void TextManager::AddLine(const char* newLine, const glm::vec4& color)
+void TextManager::AddLine(const char* newLine, const glm::vec4& color, bool endline)
 {
-	Lines.push_back(std::make_tuple(newLine, color));
+
+	std::string newAddition = newLine;
+	if (endline)
+		newAddition += "\n";
+	else
+		newAddition += " ";
+	Lines.push_back(std::make_tuple(newAddition, color));
 	lineCount++;
 }
 
@@ -105,14 +111,42 @@ TextManager::~TextManager()
 void TextManager::DrawLines()
 {
 	glm::vec2 position = lineStartingPosition;
-	glm::vec2 offset = glm::vec2(0.0f);
+	glm::vec2 offset = glm::vec2(0.0f), lastOffset(0.0f);
+	glm::vec2 startingPosition = position;
 
-	for (int i = 0; i < lineCount; i++)
+
+	std::string allLines = "";
+
+	const int arrSize = Lines.size();
+
+	std::vector<glm::vec4> colorarray;
+	std::vector<int> colorPositions;
+	for (int i = 0; i < Lines.size(); i++)
+	{
+		allLines += std::get<0>(Lines[0]);
+		colorarray.push_back(std::get<1>(Lines[0]));
+		colorPositions.push_back(allLines.size() - 1);
+	}
+
+	for (int i = 0; i < Lines.size(); i++)
 	{
 		position += offset;
 		std::string line = std::get<0>(Lines[i]);
-		DrawText(line.c_str(), position, lineScaling, std::get<1>(Lines[i]));
-		offset = lineOffset * lineScaling;
+
+		position = DrawText(line.c_str(), position, lineScaling, std::get<1>(Lines[i]));
+		//position.x += 2.0f;
+		//m_textRenderer->DrawText(allLines, position, lineOffset, lineScaling, colorarray, colorPositions);
+
+		if (line[line.size() - 1] == '\n')
+		{
+			offset = lastOffset;
+			offset += lineOffset * lineScaling;
+			lastOffset = offset;
+			position = startingPosition;
+		}
+		else {
+			offset = glm::vec2(0.0f);
+		}
 	}
 }
 

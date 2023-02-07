@@ -15,11 +15,11 @@ public://non static methods
 	void ChangeFont(const char* fontName);
 	void ShiftFont(const int& dist);
 	//draw a line to screen detatched from any other lines that may be on the screen
-	void DrawText(const char* string, const glm::vec2& position, const float& size = 1.0f, const glm::vec4& color = glm::vec4(1.0f));
+	glm::vec2  DrawText(const char* string, const glm::vec2& position, const float& size = 1.0f, const glm::vec4& color = glm::vec4(1.0f));
 	//void DrawText(std::string string, const glm::vec2& position, const float& size = 1.0f, const glm::vec4& color = glm::vec4(1.0f));
 
 	void StartLine(const glm::vec2& screen_pos = glm::vec2(-1.0f), const float& fontSize =1.0f);
-	void AddLine( const char* newLine, const glm::vec4& color = glm::vec4(1.0f));
+	void AddLine(const char* newLine, const glm::vec4& color = glm::vec4(1.0f), bool endLine = false);
 	void EndLine();
 
 	
