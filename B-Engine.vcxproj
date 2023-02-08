@@ -147,6 +147,9 @@
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="CSApp.cpp" />
     <ClCompile Include="defaults_SpaceBuster.cpp" />
+    <ClCompile Include="FileData.cpp" />
+    <ClCompile Include="FileIO.cpp" />
+    <ClCompile Include="FileManipulationScene.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="glad.c" />
@@ -227,6 +230,8 @@
     <ClInclude Include="CSApp.h" />
     <ClInclude Include="defaults_SpaceBuster.h" />
     <ClInclude Include="experimentalSurface.h" />
+    <ClInclude Include="FileData.h" />
+    <ClInclude Include="FileIO.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="imguiTextWrap.h" />
@@ -287,6 +292,7 @@
     <None Include="assets\Haohmaru_141.json" />
     <None Include="assets\his13_000.json" />
     <None Include="assets\miniAtlas.json" />
+    <None Include="assets\Scores.json" />
     <None Include="imgui.ini" />
     <None Include="NDC_sprite.vts" />
     <None Include="packages.config" />

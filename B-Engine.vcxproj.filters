@@ -94,6 +94,12 @@
     <Filter Include="Utilities\imguiWrappers">
       <UniqueIdentifier>{fe1b0db1-47a3-4041-8241-8e6dca5a6502}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities\FileIO">
+      <UniqueIdentifier>{096922ec-ed66-4771-9dd9-c5cc83b7c907}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\jsons">
+      <UniqueIdentifier>{fbbe6dd3-b9e9-4ae8-b525-36293ef3a4d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -228,9 +234,6 @@
     <ClCompile Include="InventoryScene.cpp">
       <Filter>Scenes\Spacebuster Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Settings.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteMapTest.cpp">
       <Filter>Scenes\test scenes</Filter>
     </ClCompile>
@@ -254,9 +257,6 @@
     </ClCompile>
     <ClCompile Include="SpriteAnimator.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="jsonParser.cpp">
-      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="ObjectListener.cpp">
       <Filter>Utilities</Filter>
@@ -332,6 +332,21 @@
     </ClCompile>
     <ClCompile Include="imguiTextWrap.cpp">
       <Filter>Utilities\imguiWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManipulationScene.cpp">
+      <Filter>Scenes\test scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Utilities\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="jsonParser.cpp">
+      <Filter>Utilities\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="FileIO.cpp">
+      <Filter>Utilities\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="FileData.cpp">
+      <Filter>Utilities\FileIO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -458,9 +473,6 @@
     <ClInclude Include="ObjectListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Settings.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="sajson.h">
       <Filter>Utilities\sajson</Filter>
     </ClInclude>
@@ -478,9 +490,6 @@
     </ClInclude>
     <ClInclude Include="SpriteAnimator.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="jsonParser.h">
-      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="UI_element.h">
       <Filter>Header Files</Filter>
@@ -526,6 +535,18 @@
     </ClInclude>
     <ClInclude Include="imguiTextWrap.h">
       <Filter>Utilities\imguiWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Utilities\FileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="jsonParser.h">
+      <Filter>Utilities\FileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="FileIO.h">
+      <Filter>Utilities\FileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="FileData.h">
+      <Filter>Utilities\FileIO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -585,6 +606,9 @@
     </None>
     <None Include="textShader.frag">
       <Filter>Shaders\text</Filter>
+    </None>
+    <None Include="assets\Scores.json">
+      <Filter>Assets\jsons</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
