@@ -144,6 +144,8 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="Canvas.cpp" />
+    <ClCompile Include="CanvasItem.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="CSApp.cpp" />
     <ClCompile Include="defaults_SpaceBuster.cpp" />
@@ -168,6 +170,7 @@
     <ClCompile Include="ItemPickupScene.cpp" />
     <ClCompile Include="jsonParser.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="MissionScene.cpp" />
     <ClCompile Include="MissionStandard.cpp" />
@@ -227,6 +230,8 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraController.h" />
+    <ClInclude Include="Canvas.h" />
+    <ClInclude Include="CanvasItem.h" />
     <ClInclude Include="CSApp.h" />
     <ClInclude Include="defaults_SpaceBuster.h" />
     <ClInclude Include="experimentalSurface.h" />
@@ -293,6 +298,8 @@
     <None Include="assets\his13_000.json" />
     <None Include="assets\miniAtlas.json" />
     <None Include="assets\Scores.json" />
+    <None Include="canvas.frag" />
+    <None Include="canvas.vertex" />
     <None Include="imgui.ini" />
     <None Include="NDC_sprite.vts" />
     <None Include="packages.config" />

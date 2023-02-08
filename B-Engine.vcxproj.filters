@@ -55,9 +55,6 @@
     <Filter Include="Configurations">
       <UniqueIdentifier>{0e749c6a-5cbf-4018-b914-7535157b33dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Testing">
-      <UniqueIdentifier>{c57ca44a-af4d-4b78-9e2a-4a364927472f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Objects">
       <UniqueIdentifier>{aaa38110-d835-4cd6-b6c1-fd7a4605eba5}</UniqueIdentifier>
     </Filter>
@@ -99,6 +96,12 @@
     </Filter>
     <Filter Include="Assets\jsons">
       <UniqueIdentifier>{fbbe6dd3-b9e9-4ae8-b525-36293ef3a4d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities\FileIO\Testing">
+      <UniqueIdentifier>{c57ca44a-af4d-4b78-9e2a-4a364927472f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Canvas">
+      <UniqueIdentifier>{30c5bed6-5453-4ca1-a63f-668debde6757}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -348,6 +351,15 @@
     <ClCompile Include="FileData.cpp">
       <Filter>Utilities\FileIO</Filter>
     </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Scenes\test scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Canvas.cpp">
+      <Filter>Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="CanvasItem.cpp">
+      <Filter>Canvas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -548,6 +560,12 @@
     <ClInclude Include="FileData.h">
       <Filter>Utilities\FileIO</Filter>
     </ClInclude>
+    <ClInclude Include="Canvas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CanvasItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="B-Engine.rc">
@@ -609,6 +627,12 @@
     </None>
     <None Include="assets\Scores.json">
       <Filter>Assets\jsons</Filter>
+    </None>
+    <None Include="canvas.frag">
+      <Filter>Shaders\text</Filter>
+    </None>
+    <None Include="canvas.vertex">
+      <Filter>Shaders\text</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -38,11 +38,12 @@ void Transform::UpdateMatrix()
 }
 
 #include <imgui.h>
+#include "Game.h"
 void Transform::Debug(const char* owner)
 {
 	if (ImGui::TreeNode(owner))
 	{
-		if (ImGui::SliderFloat3("pos", &position.x, -10, 10)) { UpdateMatrix(); }
+		if (ImGui::SliderFloat3("pos", &position.x, -Game::AppCam->Width, Game::AppCam->Width)) { UpdateMatrix(); }
 		if (ImGui::SliderFloat3("pivot", &pivot.x, -0.5, 0.5)) {
 
 			position += pivot;
