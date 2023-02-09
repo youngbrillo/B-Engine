@@ -34,14 +34,14 @@ public:
 
 		CanvasItem::canvasText = &text; //set the canva's textrender reference 1st!
 
-		canvas.children.emplace_back(new CanvasText("Start Game"		,glm::vec2(50.0f, 165.0f)	, glm::vec4(1, 0, 0, 1.0f)));
-		canvas.children.emplace_back(new CanvasText("View Scores"			,glm::vec2(50.0f, 055.0f)	, glm::vec4(1, 1, 0, 1.0f)));
-		canvas.children.emplace_back(new CanvasText("Demo"				,glm::vec2(50.0f, 110.0f)	, glm::vec4(1, 0, 1, 1.0f)));
-		canvas.children.emplace_back(new CanvasText("Quit to Desktop"	,glm::vec2(50.0f, 000.0f)	, glm::vec4(0, 1, 1, 1.0f)));
+		canvas.children.emplace_back(new CanvasText("Start Game"		,glm::vec2(50.0f, 165.0f)	, glm::vec4(0, 1, 1, 1.0f)));
+		canvas.children.emplace_back(new CanvasText("View Scores"			,glm::vec2(50.0f, 055.0f)	, glm::vec4(0, 1, 1, 1.0f)));
+		canvas.children.emplace_back(new CanvasText("Demo"				,glm::vec2(50.0f, 110.0f)	, glm::vec4(0, 1.0, 1.0, 1.0f)));
+		canvas.children.emplace_back(new CanvasText("Quit to Desktop"	,glm::vec2(50.0f, 000.0f)	, glm::vec4(1, 0, 0, 1.0f)));
 
-		canvas.children.emplace_back(new CanvasText("Are you Sure?"		, glm::vec2(233.158, 250.158f), glm::vec4(0, 1, 1, 1.0f), false, false));
-		canvas.children.emplace_back(new CanvasText("No wait!"					, glm::vec2(312.0f, 50.0f), glm::vec4(1.0f), false));
-		canvas.children.emplace_back(new CanvasText("To the Desktop, posthaste!", glm::vec2(50.0f, -50.0f), glm::vec4(1.0f), false));
+		canvas.children.emplace_back(new CanvasText("Are you Sure?"		, glm::vec2(233.158, 250.158f), glm::vec4(1.0f, 0,0, 1.0f), false, false));
+		canvas.children.emplace_back(new CanvasText("No wait!"					, glm::vec2(312.0f, 50.0f), glm::vec4(0.0f), false));
+		canvas.children.emplace_back(new CanvasText("To the Desktop, posthaste!", glm::vec2(50.0f, -50.0f), glm::vec4(0.0f), false));
 
 
 		canvas.t.position.y = Game::AppCam->Width / (canvas.children.size() + 1);
@@ -57,9 +57,9 @@ public:
 		{ //setup callbacks
 			
 			//canvas.children[3]->setSelectCallback(QuitScene);
-			canvas.children[0]->func = new Callback(MenuScene::Wrapper_Transition_To_Scene, this, "Game", "SpaceBuster III"); //start scene
+			canvas.children[0]->func = new Callback(MenuScene::Wrapper_Transition_To_Scene, this, "Final", "SpaceBuster III"); //start scene
 			canvas.children[1]->func = new Callback(MenuScene::Wrapper_Transition_To_Scene, this, "Final", "viewScores"); //view settings scene (todo: setup settings scene AKA pause menu)
-			canvas.children[2]->func = new Callback(MenuScene::Wrapper_Transition_To_Scene, this, "SpaceBuster","Ship Config (2)"); //view Credits ?
+			canvas.children[2]->func = new Callback(MenuScene::Wrapper_Transition_To_Scene, this, "Final", "GameSetup"); //view Credits ?
 			canvas.children[3]->func = new Callback(MenuScene::Wrapper_HideMainMenuItems, this, false); //get confirm to quick
 			//canvas.children[4]->func = new Callback(MenuScene::Wrapper_QuitScene, this); //no call back, this is just text haha.
 			canvas.children[5]->func = new Callback(MenuScene::Wrapper_HideMainMenuItems, this, true); //restore to previous state
@@ -228,4 +228,4 @@ public:
 	static Game* Create() { return new MenuScene; }
 };
 
-static int testIndex = RegisterGame("Test", "MenuScene", MenuScene::Create);  
+static int testIndex = RegisterGame("Final", "MenuScene", MenuScene::Create);  

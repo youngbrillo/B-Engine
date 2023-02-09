@@ -19,7 +19,7 @@ public:
 
 	FileIO::ScoreFile* m_scores = nullptr;
 	float canvasTextSize = 0.50f;
-	glm::vec2 startingPosition = glm::vec2(230.0f, 450.0f);
+	glm::vec2 startingPosition = glm::vec2(150.0f, 450.0f);
 
 
 
@@ -32,21 +32,30 @@ public:
 		startingPos = startingPosition;
 		offset = glm::vec2(0.0f, -60.0f *  canvasTextSize);
 
-		for (int i : m_scores->scores)
+		for (int i = 0; i < m_scores->scores.size(); i++)
 		{
 			//printf("\t%d\n", i);
-			std::string score;
-			score += "PL1-" + std::to_string(i);
-			CanvasText* t = new CanvasText(score, startingPos, glm::vec4(1, 0, 0, 1.0f), true, false);
+			std::string score = "";
+			//score += std::to_string(m_scores->scores[i]);
+			char buffer[17]; sprintf_s(buffer, "%010d", m_scores->scores[i]);
+			score += buffer;
+			glm::vec4 _col = glm::vec4(0, 1.0, 1.0, 1.0f);
+			if (i == 0) 
+			{
+				score += " <- Hi Score!!!";
+				_col = glm::vec4(0.936f, 0.936f, 0.161f, 1.0f);
+			}
+			
+			CanvasText* t = new CanvasText(score, startingPos, _col, true, false);
 			t->transform.scale = canvasTextSize;
 			canvas.children.emplace_back(t);
 
 			startingPos += offset;
 		}
 
-		CanvasItem* back_button = new CanvasText("Return", glm::vec2(25.0f, 514), glm::vec4(1, 0, 0, 1.0f));
+		CanvasItem* back_button = new CanvasText("Return", glm::vec2(25.0f, 514), glm::vec4(0, 1.0, 1.0, 1.0f));
 		back_button->transform.scale = 1.0f;
-		back_button->func = new Callback(ScoreScene::Wrapper_Transition_To_Scene, this, "Test", "MenuScene");
+		back_button->func = new Callback(ScoreScene::Wrapper_Transition_To_Scene, this, "Final", "MenuScene");
 
 		canvas.children.emplace_back(back_button);
 		//
@@ -194,7 +203,6 @@ public:
 
 	void DrawScene() override 
 	{
-		text.DrawText("Look at all these Scores! <Please remove that invalid '0' score thank ya kindly!");
 		canvas.Draw(canvasShader, m_surface);
 	} 
 	void DrawDebug() override 

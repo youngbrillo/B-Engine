@@ -65,7 +65,8 @@ void FileIO::ScoreFile::onLoad()
 	}
 	sajson::value root = document.get_root();
 	int fieldCount = int(root.get_length());
-
+	printf("Scores: \n");
+	scores.clear();
 	for (int i = 0; i < fieldCount; i++)
 	{
 		sajson::string fieldName = root.get_object_key(i);

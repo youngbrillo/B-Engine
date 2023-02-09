@@ -76,11 +76,12 @@ CanvasText::CanvasText(std::string string, const glm::vec2& position, glm::vec4 
 	, Text(string)
 	, offset(0.0f)
 	, bounds(0.0f)
-	, fontColor(glm::vec4(1) - color)
+	, fontColor(color)
 	, viewBounds(false)
 	, saveBounds(true)
 {
 	fontColor.w = 1.0f;
+	color = glm::vec4(1.0f) - fontColor;
 	texture = ResourceManager::GetTexturePtr("default");
 	//but actually.... calculate the bounds, make sure that the 
 	if (!CanvasItem::canvasText)
