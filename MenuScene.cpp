@@ -72,9 +72,14 @@ public:
 	void Transition_To_Scene(const char* categoryName, const char* sceneName)
 	{
 		printf("Start Scene: '%s/%s'!\n", categoryName, sceneName);
-		if (App::LoadScene(categoryName, sceneName) == -1)
+		int k = App::GetScene(categoryName, sceneName);
+		if (k == -1)
 		{
-			printf("Unable to load scene '%s/%s\n", categoryName, sceneName);
+			printf("Unable to load scene %d '%s/%s\n",k, categoryName, sceneName);
+		}
+		else
+		{
+			App::LoadScene(k);
 		}
 	}
 	static void Wrapper_QuitScene(MenuScene* instance) { instance->QuitScene(); }
@@ -119,14 +124,22 @@ public:
 			glm::vec2 mousePos = glm::vec2((float)x, (float)y);
 			mousePos = ScreenToWorldCoords_projectionMatOnly(localProjMatrix, mousePos);
 
-			for (auto child : canvas.children)
+			for (int i = 0; i < canvas.children.size(); i++)
 			{
 				//a bit ineffecient, but at least it doesn't run every frame
-				if (child->active && validClick && child->isPointInBounds(mousePos, &canvas.t))
+				if (canvas.children[i]->active && validClick && canvas.children[i]->isPointInBounds(mousePos, &canvas.t))
 				{
-					child->handleCallback();
+					canvas.children[i]->handleCallback();
 					validClick = false;
-				};
+					return;
+				}
+				else if (App::g_App->state == App::App_State::state_paused)
+				{//then...
+					if (canvas.children[i]->isPointInBounds(mousePos, &canvas.t))
+					{
+						canvas.children[i]->handleCallback();
+					}
+				}
 			}
 		}
 	}
@@ -160,6 +173,21 @@ public:
 		glm::vec2 mousePos = glm::vec2((float)x, (float) y);
 
 		CanvasItem::mousePosition = ScreenToWorldCoords_projectionMatOnly(localProjMatrix, mousePos);
+
+		if (App::g_App->state == App::App_State::state_paused)
+		{
+			for (int i = 0; i < canvas.children.size(); i++)
+			{
+				if (canvas.children[i]->isPointInBounds(CanvasItem::mousePosition, &canvas.t))
+				{
+					canvas.children[i]->active = true;
+				}
+				else
+				{
+					canvas.children[i]->active = false;
+				}
+			}
+		}
 	}
 	virtual void ResizeWindowCallback(GLFWwindow*, int width, int height) override {
 		localProjMatrix = glm::ortho(0.f, (float)AppCam->Width, 0.f, (float)AppCam->Height);

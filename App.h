@@ -42,7 +42,8 @@ protected:
 	Camera* m_Camera;
 
 public:
-	static int LoadScene(const char* category, const char* title);
+	static int GetScene(const char* category, const char* title);
+	static void LoadScene(const int& index);
 	static App* g_App;
 	static Settings g_settings;
 };

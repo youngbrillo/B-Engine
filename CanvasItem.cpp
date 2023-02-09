@@ -91,6 +91,11 @@ CanvasText::CanvasText(std::string string, const glm::vec2& position, glm::vec4 
 	}
 }
 
+CanvasText::~CanvasText()
+{
+	printf("CanvasItem.cpp::CanvasText::~CanvasText()::\t%s\n", Text.c_str());
+}
+
 
 
 void CanvasText::ResizeBounds()
@@ -178,6 +183,8 @@ void CanvasText::Debug(const char* nodeName)
 
 void CanvasText::handleCallback()
 {
+	if (!visible) return;
+
 	if (func) func->evaluate();
 	else printf("No callback function found\n");
 }

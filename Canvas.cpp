@@ -13,13 +13,14 @@ Canvas::Canvas()
 
 Canvas::~Canvas()
 {
-	auto child = children.begin();
-	while (child != children.end())
+	printf("Canvas.cpp::\tDestructing Canvas %i\n", (int)children.size());
+
+	for (auto p : children)
 	{
-		auto K = (*child);
-		child = children.erase(std::remove(children.begin(), children.end(), K), children.end());
-		delete K; K = nullptr;
+		delete p;
 	}
+	printf("\tCanvas Children left: %i\n", (int)children.size());
+	children.clear();
 }
 
 void Canvas::Update(float dt)

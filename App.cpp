@@ -194,20 +194,29 @@ void App::RenderDifferentApp()
 	}
 }
 
-int App::LoadScene(const char* category, const char* title)
+int App::GetScene(const char* category, const char* title)
 {
 	for (int i = 0; i < g_GameCount; i++)
 	{
 
 		if (g_GameEntries[i].category == category && g_GameEntries[i].name == title)
 		{
-			g_settings.m_index = i;
-			App::g_App->restartGame();
 			return i;
 		}
 	}
 
 	return -1;
+}
+void App::LoadScene(const int& index)
+{
+	App::g_App->state == App_State::state_paused;
+	
+	if (index >= g_GameCount || index < 0) {
+		printf("App.cpp::LoadScene\tprovided scene index (%d) is out-of-bounds (%d)\n", index, g_GameCount);
+		return;
+	}
+	g_settings.m_index = index;
+	App::g_App->restartGame();
 }
 
 void App::restartGame()
@@ -216,6 +225,7 @@ void App::restartGame()
 	delete m_game;
 	m_Camera->Reset();
 	m_game = g_GameEntries[g_settings.m_index].creationFunc();
+	state = App_State::state_running;
 }
 void App::orderGameEntries()
 {
@@ -240,7 +250,7 @@ void App::KeyCallBack(GLFWwindow* win, int key, int scancode, int action, int mo
 		this->state = state == App_State::state_running ? App_State::state_paused : App_State::state_running;
 	}
 
-	if (!m_game) return;
+//	if (!m_game || state == App_State::state_paused) return;
 
 	if (action == GLFW_PRESS)
 	{
@@ -260,18 +270,21 @@ void App::KeyCallBack(GLFWwindow* win, int key, int scancode, int action, int mo
 void App::mouseCallback(GLFWwindow*window, int button, int action, int mode)
 {
 	m_Camera->mouseCallback(window, button, action, mode);
+	//if (state == App_State::state_paused) return;
 	m_game->mouseCallback(window, button, action, mode);
 }
 
 void App::mouseCallback_Cursor(GLFWwindow* w, double x, double y)
 {
 	m_Camera->mouseCallback_Cursor(w, x, y);
+	//if (state == App_State::state_paused) return;
 	m_game->mouseCallback_Cursor(w, x, y);
 }
 
 void App::mouseScroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	m_Camera->mouseScroll_callback(window, xoffset, yoffset);
+	//if (state == App_State::state_paused) return;
 	m_game->mouseScroll_callback(window, xoffset, yoffset);
 }
 
