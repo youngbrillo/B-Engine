@@ -33,6 +33,7 @@ public:
 protected:
 	virtual void DebugRender();
 	void RenderDifferentApp();
+
 	void restartGame();
 
 	void orderGameEntries();
@@ -41,6 +42,7 @@ protected:
 	Camera* m_Camera;
 
 public:
+	static int LoadScene(const char* category, const char* title);
 	static App* g_App;
 	static Settings g_settings;
 };

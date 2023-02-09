@@ -38,7 +38,7 @@ public:
 		//auto f1 = std::bind(ptr);
 		func = new Callback(ptr);
 	}
-
+	virtual bool isPointInBounds(const glm::vec2& pos, Transform* parent) { return false; }
 public:
 	Transform transform;
 	glm::vec4 Color, activeColor; 
@@ -64,6 +64,8 @@ public:
 
 	void handleCallback() override;
 	void ResizeBounds();
+	virtual bool isPointInBounds(const glm::vec2& pos, Transform* parent) override;
+
 public:
 	std::string Text;
 	glm::vec2 offset;

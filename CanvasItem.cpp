@@ -113,39 +113,35 @@ void CanvasText::ResizeBounds()
 	transform.pivot.y = -0.25f;
 }
 
-
-
-void CanvasText::Update(float dt, Transform* input)
+bool CanvasText::isPointInBounds(const glm::vec2& pos, Transform* input)
 {
-	if (!selectable) return;
+
 	glm::vec2 start, end, mp;
-	mp = CanvasItem::mousePosition;
+	mp = pos;
 
-	start = glm::vec2( 
-		input->position.x + transform.position.x,// + input->pivot.x + transform.pivot.x,
-		input->position.y + transform.position.y 
+	start = glm::vec2(
+		input->position.x + transform.position.x,
+		input->position.y + transform.position.y
 	);
-	end	=	glm::vec2( 
-		start.x + (bounds.x  * input->scale * transform.scale), 
-		start.y + ((bounds.y  + 1)* input->scale * transform.scale)
+	end = glm::vec2(
+		start.x + (bounds.x * input->scale * transform.scale),
+		start.y + ((bounds.y + 1) * input->scale * transform.scale)
 	);
-	//end *= input->scale * transform.scale;
 
-	//start.y = start.y - 10;// (1.0f * input->scale * transform.scale) / 2;
-	//end.y = end.y + 10;// (1.0f * input->scale * transform.scale) / 4;
 
 	bool satisfied = true;
 	if (mp.x < start.x || mp.x > end.x) satisfied = false;
 	if (mp.y < start.y || mp.y > end.y) satisfied = false;
 
-	active = satisfied;
+	return satisfied;
+}
 
-	//if (saveBounds)
-	//{
-	//	debugBounds01 = start;
-	//	debugBounds02 = end;
-	//	saveBounds = false;
-	//}
+
+
+void CanvasText::Update(float dt, Transform* input)
+{
+	if (!selectable) return;
+	active = isPointInBounds(CanvasItem::mousePosition, input);
 }
 
 

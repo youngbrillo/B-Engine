@@ -194,6 +194,22 @@ void App::RenderDifferentApp()
 	}
 }
 
+int App::LoadScene(const char* category, const char* title)
+{
+	for (int i = 0; i < g_GameCount; i++)
+	{
+
+		if (g_GameEntries[i].category == category && g_GameEntries[i].name == title)
+		{
+			g_settings.m_index = i;
+			App::g_App->restartGame();
+			return i;
+		}
+	}
+
+	return -1;
+}
+
 void App::restartGame()
 {
 	printf("Restarting Game: %d. %s\n", g_settings.m_index, g_GameEntries[g_settings.m_index].name);
