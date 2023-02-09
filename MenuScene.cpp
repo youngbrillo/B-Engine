@@ -4,12 +4,23 @@
 #include "Canvas.h"
 #include "CanvasItem.h"
 #include "ResourceManager.h"
+
+
+void ms_QuitScene()
+{
+	printf("MenuScene.cpp:: Quick Scene <class-less version>\n");
+}
+void printValues(int x, const char* string)
+{
+	printf("We have %d %s's left\n", x, string);
+}
 class MenuScene : public Game
 {
 public: //members
 	TextRenderer text;
 	Canvas canvas;
 	Shader* canvasShader;
+	glm::mat4 localProjMatrix;
 public:
 	//constructor
 	MenuScene() : Game()
@@ -37,10 +48,26 @@ public:
 		canvasShader = new Shader("canvas.vertex", "canvas.frag", true);
 
 		//glm::mat4 projection = glm::ortho(0.f, (float)AppCam->Width, (float)AppCam->Height, 0.f);
-		glm::mat4 _m_porj = glm::ortho(0.f,(float) AppCam->Width, 0.f, (float)AppCam->Height);
-		canvasShader->Use().SetMatrix4("projection", _m_porj);
+		localProjMatrix = glm::ortho(0.f,(float) AppCam->Width, 0.f, (float)AppCam->Height);
+		canvasShader->Use().SetMatrix4("projection", localProjMatrix);
+
+		//canvas.children[3]->setSelectCallback(QuitScene);
+		canvas.children[3]->func = new Callback(MenuScene::Wrapper_QuitScene, this);
 
 	};
+
+	static void Wrapper_QuitScene(MenuScene* instance)
+	{
+		instance->QuitScene();
+	}
+	void QuitScene()
+	{
+		printf("did it work?\tWe are about to see..\n");
+
+		if (Game::mainWindow != nullptr)
+			glfwSetWindowShouldClose(Game::mainWindow, GL_TRUE);
+
+	}
 	//destructor
 	~MenuScene()
 	{
@@ -53,18 +80,58 @@ public:
 	void KeyboardDown(int key)override { }
 
 	//mouse callbacks - i will need these for the UI Buttons
-	virtual void mouseCallback(GLFWwindow* window, int button, int action, int mode) override {}
-	virtual void mouseCallback_Cursor(GLFWwindow* w, double x, double y) override 
+	virtual void mouseCallback(GLFWwindow* window, int button, int action, int mode) override
 	{
-		glm::vec2 screenPosition = glm::vec2((float)x, (float) y);
+		if (button == GLFW_MOUSE_BUTTON_1 && action == GLFW_RELEASE)
+		{
+			for (auto child : canvas.children)
+			{
+				if (child->active) child->handleCallback();
+			}
+		}
+	}
+	virtual void mouseCallback_Cursor(GLFWwindow* window, double x, double y) override 
+	{
+		glm::vec2 mousePos = glm::vec2((float)x, (float) y);
 
-		CanvasItem::mousePosition = screenPosition;
+		glm::mat4 projection = localProjMatrix;
+		glm::mat4 view = glm::mat4(1.0f); //no view matrix
+		glm::vec4 output;
+
+		glm::vec4 NDC;
+
+		//{ //get normalized device coords
+			float w, h, xx, yy, ndc_x, ndc_y;
+			w = AppCam->Width * 1.0f;
+			h = AppCam->Height * 1.0f;
+			xx = mousePos.x;
+			yy = mousePos.y;
+
+
+
+			ndc_x = 2.0 * xx/ w - 1.0;
+			ndc_y = 1.0 - 2.0 * yy / h; //invert y axis
+
+			NDC = glm::vec4(ndc_x, ndc_y, 0, 1);
+		//}
+		output = NDC * glm::inverse(projection);// *glm::inverse(view);
+
+		//{
+			//output.x += w / 2.0f;
+			//output.y -= h / 2.0f;
+		//}
+		
+		
+		CanvasItem::mousePosition = glm::vec2(output.x + w/2.0f, output.y + h/2.0f);
+
+
+
 	}
 	virtual void mouseScroll_callback(GLFWwindow* window, double xoffset, double yoffset) override {}
 	virtual void ResizeWindowCallback(GLFWwindow*, int width, int height) override {
-		glm::mat4 _m_porj = glm::ortho(0.f, (float)AppCam->Width, 0.f, (float)AppCam->Height);
-		canvasShader->Use().SetMatrix4("projection", _m_porj);
-		TextRenderer::fontShader->Use().SetMatrix4("projection", _m_porj);
+		localProjMatrix = glm::ortho(0.f, (float)AppCam->Width, 0.f, (float)AppCam->Height);
+		canvasShader->Use().SetMatrix4("projection", localProjMatrix);
+		TextRenderer::fontShader->Use().SetMatrix4("projection", localProjMatrix);
 		text.transform.position = glm::vec3(25.0f, AppCam->Height - 72.0f, 0.0f);
 
 	}

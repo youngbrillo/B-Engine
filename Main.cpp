@@ -31,15 +31,46 @@ void cus_glfw_callback_initialization(GLFWwindow* window);
 void cus_imgui_init_config(GLFWwindow* win);
 
 CSApp* application;
+
+
+void A() {
+    printf("I am function A and I work well!\n");
+}
+
+void B(void (*ptr)())
+{
+    (*ptr)();
+}
+
 int main(char* argc, int argv[])
 {
+    void (*ptr)() = &A;
+    B(ptr);
+
     //load settings
     App::g_settings.Load();
 
     //INITIALIZATION
     cus_glfw_initialization();
 
-    GLFWwindow* window = glfwCreateWindow(App::g_settings.m_windowWidth, App::g_settings.m_windowHeight, "Code Switcher", nullptr, nullptr);
+
+
+    GLFWmonitor* primary = glfwGetPrimaryMonitor();
+    int count;
+    GLFWmonitor** monitors = glfwGetMonitors(&count);
+    printf("There are %d monitors connected to this machine!\n", count);
+
+    GLFWwindow* window;
+    if (count > 2) {
+        glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);
+       // glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+        //const GLFWvidmode* mode = glfwGetVideoMode(monitors[2]);
+        //window = glfwCreateWindow(mode->width, mode->height, "B-Engine", monitors[2], nullptr);
+        window = glfwCreateWindow(App::g_settings.m_windowWidth, App::g_settings.m_windowHeight, "B-Engine", nullptr, nullptr);
+        //glfwSetWindowMonitor(window, monitors[2])
+    }
+    else
+        window = glfwCreateWindow(App::g_settings.m_windowWidth, App::g_settings.m_windowHeight, "B-Engine", nullptr, nullptr);
     glfwMakeContextCurrent(window);
 
     // glad: load all OpenGL function pointers

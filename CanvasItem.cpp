@@ -75,7 +75,7 @@ CanvasText::CanvasText(std::string string, const glm::vec2& position, glm::vec4 
 	, offset(0.0f)
 	, bounds(0.0f)
 	, fontColor(glm::vec4(1) - color)
-	, viewBounds(true)
+	, viewBounds(false)
 	, saveBounds(true)
 {
 	fontColor.w = 1.0f;
@@ -88,6 +88,7 @@ CanvasText::CanvasText(std::string string, const glm::vec2& position, glm::vec4 
 		ResizeBounds();
 	}
 }
+
 
 
 void CanvasText::ResizeBounds()
@@ -119,25 +120,23 @@ void CanvasText::Update(float dt, Transform* input)
 	mp = CanvasItem::mousePosition;
 
 	start = glm::vec2( 
-		input->position.x + transform.position.x + input->pivot.x + transform.pivot.x,
-		input->position.y + transform.position.y + input->pivot.y + transform.pivot.y
+		input->position.x + transform.position.x,// + input->pivot.x + transform.pivot.x,
+		input->position.y + transform.position.y 
 	);
-	end	=	glm::vec2( start.x + bounds.x, start.y + bounds.y);
+	end	=	glm::vec2( 
+		start.x + (bounds.x  * input->scale * transform.scale), 
+		start.y + ((bounds.y  + 1)* input->scale * transform.scale)
+	);
 	//end *= input->scale * transform.scale;
 
+	//start.y = start.y - 10;// (1.0f * input->scale * transform.scale) / 2;
+	//end.y = end.y + 10;// (1.0f * input->scale * transform.scale) / 4;
 
 	bool satisfied = true;
 	if (mp.x < start.x || mp.x > end.x) satisfied = false;
 	if (mp.y < start.y || mp.y > end.y) satisfied = false;
 
-	if (satisfied)
-	{
-		fontColor = glm::vec4(0.5, 0.5, 0.0f, 1.0f);
-	}
-	else
-	{
-		fontColor = glm::vec4(1.0f);
-	}
+	active = satisfied;
 
 	if (saveBounds)
 	{
@@ -153,7 +152,7 @@ void CanvasText::Draw(Shader* shader, Surface* surface, const Transform& pt, con
 	if(viewBounds)
 		CanvasItem::Draw(shader, surface, pt, glm::vec3(bounds, 0.0f));
 	glm::vec3 position = pt.position + transform.position + glm::vec3(offsetPosition, 0.0f);
-	CanvasItem::canvasText->DrawText(Text, position.x, position.y, transform.scale, this->fontColor);
+	CanvasItem::canvasText->DrawText(Text, position.x, position.y, transform.scale,active ? this->activeColor : this->fontColor);
 }
 #include "imguiTextWrap.h"
 void CanvasText::Debug(const char* nodeName)
@@ -174,5 +173,20 @@ void CanvasText::Debug(const char* nodeName)
 		if (texture) texture->RenderDebug();
 
 		ImGui::TreePop();
+	}
+}
+
+
+void CanvasText::handleCallback()
+{
+	printf("Reached the call back function 'handler' for canvas text item '%s'\n", Text.c_str());
+	if (func)
+	{
+		printf("Calling callback function\n");
+		func->evaluate();
+
+	}
+	else {
+		printf("NO callback function found\n");
 	}
 }
