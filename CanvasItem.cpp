@@ -12,6 +12,7 @@ void CanvasItem::DrawTexture(Shader* shader, const Transform& _trans)
 
 void CanvasItem::Draw(Shader* shader, Surface* surface, const glm::vec2& offsetPosition)
 {
+	if (!visible) return;
 	Transform t = transform;
 	//t.position += glm::vec3(offsetPosition, 0.0f);
 
@@ -25,6 +26,7 @@ void CanvasItem::Draw(Shader* shader, Surface* surface, const glm::vec2& offsetP
 
 void CanvasItem::Draw(Shader* shader, Surface* surface, const Transform& pt, const glm::vec2& offsetPosition)
 {
+	if (!visible) return;
 
 	Transform t = transform;
 	//t.position += glm::vec3(offsetPosition, 0.0f);
@@ -69,8 +71,8 @@ void CanvasItem::Debug(const char* nodeName)
 
 
 #include "ResourceManager.h"
-CanvasText::CanvasText(std::string string, const glm::vec2& position, glm::vec4 color)
-	: CanvasItem(nullptr, position, color)
+CanvasText::CanvasText(std::string string, const glm::vec2& position, glm::vec4 color, bool v, bool s)
+	: CanvasItem(nullptr, position, color, v, s)
 	, Text(string)
 	, offset(0.0f)
 	, bounds(0.0f)
@@ -107,7 +109,6 @@ void CanvasText::ResizeBounds()
 
 		x += (ch.Advance >> 6) * transform.scale;
 	}
-	printf("Bound for '%s' is : %.3f\n", Text.c_str(), x);
 	bounds = glm::vec2(x/60, y);
 	transform.pivot.y = -0.25f;
 }
@@ -116,6 +117,7 @@ void CanvasText::ResizeBounds()
 
 void CanvasText::Update(float dt, Transform* input)
 {
+	if (!selectable) return;
 	glm::vec2 start, end, mp;
 	mp = CanvasItem::mousePosition;
 
@@ -138,17 +140,19 @@ void CanvasText::Update(float dt, Transform* input)
 
 	active = satisfied;
 
-	if (saveBounds)
-	{
-		debugBounds01 = start;
-		debugBounds02 = end;
-		saveBounds = false;
-	}
+	//if (saveBounds)
+	//{
+	//	debugBounds01 = start;
+	//	debugBounds02 = end;
+	//	saveBounds = false;
+	//}
 }
 
 
 void CanvasText::Draw(Shader* shader, Surface* surface, const Transform& pt, const glm::vec2& offsetPosition)
 {
+	if (!visible) return;
+
 	if(viewBounds)
 		CanvasItem::Draw(shader, surface, pt, glm::vec3(bounds, 0.0f));
 	glm::vec3 position = pt.position + transform.position + glm::vec3(offsetPosition, 0.0f);
@@ -159,9 +163,8 @@ void CanvasText::Debug(const char* nodeName)
 {
 	if (ImGui::TreeNode(nodeName))
 	{	
-		ImGui::Checkbox("save bounds", &saveBounds);
-		ImGui::SliderFloat2("db 1", &debugBounds01.x, -100, 100);
-		ImGui::SliderFloat2("db 2", &debugBounds02.x, -100, 100);
+
+		ImGui::Checkbox("visible", &visible);
 
 		ImGui::Separator();
 		ImGui::Checkbox("Bounding box visible", &viewBounds);
@@ -179,14 +182,6 @@ void CanvasText::Debug(const char* nodeName)
 
 void CanvasText::handleCallback()
 {
-	printf("Reached the call back function 'handler' for canvas text item '%s'\n", Text.c_str());
-	if (func)
-	{
-		printf("Calling callback function\n");
-		func->evaluate();
-
-	}
-	else {
-		printf("NO callback function found\n");
-	}
+	if (func) func->evaluate();
+	else printf("No callback function found\n");
 }

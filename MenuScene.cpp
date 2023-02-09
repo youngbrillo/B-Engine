@@ -30,44 +30,82 @@ public:
 		text.transform.position = glm::vec3(25.0f, AppCam->Height - 72.0f, 0.0f);
 		text.transform.scale = 0.5f;
 		text.cachedDraw = true;
-		CanvasItem::canvasText = &text;
 
-		printf("bound x value should be '5'\n");
-		canvas.children.emplace_back(new CanvasText("Start Game"		,glm::vec2(50.0f, 000.0f)	, glm::vec4(1, 0, 0, 1.0f)));
-		canvas.children.emplace_back(new CanvasText("Settings"			,glm::vec2(50.0f, 055.0f)	, glm::vec4(1, 1, 0, 1.0f)));
-		canvas.children.emplace_back(new CanvasText("Credits"			,glm::vec2(50.0f, 110.0f)	, glm::vec4(1, 0, 1, 1.0f)));
-		canvas.children.emplace_back(new CanvasText("Quit to Desktop"	,glm::vec2(50.0f, 165.0f)	, glm::vec4(0, 1, 1, 1.0f)));
+		CanvasItem::canvasText = &text; //set the canva's textrender reference 1st!
+
+		canvas.children.emplace_back(new CanvasText("Start Game"		,glm::vec2(50.0f, 165.0f)	, glm::vec4(1, 0, 0, 1.0f)));
+		canvas.children.emplace_back(new CanvasText("Settings"			,glm::vec2(50.0f, 110.0f)	, glm::vec4(1, 1, 0, 1.0f)));
+		canvas.children.emplace_back(new CanvasText("Credits"			,glm::vec2(50.0f, 055.0f)	, glm::vec4(1, 0, 1, 1.0f)));
+		canvas.children.emplace_back(new CanvasText("Quit to Desktop"	,glm::vec2(50.0f, 000.0f)	, glm::vec4(0, 1, 1, 1.0f)));
+
+		canvas.children.emplace_back(new CanvasText("Are you Sure?"		, glm::vec2(233.158, 250.158f), glm::vec4(0, 1, 1, 1.0f), false, false));
+		canvas.children.emplace_back(new CanvasText("No wait!"					, glm::vec2(312.0f, 50.0f), glm::vec4(1.0f), false));
+		canvas.children.emplace_back(new CanvasText("To the Desktop, posthaste!", glm::vec2(50.0f, -50.0f), glm::vec4(1.0f), false));
+
+
 		canvas.t.position.y = Game::AppCam->Width / (canvas.children.size() + 1);
 		canvas.t.pivot = glm::vec3(0.0f);
 		canvas.t.UpdateMatrix();
 
-		//canvas.children.emplace_back(new CanvasItem(ResourceManager::GetTexturePtr("default"), glm::vec2(0.0f),  glm::vec4(1, 0, 0, 1.0f)));
-		//canvas.children.emplace_back(new CanvasItem(ResourceManager::GetTexturePtr("default"), glm::vec2(0.0f, 55.0f),  glm::vec4(1, 1, 0, 1.0f)));
-		//canvas.children.emplace_back(new CanvasItem(ResourceManager::GetTexturePtr("default"), glm::vec2(0.0f, 110.0f),  glm::vec4(1, 0, 1, 1.0f)));
-		//canvas.children.emplace_back(new CanvasItem(ResourceManager::GetTexturePtr("default"), glm::vec2(0.0f, 165.0f),  glm::vec4(0, 1, 1, 1.0f)));
 		canvasShader = new Shader("canvas.vertex", "canvas.frag", true);
 
-		//glm::mat4 projection = glm::ortho(0.f, (float)AppCam->Width, (float)AppCam->Height, 0.f);
 		localProjMatrix = glm::ortho(0.f,(float) AppCam->Width, 0.f, (float)AppCam->Height);
 		canvasShader->Use().SetMatrix4("projection", localProjMatrix);
-
-		//canvas.children[3]->setSelectCallback(QuitScene);
-		canvas.children[3]->func = new Callback(MenuScene::Wrapper_QuitScene, this);
+		
+		
+		{ //setup callbacks
+			
+			//canvas.children[3]->setSelectCallback(QuitScene);
+			canvas.children[0]->func = new Callback(MenuScene::Wrapper_Transition_To_Scene, this); //start scene
+			canvas.children[1]->func = new Callback(MenuScene::Wrapper_Transition_To_Scene, this); //view settings scene (todo: setup settings scene AKA pause menu)
+			canvas.children[2]->func = new Callback(MenuScene::Wrapper_Transition_To_Scene, this); //view Credits ?
+			canvas.children[3]->func = new Callback(MenuScene::Wrapper_HideMainMenuItems, this, false); //get confirm to quick
+			//canvas.children[4]->func = new Callback(MenuScene::Wrapper_QuitScene, this); //no call back, this is just text haha.
+			canvas.children[5]->func = new Callback(MenuScene::Wrapper_HideMainMenuItems, this, true); //restore to previous state
+			canvas.children[6]->func = new Callback(MenuScene::Wrapper_QuitScene, this);//Quit to desktop
+		}
 
 	};
 
+	static void Wrapper_Transition_To_Scene(MenuScene* i)
+	{
+		i->Transition_To_Scene();
+	}
+	void Transition_To_Scene()
+	{
+		printf("Start Scene: 'settings'!\n");
+	}
 	static void Wrapper_QuitScene(MenuScene* instance)
 	{
 		instance->QuitScene();
 	}
 	void QuitScene()
 	{
-		printf("did it work?\tWe are about to see..\n");
+		printf("Quiting Scene.\n");
 
-		if (Game::mainWindow != nullptr)
-			glfwSetWindowShouldClose(Game::mainWindow, GL_TRUE);
-
+		if (Game::mainWindow != nullptr) glfwSetWindowShouldClose(Game::mainWindow, GL_TRUE);
 	}
+
+
+	static void Wrapper_HideMainMenuItems(MenuScene* instance, bool makeVisible)
+	{
+		instance->HideMainMenuItems(makeVisible);
+	}
+	void HideMainMenuItems(bool makeVisible)
+	{
+		canvas.children[0]->visible = makeVisible;
+		canvas.children[1]->visible = makeVisible;
+		canvas.children[2]->visible = makeVisible;
+		canvas.children[3]->visible = makeVisible;
+
+		canvas.children[4]->visible = !makeVisible;
+		canvas.children[5]->visible = !makeVisible;
+		canvas.children[6]->visible = !makeVisible;
+	}
+
+
+
+
 	//destructor
 	~MenuScene()
 	{
@@ -78,16 +116,31 @@ public:
 	//key callbacks and frame input key callback
 	void KeyboardUp(int key) override { }
 	void KeyboardDown(int key)override { }
+	
 
-	//mouse callbacks - i will need these for the UI Buttons
+	//for a click to be valid it has to have been pressed and released in one go
+	//the purpose of which is to ensure that a click can only be applied to one clickable item!
+	bool validClick = false; 
+	//int progress = 0;
 	virtual void mouseCallback(GLFWwindow* window, int button, int action, int mode) override
 	{
-		if (button == GLFW_MOUSE_BUTTON_1 && action == GLFW_RELEASE)
+
+		//if (button == GLFW_MOUSE_BUTTON_1 && action == GLFW_PRESS)
+		//{
+		//	progress++;
+		//}
+		if (button == GLFW_MOUSE_BUTTON_1 && action == GLFW_RELEASE) 
 		{
+			//progress++;
+			validClick = true;
 			for (auto child : canvas.children)
 			{
-				if (child->active) child->handleCallback();
+				if (child->active && validClick) {
+					child->handleCallback();
+					validClick = false;
+				};
 			}
+		//	progress = 0;
 		}
 	}
 	virtual void mouseCallback_Cursor(GLFWwindow* window, double x, double y) override 
