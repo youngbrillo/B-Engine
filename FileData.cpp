@@ -89,7 +89,7 @@ void FileIO::ScoreFile::onLoad()
 					scores.push_back(value.get_integer_value());
 				}
 				else {
-					scores.push_back(0);
+					//scores.push_back(0);
 				}
 			}
 		}

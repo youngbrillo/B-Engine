@@ -103,6 +103,9 @@
     <Filter Include="Canvas">
       <UniqueIdentifier>{30c5bed6-5453-4ca1-a63f-668debde6757}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes\Spacebuster Final">
+      <UniqueIdentifier>{dc923830-86da-4056-b075-49aa550583c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -359,6 +362,9 @@
     </ClCompile>
     <ClCompile Include="CanvasItem.cpp">
       <Filter>Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreScene.cpp">
+      <Filter>Scenes\Spacebuster Final</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -189,6 +189,7 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SBmainLoop.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
+    <ClCompile Include="ScoreScene.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Ship.cpp" />
