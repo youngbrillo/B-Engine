@@ -47,7 +47,7 @@ private:
 	collisionType_astroids collisionType;
 
 private:
-	float targetAngle, rotationSpeed, maximum_speed, current_speed;
+	float targetAngle, rotationSpeed, maximum_speed, current_speed, physicalDefense;
 	b2Vec2 target;
 
 	bool thrust_forward, thrust_backward, thrust_left, thrust_right, constrain_velocity;

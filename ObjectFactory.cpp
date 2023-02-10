@@ -117,8 +117,16 @@ void ObjectFactory::cleanup()
 	}
 	if (ALLGAMEOBJECTS.size() != 0)
 	{
-		printf("OBJECTFACTORY:: Did not properly Destroy All Game Objects: %d objects left\n", (int)ALLGAMEOBJECTS.size());
+		printf("OBJECTFACTORY:: Did not properly Destroy All Game Objects: %d objects left...", (int)ALLGAMEOBJECTS.size());
+		for (auto i : ALLGAMEOBJECTS)
+		{
+			delete i;
+			i = nullptr;
+		}
+		printf("\n\t\t...now %d\n", (int)ALLGAMEOBJECTS.size());
+		ALLGAMEOBJECTS.clear();
 	}
+	
 
 	ALLGAMEOBJECTS.clear();
 }

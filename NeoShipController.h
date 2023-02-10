@@ -61,5 +61,7 @@ public:
 
 	void UpdateMouse();
 
+	bool condactIterationDone;
+
 };
 

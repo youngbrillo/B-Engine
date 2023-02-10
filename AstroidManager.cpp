@@ -63,7 +63,7 @@ void SpaceBuster::AstroidFactory::Update(float dt)
 			std::srand(seed); //generate the current seed;
 
 			chance = ((rand() % 101) / 100.0f);
-			printf("What is the chance for some loot to drop? %0.2f/%0.2f\n", chance, baseChance);
+			//printf("What is the chance for some loot to drop? %0.2f/%0.2f\n", chance, baseChance);
 
 			if (chance >= baseChance)
 			{

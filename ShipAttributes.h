@@ -28,7 +28,8 @@ public:
 
 	void UpdateCondition(float difference);
 	void UpdateEnergy(float difference);
-
+	float getCondition() { return currentCondition; }
+	float getEnergy() { return currentEnergy; }
 	void LoadAttributeFile(const char* fileName);
 	void Debug(const char* name = "ShipAttributes");
 private:

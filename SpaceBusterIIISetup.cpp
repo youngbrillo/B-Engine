@@ -30,6 +30,7 @@ public:
 	glm::mat4 canvasProjectionMatrix;
 
 	MissionSurvival* contrainAstroidsToscreen;
+	CanvasItem* back_button, * restart_button;
 public:
 	SpaceBusterIIISetup() : Game()
 	{
@@ -85,11 +86,16 @@ public:
 		//canvas
 		{ 
 
-			CanvasItem* back_button = new CanvasText("Main Menu", glm::vec2(25.0f, 514), glm::vec4(0, 1.0, 1.0, 1.0f), true, true);
-			back_button->transform.scale = 1.0f;
+			back_button = new CanvasText("Return To Main Menu", glm::vec2(25.0f, 514), glm::vec4(0, 1.0, 1.0, 1.0f), true, true);
 			back_button->func = new Callback(SpaceBusterIIISetup::Wrap_NavToScene, this, "Final", "MenuScene");
+			back_button->transform.scale = 1.0f;
+
+
+			restart_button = new CanvasText("Restart", glm::vec2(25.0f, 414), glm::vec4(0, 1.0, 1.0, 1.0f), false, true);
+			restart_button->func = new Callback(SpaceBusterIIISetup::Wrap_NavToScene, this, "Final", "GameSetup");
 
 			uiCanvas.children.emplace_back(back_button);
+			uiCanvas.children.emplace_back(restart_button);
 		}
 
 		canvasProjectionMatrix = glm::ortho(0.f, (float)AppCam->Width, 0.f, (float)AppCam->Height);
@@ -238,6 +244,13 @@ public:
 		ObjectFactory::FixedUpdateObjects(dt);
 	}
 	void Update(float dt) override {
+		if (shipController->GetShip()->GetAttributes()->getCondition() <= 0.0f && shipController->condactIterationDone)
+		{
+			App::g_App->state = App::state_paused;
+			restart_button->visible = true;
+		}
+
+
 		shipController->Update(dt);
 		astroidFactory->Update(dt);
 

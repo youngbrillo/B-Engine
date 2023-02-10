@@ -10,6 +10,7 @@ NeoShipController::NeoShipController(NeoShipControllerDefinition* controllerDefi
 	, target(0.0f, 0.f)
 	, launchVelocity(50.0f)
 	, mouse_position(0.0f)
+	, condactIterationDone(false)
 {
 	//config ship
 	m_ship = new Ship(&controllerDefinition->shipDef, Game::m_World, b2Vec2_zero, groundref);
@@ -66,6 +67,7 @@ void NeoShipController::UpdateMouse()
 }
 void NeoShipController::handleBeginContact(b2Contact* contact)
 {
+	condactIterationDone = false;
 	m_ship->handleBeginContact(contact);
 }
 
@@ -83,6 +85,7 @@ void NeoShipController::handlePostSolve(b2Contact* contact, const b2ContactImpul
 void NeoShipController::handleEndContact(b2Contact* contact)
 {
 	m_ship->handleEndContact(contact);
+	condactIterationDone = true;
 }
 
 void NeoShipController::mouseCallback(int button, int action, int mode)
@@ -185,8 +188,8 @@ void NeoShipController::ShootProjectile()
 
 void NeoShipController::Draw(Shader* shader, Surface* surface)
 {
-	DrawString(5, 10, "Mouse pos (screen spac):	 (%.3f,%.3f)", mouse_position.x, mouse_position.y);
-	DrawString(5, 25, "Mouse Pos (UI Space):	 (%.3f,%.3f)", m_UI->getUISpacePoint(mouse_position).x, m_UI->getUISpacePoint(mouse_position).y);
+//	DrawString(5, 10, "Mouse pos (screen spac):	 (%.3f,%.3f)", mouse_position.x, mouse_position.y);
+	//DrawString(5, 25, "Mouse Pos (UI Space):	 (%.3f,%.3f)", m_UI->getUISpacePoint(mouse_position).x, m_UI->getUISpacePoint(mouse_position).y);
 	//DrawString(5, 25, "Target:	 (%.3f,%.3f)", target.x, target.y);
 	//DrawString(5, 25, "screenSize: (%d,%d)", Game::AppCam->Width, Game::AppCam->Height);
 

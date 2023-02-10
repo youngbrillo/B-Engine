@@ -17,6 +17,7 @@ Ship::Ship(ShipAttributeDef* def, b2World* World, const b2Vec2& spawnPos, b2Body
 	, listeningForDoubleTap(false), doubleTapEnabled(false)
 	, lastKeyDown(0), lastKeyUp(0), doubleTapKey(1)
 	, doubleTappVelocityMod(1.0f)//, doubleTappTorqueMod(1.1f)
+	, physicalDefense(1.0f)// 0.14f)
 {
 	//create the default arrow body
 #if 1
@@ -257,17 +258,21 @@ void Ship::handlePostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
 	b2Fixture* itr = mBody->GetFixtureList();
 	while (itr != nullptr)
 	{
+		bool n = false;
 		if (A == itr)
 		{
 
 			myCollider = itr;
 			other = B;
+			n = true;
 		}
 		if (B == itr)
 		{
 			myCollider = itr;
 			other = A;
+			n = true;
 		}
+		if (n) break;
 		itr = itr->GetNext();
 	}
 
@@ -288,15 +293,17 @@ void Ship::handlePostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
 	{
 		maxImpulse = b2Max(maxImpulse, impulse->normalImpulses[i]);
 	}
-
-	float DM = myCollider->GetDensity() * mBody->GetMass();
+	float Density = myCollider->GetDensity();
+	float Mass = mBody->GetMass();
+	float DM = Density * Mass;
 	// subtract from astroids health dir proportional to above comparison
 	//if (*ct == collisionType_astroids::collision_astroid && maxImpulse > DM * 40.0f * physicalDefense) 
-	float  physicalDefense = 0.14f;
-	if (maxImpulse > DM * 40.0f * physicalDefense) //any hard collision should deal damage
+	//float  physicalDefense = 0.14f;
+	if (true || maxImpulse > DM * 40.0f) //any hard collision should deal damage
 	{
 		float dmg = maxImpulse / (DM * 40.0f) * 100;
 		attributes.UpdateCondition(-dmg * physicalDefense);
+		//printf("***************************************************Ship::cpp:: dmg: %0.3f\n", dmg);
 	}
 
 }
@@ -425,6 +432,7 @@ void Ship::Debug()
 {
 	if (ImGui::TreeNode("basic Ship configuration"))
 	{
+		ImGui::SliderFloat("Defense", &physicalDefense, 0, 1.0f);
 		ImGui::Checkbox("constrain velocity", &constrain_velocity);
 		ImGui::SliderFloat("current Speed", &current_speed, 0, 150.0f);
 		ImGui::SliderFloat("Max Speed", &maximum_speed, 0, 150.0f);

@@ -30,7 +30,10 @@ ShipAttributes::~ShipAttributes()
 
 float sClamp(const float& min, const float& max, const float& input)
 {
-	return std::max(min, std::min(input, max));
+	if (input < min) return min;
+	if (input > max) return max;
+	return input;
+	//return std::max(min, std::min(input, max));
 }
 
 #include <algorithm>
