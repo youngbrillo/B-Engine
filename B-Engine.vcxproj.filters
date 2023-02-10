@@ -354,9 +354,6 @@
     <ClCompile Include="FileData.cpp">
       <Filter>Utilities\FileIO</Filter>
     </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
-      <Filter>Scenes\test scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Canvas.cpp">
       <Filter>Canvas</Filter>
     </ClCompile>
@@ -364,6 +361,12 @@
       <Filter>Canvas</Filter>
     </ClCompile>
     <ClCompile Include="ScoreScene.cpp">
+      <Filter>Scenes\Spacebuster Final</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Scenes\Spacebuster Final</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceBusterIIISetup.cpp">
       <Filter>Scenes\Spacebuster Final</Filter>
     </ClCompile>
   </ItemGroup>

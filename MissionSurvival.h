@@ -35,7 +35,7 @@ private:
 	std::string getTimeLeft_string();
 	float getTimeLeft_float();
 
-private:
+public:
 	SpaceBuster::ScoreManager* scoreManager;
 	glm::ivec2 uiPos;
 };
