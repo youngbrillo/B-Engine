@@ -61,7 +61,8 @@ public:
 
 	void UpdateMouse();
 
-	bool condactIterationDone;
+	bool condactIterationDone() {return contactCount == 0;}
+	int contactCount = 0;
 
 };
 

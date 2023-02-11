@@ -15,10 +15,10 @@ public:
 	virtual void Update(float deltaTime);
 
 
-	virtual void handleBeginContact(b2Contact* contact);
+	virtual bool handleBeginContact(b2Contact* contact);
 	virtual void handlePreSolve(b2Contact* contact, const b2Manifold* oldManifold);
 	virtual void handlePostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
-	virtual void handleEndContact(b2Contact* contact);
+	virtual bool handleEndContact(b2Contact* contact);
 	virtual void mouseCallback(int button, int action, int mode);
 	virtual void mouseCallback_Cursor(double x, double y);
 

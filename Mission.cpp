@@ -28,10 +28,10 @@ void Mission::Update(float deltaTime)
 
 	if (hasEnded || returnedEarly) return;
 	if (state != MissionState::ms_Active) return;
-	if (!hasTimeLimit) return;
+	//if (!hasTimeLimit) return;
 
 	timeElapsed += deltaTime;
-	if (timeElapsed >= timeLimit)
+	if (timeElapsed >= timeLimit && hasTimeLimit)
 	{
 		timeElapsed == timeLimit;
 		onTimeLimitEnd();

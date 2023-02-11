@@ -10,7 +10,7 @@ NeoShipController::NeoShipController(NeoShipControllerDefinition* controllerDefi
 	, target(0.0f, 0.f)
 	, launchVelocity(50.0f)
 	, mouse_position(0.0f)
-	, condactIterationDone(false)
+	, contactCount(0)
 {
 	//config ship
 	m_ship = new Ship(&controllerDefinition->shipDef, Game::m_World, b2Vec2_zero, groundref);
@@ -67,8 +67,8 @@ void NeoShipController::UpdateMouse()
 }
 void NeoShipController::handleBeginContact(b2Contact* contact)
 {
-	condactIterationDone = false;
-	m_ship->handleBeginContact(contact);
+	if(m_ship->handleBeginContact(contact))
+		contactCount++;
 }
 
 void NeoShipController::handlePreSolve(b2Contact* contact, const b2Manifold* oldManifold)
@@ -84,8 +84,8 @@ void NeoShipController::handlePostSolve(b2Contact* contact, const b2ContactImpul
 
 void NeoShipController::handleEndContact(b2Contact* contact)
 {
-	m_ship->handleEndContact(contact);
-	condactIterationDone = true;
+	if(m_ship->handleEndContact(contact))
+		contactCount--;
 }
 
 void NeoShipController::mouseCallback(int button, int action, int mode)

@@ -241,7 +241,16 @@ void Ship::Update(float deltaTime)
 	}
 
 }
-void Ship::handleBeginContact(b2Contact* contact){}
+bool Ship::handleBeginContact(b2Contact* contact)
+{
+
+	 b2Body* AA = contact->GetFixtureA()->GetBody();
+	 b2Body* BB = contact->GetFixtureB()->GetBody();
+
+	if (AA != mBody && BB != mBody)
+		return false;
+
+}
 void Ship::handlePreSolve(b2Contact* contact, const b2Manifold* oldManifold){}
 void Ship::handlePostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
 {
@@ -307,7 +316,14 @@ void Ship::handlePostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
 	}
 
 }
-void Ship::handleEndContact(b2Contact* contact){}
+bool Ship::handleEndContact(b2Contact* contact){
+	b2Body* AA = contact->GetFixtureA()->GetBody();
+	b2Body* BB = contact->GetFixtureB()->GetBody();
+
+	if (AA != mBody && BB != mBody)
+		return false;
+	return true;
+}
 void Ship::mouseCallback(int button, int action, int mode){}
 
 

@@ -30,7 +30,10 @@ public:
 	glm::mat4 canvasProjectionMatrix;
 
 	MissionSurvival* contrainAstroidsToscreen;
-	CanvasItem* back_button, * restart_button;
+	CanvasItem* back_button, *restart_button;
+
+	glm::vec3 hiScorePosition, elpasedTimePosition;
+	std::string hiScoreText;
 public:
 	SpaceBusterIIISetup() : Game()
 	{
@@ -78,9 +81,13 @@ public:
 
 		//setup UI
 		m_textRenderer = TextRenderer("./assets/fonts/joystix monospace.otf");
-		m_textRenderer.transform.position = glm::vec3(25.0f, AppCam->Height - 72.0f, 0.0f);
+		m_textRenderer.transform.position = glm::vec3(25.0f, AppCam->Height - 36, 0.0f);
 		m_textRenderer.transform.scale = 0.5f;
 		m_textRenderer.cachedDraw = true;
+
+		hiScorePosition = glm::vec3(25.0f, AppCam->Height - (36 * 2), 0.5f);
+		elpasedTimePosition = glm::vec3(25.0f, AppCam->Height - (36 * 3), 0.5f);
+
 
 		CanvasItem::canvasText = &m_textRenderer; //set the canva's textrender reference 1st!
 		//canvas
@@ -104,12 +111,16 @@ public:
 
 		//Load score data
 		m_scores = new FileIO::ScoreFile("./assets/Scores.json");
+		char hiscorconstchar[17];
+		sprintf_s(hiscorconstchar, "%010d", m_scores->highestScore);
+		hiScoreText = "Hi Score: "; hiScoreText += hiscorconstchar;
 
 
 
 		//config screen contrainer aka mission
 		MissionDefinition missionDef;
 		missionDef.contrainObjectsToScreen = true;
+		missionDef.hasTimeLimit = false;
 		contrainAstroidsToscreen = new MissionSurvival(&missionDef);
 
 
@@ -125,9 +136,13 @@ public:
 		delete shipController;
 		delete CanvasShader;
 
+
 		ObjectFactory::SetObjectListener(nullptr);
 		ObjectFactory::cleanup();
 		delete contrainAstroidsToscreen;
+
+		back_button = nullptr;
+		restart_button = nullptr;
 	};
 
 	static void Wrap_NavToScene(SpaceBusterIIISetup* instance, const char* category, const char* title) { instance->NavToScene(category, title); }
@@ -244,7 +259,7 @@ public:
 		ObjectFactory::FixedUpdateObjects(dt);
 	}
 	void Update(float dt) override {
-		if (shipController->GetShip()->GetAttributes()->getCondition() <= 0.0f && shipController->condactIterationDone)
+		if (shipController->GetShip()->GetAttributes()->getCondition() <= 0.0f && shipController->condactIterationDone())
 		{
 			App::g_App->state = App::state_paused;
 			restart_button->visible = true;
@@ -306,15 +321,29 @@ public:
 		uiCanvas.children[0]->visible = App::g_App->state == App::App_State::state_paused;
 		//draw ui
 		uiCanvas.Draw(CanvasShader, m_surface);
-		std::string currentScore;
+		std::string currentScore = "Score:    ";
+		//std::string currentScore = "Hi Score: ";
+
+
 		char buffer[17]; sprintf_s(buffer, "%010d", m_scores->currentScore);
 		currentScore += buffer;
 
+		//draw current score
 		m_textRenderer.DrawText(currentScore.c_str());
+		//draw last recorded hi score
+		m_textRenderer.DrawText(hiScoreText.c_str(), hiScorePosition.x, hiScorePosition.y, hiScorePosition.z);
+		//draw elapsed time
+		std::string elapsedTimeStr = this->contrainAstroidsToscreen->getTimeLeft_string();
+		m_textRenderer.DrawText(elapsedTimeStr.c_str(), elpasedTimePosition.x, elpasedTimePosition.y, elpasedTimePosition.z);
+
 	}
 
 	void DrawDebug() override 
 	{
+		//text positions
+		ImGui::SliderFloat3("hi score pos", &hiScorePosition.x, -AppCam->Height, AppCam->Height);
+		ImGui::SliderFloat3("elpsd time pos", &elpasedTimePosition.x, -AppCam->Height, AppCam->Height);
+
 		ImGui::Text("Constrainer aka 'mission'");
 		ImGui::Separator();
 		contrainAstroidsToscreen->Debug();

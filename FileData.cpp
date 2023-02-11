@@ -32,10 +32,20 @@ void FileIO::ScoreFile::onSave(FILE* file)
 	std::sort(scores.begin(), scores.end(), std::greater<int>());
 	//get top N scores , N = 14 in this case
 	scores.resize(SCORE_FILE_MAX_SCORE);
+	if (scores.size() < 1)
+	{
+		scores.push_back(0);
+	}
 
+	printf("FileData.cpp::onSave:: scores:\t[ ");
+	for (int score : scores)
+	{
+		printf("%d, ", score);
+	}
+	printf(" ]\n");
 	printf("\tSaving Score File\n");
 	fprintf(file, "{\n");
-	fprintf(file, "  \"highScore\": %d,\n", this->highestScore);
+	fprintf(file, "  \"highScore\": %d,\n", this->scores[0]);
 	fprintf(file, "  \"scores\":[");
 	char iter = 0x20; // ''
 	for (int i = 0; i < scores.size(); i++)

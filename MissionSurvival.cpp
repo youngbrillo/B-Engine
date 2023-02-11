@@ -84,10 +84,14 @@ void MissionSurvival::ObjectDeleted(GameObject* G)
 
 std::string MissionSurvival::getTimeLeft_string()
 {
-	return std::string();
+	std::string elpasedTimeString = "Time:     ";
+	char buffer[17];
+	sprintf_s(buffer, "%010d", (int)timeElapsed);
+	elpasedTimeString += buffer;
+	return elpasedTimeString;
 }
 
 float MissionSurvival::getTimeLeft_float()
 {
-	return 0.0f;
+	return elapsedTime;
 }

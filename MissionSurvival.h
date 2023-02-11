@@ -29,7 +29,7 @@ public:
 private:
 	b2Vec2 spawnOffset;
 
-private:
+public:
 	//void repositionOffscreenObjects();
 	float elapsedTime;
 	std::string getTimeLeft_string();
